@@ -26,9 +26,9 @@
         </header>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchGame('memory')">🧠 Mémoire</button>
-            <button class="tab-btn" onclick="switchGame('match')">🔗 Association</button>
-            <button class="tab-btn" onclick="switchGame('record')">🎤 Prononciation</button>
+            <button class="tab-btn active" onclick="switchGame('memory', event)">🧠 Mémoire</button>
+            <button class="tab-btn" onclick="switchGame('match', event)">🔗 Association</button>
+            <button class="tab-btn" onclick="switchGame('record', event)">🎤 Prononciation</button>
         </div>
 
         <!-- JEU DE MÉMOIRE -->
@@ -36,12 +36,12 @@
             <h2>🧠 Jeu de Mémoire CE</h2>
             <p class="desc">Retourne les cartes et trouve les paires mot/emoji !</p>
             <div class="theme-selector">
-                <button class="theme-btn active" onclick="loadMemory('school')">🏫 École</button>
-                <button class="theme-btn" onclick="loadMemory('feelings')">😊 Émotions</button>
-                <button class="theme-btn" onclick="loadMemory('family')">👨‍👩‍👧 Famille</button>
-                <button class="theme-btn" onclick="loadMemory('weather')">🌤️ Météo</button>
-                <button class="theme-btn" onclick="loadMemory('celebrations')">🎉 Célébrations</button>
-                <button class="theme-btn" onclick="loadMemory('togo')">🇹🇬 Togo</button>
+                <button class="theme-btn active" onclick="loadMemory('school', event)">🏫 École</button>
+                <button class="theme-btn" onclick="loadMemory('feelings', event)">😊 Émotions</button>
+                <button class="theme-btn" onclick="loadMemory('family', event)">👨‍👩‍👧 Famille</button>
+                <button class="theme-btn" onclick="loadMemory('weather', event)">🌤️ Météo</button>
+                <button class="theme-btn" onclick="loadMemory('celebrations', event)">🎉 Célébrations</button>
+                <button class="theme-btn" onclick="loadMemory('togo', event)">🇹🇬 Togo</button>
             </div>
             <div class="score-display">Paires trouvées : <span id="memoryScore">0</span> / <span id="memoryTotal">0</span></div>
             <div id="memoryGrid" class="memory-grid"></div>
@@ -53,11 +53,11 @@
             <h2>🔗 Jeu d'Association CE</h2>
             <p class="desc">Clique sur le mot anglais puis sur l'emoji correspondant !</p>
             <div class="theme-selector">
-                <button class="theme-btn active" onclick="loadMatch('school')">🏫 École</button>
-                <button class="theme-btn" onclick="loadMatch('appearances')">👁️ Apparences</button>
-                <button class="theme-btn" onclick="loadMatch('house')">🏠 Maison</button>
-                <button class="theme-btn" onclick="loadMatch('sea')">🐟 Vie marine</button>
-                <button class="theme-btn" onclick="loadMatch('independence')">🇹🇬 Indépendance</button>
+                <button class="theme-btn active" onclick="loadMatch('school', event)">🏫 École</button>
+                <button class="theme-btn" onclick="loadMatch('appearances', event)">👁️ Apparences</button>
+                <button class="theme-btn" onclick="loadMatch('house', event)">🏠 Maison</button>
+                <button class="theme-btn" onclick="loadMatch('sea', event)">🐟 Vie marine</button>
+                <button class="theme-btn" onclick="loadMatch('independence', event)">🇹🇬 Indépendance</button>
             </div>
             <div class="score-display">Score : <span id="matchScore">0</span></div>
             <div id="matchContainer" class="match-container"></div>
@@ -69,11 +69,11 @@
             <h2>🎤 Jeu de Prononciation CE</h2>
             <p class="desc">Écoute le mot, prononce-le, puis compare !</p>
             <div class="theme-selector">
-                <button class="theme-btn active" onclick="loadRecord('school')">🏫 École</button>
-                <button class="theme-btn" onclick="loadRecord('feelings')">😊 Émotions</button>
-                <button class="theme-btn" onclick="loadRecord('family')">👨‍👩‍👧 Famille</button>
-                <button class="theme-btn" onclick="loadRecord('weather')">🌤️ Météo</button>
-                <button class="theme-btn" onclick="loadRecord('celebrations')">🎉 Célébrations</button>
+                <button class="theme-btn active" onclick="loadRecord('school', event)">🏫 École</button>
+                <button class="theme-btn" onclick="loadRecord('feelings', event)">😊 Émotions</button>
+                <button class="theme-btn" onclick="loadRecord('family', event)">👨‍👩‍👧 Famille</button>
+                <button class="theme-btn" onclick="loadRecord('weather', event)">🌤️ Météo</button>
+                <button class="theme-btn" onclick="loadRecord('celebrations', event)">🎉 Célébrations</button>
             </div>
             <div class="score-display">Mots réussis : <span id="recordScore">0</span> / <span id="recordTotal">0</span></div>
             <div class="record-container">
@@ -125,17 +125,19 @@
         }
     };
 
-    function switchGame(gameId) {
+    function switchGame(gameId, evt) {
         document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(gameId).classList.add('active');
-        event.target.classList.add('active');
+        if (evt && evt.target) evt.target.classList.add('active');
     }
 
     let memoryCards = [], flippedCards = [], memoryScore = 0, memoryLocked = false;
-    function loadMemory(theme) {
+    function loadMemory(theme, evt) {
         document.querySelectorAll('#memory .theme-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        if (evt && evt.target) evt.target.classList.add('active');
+        else document.querySelector(`#memory .theme-btn[onclick*="'${theme}'"]`)?.classList.add('active');
+        
         memoryScore = 0; flippedCards = []; memoryLocked = false;
         document.getElementById('memoryResult').style.display = 'none';
         const data = ceGameData.memory[theme];
@@ -188,9 +190,11 @@
     }
 
     let matchSelected = null, matchScoreVal = 0, matchPairsLeft = 0;
-    function loadMatch(theme) {
+    function loadMatch(theme, evt) {
         document.querySelectorAll('#match .theme-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        if (evt && evt.target) evt.target.classList.add('active');
+        else document.querySelector(`#match .theme-btn[onclick*="'${theme}'"]`)?.classList.add('active');
+        
         matchSelected = null; matchScoreVal = 0;
         document.getElementById('matchResult').style.display = 'none';
         document.getElementById('matchScore').textContent = '0';
@@ -206,19 +210,20 @@
             const div = document.createElement('div');
             div.className = 'match-item'; div.textContent = item.word;
             div.dataset.word = item.word; div.dataset.type = 'word';
-            div.onclick = () => selectMatch(div);
+            div.onclick = (e) => selectMatch(div, e);
             wordsCol.appendChild(div);
         });
         shuffledEmojis.forEach(item => {
             const div = document.createElement('div');
             div.className = 'match-item'; div.textContent = item.emoji;
             div.dataset.word = item.word; div.dataset.type = 'emoji';
-            div.onclick = () => selectMatch(div);
+            div.onclick = (e) => selectMatch(div, e);
             emojisCol.appendChild(div);
         });
         container.appendChild(wordsCol); container.appendChild(emojisCol);
     }
-    function selectMatch(el) {
+    function selectMatch(el, evt) {
+        evt.stopPropagation();
         if (el.classList.contains('correct')) return;
         if (!matchSelected) { matchSelected = el; el.classList.add('selected'); }
         else {
@@ -245,9 +250,11 @@
     }
 
     let recordWords = [], recordIndex = 0, recordScoreVal = 0, mediaRecorder = null, audioChunks = [], recordedBlob = null, isRecording = false;
-    function loadRecord(theme) {
+    function loadRecord(theme, evt) {
         document.querySelectorAll('#record .theme-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        if (evt && evt.target) evt.target.classList.add('active');
+        else document.querySelector(`#record .theme-btn[onclick*="'${theme}'"]`)?.classList.add('active');
+        
         recordWords = shuffle([...ceGameData.record[theme]]);
         recordIndex = 0; recordScoreVal = 0; recordedBlob = null;
         document.getElementById('recordScore').textContent = '0';
@@ -307,7 +314,13 @@
         }
         return arr;
     }
-    loadMemory('school'); loadMatch('school'); loadRecord('school');
+    
+    // Initialisation sécurisée
+    window.onload = function() {
+        loadMemory('school');
+        loadMatch('school');
+        loadRecord('school');
+    };
     </script>
 </body>
 </html>
