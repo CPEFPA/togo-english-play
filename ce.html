@@ -13,7 +13,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- BARRE DE NAVIGATION CORRIGÉE -->
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
             <a href="/togo-english-play/kids.html" class="nav-link">🎮 CP</a>
@@ -27,6 +26,7 @@
         <header class="header" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
             <h1>📚 Cours Élémentaire (CE1 & CE2)</h1>
             <p>Programme officiel - Note de Service N°018/2024/MEPS/CAB</p>
+            <a href="/togo-english-play/parents-ce.html" style="display: inline-block; background: #FF9800; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-top: 15px;">👨‍👩‍👧 Accéder à l'Espace Parents CE</a>
         </header>
 
         <div class="score-board">
@@ -44,22 +44,18 @@
 
         <div id="lessonContent" class="lesson-content" style="display: none;">
             <button type="button" onclick="goBackToUnits()" class="back-btn" style="margin-bottom: 20px;">← Retour au menu des unités CE</button>
-            
             <div class="lesson-header">
                 <h2 id="lessonTitle"></h2>
                 <p id="lessonTheme" style="font-size: 1.2em; color: #666;"></p>
             </div>
-
             <div class="video-section">
                 <h3>🎥 Vidéos de la semaine</h3>
                 <div id="videoList"></div>
             </div>
-
             <div class="flashcards-section">
                 <h3>🔤 Vocabulaire de la semaine</h3>
                 <div id="flashcardsContainer" class="flashcards-grid"></div>
             </div>
-
             <button type="button" onclick="completeLesson()" class="complete-btn">✅ J'ai terminé cette semaine ! (+5 ⭐)</button>
             <button type="button" onclick="goBackToUnits()" class="back-btn" style="margin-top: 15px; width: 100%;">← Retour au menu des unités CE</button>
         </div>
@@ -75,7 +71,6 @@
     let totalStars = parseInt(localStorage.getItem('ce_totalStars')) || 0;
     let completedLessons = parseInt(localStorage.getItem('ce_completedLessons')) || 0;
 
-    // CHARGEMENT EXCLUSIF DU FICHIER CE
     fetch('/togo-english-play/data/videos-ce.json?' + Date.now())
         .then(response => {
             if (!response.ok) throw new Error("Fichier non trouvé");
@@ -110,7 +105,7 @@
         const unit = programData[unitKey];
         const grid = document.getElementById('unitsGrid');
         grid.innerHTML = `<h2 style="color: white; text-align: center; margin-bottom: 20px;">${unit.icon} ${unit.title}</h2>
-                          <button type="button" onclick="displayUnits()" class="back-btn" style="margin: 0 auto 20px auto; display: block;">← Retour aux 6 unités principales</button>`;
+                          <button type="button" onclick="displayUnits()" class="back-btn" style="margin: 0 auto 20px auto; display: block;">← Retour aux 6 unités</button>`;
         unit.weeks.forEach((week, i) => {
             const card = document.createElement('div');
             card.className = 'week-card';
