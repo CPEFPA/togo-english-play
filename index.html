@@ -7,9 +7,20 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#006A4E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="TogoEnglish">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 <body>
     <div class="container">
+        <!-- Bannière d'installation -->
+        <div id="installBanner" class="install-banner" style="display: none;">
+            <p>📱 Installez TogoEnglish Play sur votre téléphone !</p>
+            <button id="installBtn" class="install-btn">Installer</button>
+            <button onclick="closeInstallBanner()" class="close-btn">✕</button>
+        </div>
+
         <header class="header">
             <div class="logo">
                 <h1>🇹🇬 TogoEnglish Play</h1>
@@ -55,10 +66,18 @@
             <p class="highlight">6 Unités • 20 semaines • 1h40 par semaine</p>
         </div>
 
+        <div class="pwa-info">
+            <h3>📲 Mode Hors-Ligne Activé !</h3>
+            <p>Une fois installée, l'application fonctionne même sans internet.</p>
+            <p>Les jeux, flashcards et quiz sont disponibles à tout moment !</p>
+            <p style="font-size: 0.9em; color: #888; margin-top: 10px;">
+                ⚠️ Seules les vidéos YouTube nécessitent une connexion internet.
+            </p>
+        </div>
+
         <footer class="footer">
             <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
             <p>Programme d'introduction de l'anglais au primaire - République Togolaise 🇹🇬</p>
-            <p>République Togolaise 🇹🇬</p>
         </footer>
     </div>
 
