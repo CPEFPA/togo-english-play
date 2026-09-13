@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espace Enseignants - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .teacher-nav button {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            z-index: 10 !important;
+            position: relative !important;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -26,15 +40,15 @@
         </header>
 
         <div class="teacher-nav">
-            <button onclick="showSection('cp-guide')" class="nav-btn active">📘 Guide CP Complet</button>
-            <button onclick="showSection('ce-guide')" class="nav-btn">📗 Guide CE Complet</button>
-            <button onclick="showSection('methodology')" class="nav-btn">💡 Méthodologie</button>
-            <button onclick="showSection('evaluation')" class="nav-btn">✅ Évaluation</button>
-            <button onclick="showSection('schedule')" class="nav-btn">📅 Emploi du temps</button>
+            <button type="button" id="btn-cp" class="nav-btn active">📘 Guide CP Complet</button>
+            <button type="button" id="btn-ce" class="nav-btn">📗 Guide CE Complet</button>
+            <button type="button" id="btn-method" class="nav-btn">💡 Méthodologie</button>
+            <button type="button" id="btn-eval" class="nav-btn">✅ Évaluation</button>
+            <button type="button" id="btn-schedule" class="nav-btn">📅 Emploi du temps</button>
         </div>
 
         <!-- ==================== GUIDE CP COMPLET ==================== -->
-        <div id="cp-guide" class="section">
+        <div id="cp-guide" class="section active">
             <h2>📘 Programme Cours Préparatoire (CP1 & CP2)</h2>
             <p><strong>Note de Service N°024/2023/MEPST/CAB/SG</strong></p>
             <p style="margin: 15px 0; font-size: 1.1em;"><strong>6 Unités • 20 semaines • 1h40 par semaine</strong></p>
@@ -106,7 +120,7 @@
         </div>
 
         <!-- ==================== GUIDE CE COMPLET ==================== -->
-        <div id="ce-guide" class="section" style="display: none;">
+        <div id="ce-guide" class="section">
             <h2>📗 Programme Cours Élémentaire (CE1 & CE2)</h2>
             <p><strong>Note de Service N°018/2024/MEPS/CAB</strong></p>
             <p style="margin: 15px 0; font-size: 1.1em;"><strong>6 Unités • 25 semaines • 1h40 par semaine</strong></p>
@@ -418,7 +432,7 @@
         </div>
 
         <!-- ==================== MÉTHODOLOGIE COMPLÈTE ==================== -->
-        <div id="methodology" class="section" style="display: none;">
+        <div id="methodology" class="section">
             <h2>💡 Méthodologie d'Enseignement</h2>
             
             <div class="guideline-card">
@@ -508,7 +522,7 @@
         </div>
 
         <!-- ==================== ÉVALUATION COMPLÈTE ==================== -->
-        <div id="evaluation" class="section" style="display: none;">
+        <div id="evaluation" class="section">
             <h2>✅ Évaluation et Remédiation</h2>
 
             <div class="guideline-card">
@@ -644,7 +658,7 @@
         </div>
 
         <!-- ==================== EMPLOI DU TEMPS ==================== -->
-        <div id="schedule" class="section" style="display: none;">
+        <div id="schedule" class="section">
             <h2>📅 Emploi du Temps Officiel</h2>
             
             <div class="info-box">
