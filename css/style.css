@@ -1650,3 +1650,25 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* Carte CE & CM sur l'accueil */
+.ce-cm-card {
+    border-top: 8px solid #2196F3;
+}
+
+.ce-cm-card h2 {
+    color: #2196F3;
+}
+
+/* Adapter la grille pour 5 cartes */
+@media (min-width: 1100px) {
+    .main-nav {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+    .main-nav {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
