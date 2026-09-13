@@ -1,4 +1,4 @@
-const CACHE_NAME = 'togo-english-play-v1';
+   const CACHE_NAME = 'togo-english-play-v2';
 
 // Fichiers à mettre en cache pour le mode hors-ligne
 const urlsToCache = [
