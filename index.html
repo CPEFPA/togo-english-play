@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Lignes anti-cache pour forcer la mise à jour automatique -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TogoEnglish Play - Apprendre l'anglais en s'amusant</title>
@@ -20,7 +18,6 @@
 <body>
     <div class="container">
         
-        <!-- Barre de navigation globale -->
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
             <a href="/togo-english-play/kids.html" class="nav-link">🎮 Enfants</a>
@@ -29,14 +26,12 @@
             <a href="/togo-english-play/games.html" class="nav-link highlight">🕹️ Mini-Jeux</a>
         </nav>
 
-        <!-- Bannière d'installation PWA -->
         <div id="installBanner" class="install-banner" style="display: none;">
             <p>📱 Installez TogoEnglish Play sur votre téléphone !</p>
             <button id="installBtn" class="install-btn">Installer</button>
             <button onclick="closeInstallBanner()" class="close-btn">✕</button>
         </div>
 
-        <!-- En-tête principal -->
         <header class="header">
             <div class="logo">
                 <h1>🇹🇬 TogoEnglish Play</h1>
@@ -44,7 +39,6 @@
             </div>
         </header>
 
-        <!-- Mascottes -->
         <div class="mascots">
             <div class="mascot">
                 <div class="mascot-circle">👦</div>
@@ -56,17 +50,11 @@
             </div>
         </div>
 
-        <!-- 4 cartes principales -->
         <nav class="main-nav">
             <a href="/togo-english-play/kids.html" class="nav-card kids-card">
                 <div class="nav-icon">🎮</div>
                 <h2>Espace Enfants</h2>
                 <p>Jeux, chansons et leçons interactives</p>
-                <a href="/togo-english-play/ce-cm.html" class="nav-card" style="border-top: 8px solid #2196F3;">
-                <div class="nav-icon">📚</div>
-                <h2 style="color: #2196F3;">CE & CM</h2>
-                <p>Programmes à venir</p>
-            </a>
             </a>
 
             <a href="/togo-english-play/games.html" class="nav-card games-card">
@@ -86,9 +74,14 @@
                 <h2>Espace Enseignants</h2>
                 <p>Fiches pédagogiques et évaluations</p>
             </a>
+
+            <a href="/togo-english-play/ce-cm.html" class="nav-card ce-cm-card">
+                <div class="nav-icon">📚</div>
+                <h2>CE & CM</h2>
+                <p>Programmes à venir</p>
+            </a>
         </nav>
 
-        <!-- Informations sur le programme officiel -->
         <div class="program-info">
             <h3>📚 Programme Officiel</h3>
             <p>Cours Préparatoire (CP1 & CP2)</p>
@@ -96,7 +89,6 @@
             <p class="highlight">6 Unités • 20 semaines • 1h40 par semaine</p>
         </div>
 
-        <!-- Informations PWA -->
         <div class="pwa-info">
             <h3>📲 Mode Hors-Ligne Activé !</h3>
             <p>Une fois installée, l'application fonctionne même sans internet.</p>
@@ -106,14 +98,12 @@
             </p>
         </div>
 
-        <!-- Guide de déploiement -->
         <div class="guide-info">
             <h3>📄 Guide de Déploiement</h3>
             <p>Document officiel pour les écoles pilotes</p>
             <a href="guide.html" target="_blank" class="guide-btn">📖 Consulter le guide</a>
         </div>
 
-        <!-- Pied de page -->
         <footer class="footer">
             <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
             <p>Programme d'introduction de l'anglais au primaire - République Togolaise 🇹🇬</p>
