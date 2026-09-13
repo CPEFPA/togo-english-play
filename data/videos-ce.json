@@ -1,0 +1,126 @@
+{
+  "unit1": {
+    "title": "UNIT 1: School Description",
+    "icon": "🏫",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "School Area Description",
+        "videos": [
+          {"day": 1, "title": "Together - Songs for School", "youtubeId": "xiygQUPfCGI", "url": "https://youtu.be/xiygQUPfCGI", "type": "song", "objective": "Unity and belonging song"},
+          {"day": 2, "title": "School Description Song", "youtubeId": "G5Dd96MN4pc", "url": "https://youtu.be/G5Dd96MN4pc", "type": "song", "objective": "Describe school areas"}
+        ]
+      }
+    ]
+  },
+  "unit2": {
+    "title": "UNIT 2: Appearances, Feelings & Emotions",
+    "icon": "😊",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Appearances",
+        "videos": [
+          {"day": 1, "title": "Appearance Song 1", "youtubeId": "RpuF57cIltw", "url": "https://youtu.be/RpuF57cIltw", "type": "song", "objective": "Describe eye, hair, build, height"},
+          {"day": 2, "title": "Appearance Song 2", "youtubeId": "ik4tpRhRCqQ", "url": "https://youtu.be/ik4tpRhRCqQ", "type": "song", "objective": "Describe type of hair, complexion"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Feelings and Emotions",
+        "videos": [
+          {"day": 1, "title": "Feeling Song", "youtubeId": "-J7HcVLsCrY", "url": "https://youtu.be/-J7HcVLsCrY", "type": "song", "objective": "Happy, angry, excited, sad, etc."}
+        ]
+      }
+    ]
+  },
+  "unit3": {
+    "title": "UNIT 3: My Community",
+    "icon": "🏘️",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Family",
+        "videos": [
+          {"day": 1, "title": "Family Song 1", "youtubeId": "d_WQEw13TCo", "url": "https://youtu.be/d_WQEw13TCo", "type": "song", "objective": "Nuclear and extended family"},
+          {"day": 2, "title": "Family Song 2", "youtubeId": "lGir6PUN-as", "url": "https://youtu.be/lGir6PUN-as", "type": "song", "objective": "Family members"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Houses",
+        "videos": [
+          {"day": 1, "title": "Welcome to My House", "youtubeId": "pwiOUlULJIM", "url": "https://youtu.be/pwiOUlULJIM", "type": "song", "objective": "Describe house elements"}
+        ]
+      }
+    ]
+  },
+  "unit4": {
+    "title": "UNIT 4: The Environment",
+    "icon": "🌍",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Weather",
+        "videos": [
+          {"day": 1, "title": "The Sun Comes Up", "youtubeId": "n0LMmytTIeo", "url": "https://youtu.be/n0LMmytTIeo", "type": "song", "objective": "Weather vocabulary"},
+          {"day": 2, "title": "Weather Song 2", "youtubeId": "rD6FRDd9Hew", "url": "https://youtu.be/rD6FRDd9Hew", "type": "song", "objective": "Sunny, rainy, windy, cloudy"},
+          {"day": 3, "title": "Weather Song 3", "youtubeId": "KBL5aXSJTlE", "url": "https://youtu.be/KBL5aXSJTlE", "type": "song", "objective": "Weather expressions"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Sea Life",
+        "videos": [
+          {"day": 1, "title": "Sea Life Video 1", "youtubeId": "Oxw6FoUNeT4", "url": "https://youtu.be/Oxw6FoUNeT4", "type": "video", "objective": "Water animals"},
+          {"day": 2, "title": "Sea Life Video 2", "youtubeId": "KOQ92RLFA34", "url": "https://youtu.be/KOQ92RLFA34", "type": "video", "objective": "Water plants"}
+        ]
+      }
+    ]
+  },
+  "unit5": {
+    "title": "UNIT 5: Local & Global Celebrations",
+    "icon": "🎉",
+    "weeks": [
+      {
+        "week": 2,
+        "theme": "Birthday",
+        "videos": [
+          {"day": 1, "title": "Birthday Song 1", "youtubeId": "PzkYc4EfPPc", "url": "https://youtu.be/PzkYc4EfPPc", "type": "song", "objective": "Birthday celebration"},
+          {"day": 2, "title": "Birthday Song 2", "youtubeId": "MgMiuAJePxY", "url": "https://youtu.be/MgMiuAJePxY", "type": "song", "objective": "Birthday wishes"},
+          {"day": 3, "title": "Birthday Song 3", "youtubeId": "tzwDoZsadh4", "url": "https://youtu.be/tzwDoZsadh4", "type": "song", "objective": "Birthday elements"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Independence Day Togo",
+        "videos": [
+          {"day": 1, "title": "Revive the Flame", "youtubeId": "oqpMtH3__Q8", "url": "https://youtu.be/oqpMtH3__Q8", "type": "video", "objective": "Independence flame ceremony"},
+          {"day": 2, "title": "Independence Parade 1", "youtubeId": "_xxXTsKEm0s", "url": "https://youtu.be/_xxXTsKEm0s", "type": "video", "objective": "National parade"},
+          {"day": 3, "title": "Independence Parade 2", "youtubeId": "mSRXMPdoaVE", "url": "https://youtu.be/mSRXMPdoaVE", "type": "video", "objective": "Togo independence"}
+        ]
+      }
+    ]
+  },
+  "unit6": {
+    "title": "UNIT 6: Diversity & Culture",
+    "icon": "🇹🇬",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Discover Togo",
+        "videos": []
+      },
+      {
+        "week": 2,
+        "theme": "Parts of Togo",
+        "videos": []
+      },
+      {
+        "week": 3,
+        "theme": "Cultures of Togo",
+        "videos": []
+      }
+    ]
+  }
+}
