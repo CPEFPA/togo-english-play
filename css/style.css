@@ -921,3 +921,19 @@ body {
         text-align: center;
     }
 }
+
+/* Styles pour le bouton Mini-Jeux */
+.games-card {
+    border-top: 8px solid #9C27B0;
+    grid-column: span 1;
+}
+
+.games-card h2 {
+    color: #9C27B0;
+}
+
+@media (min-width: 900px) {
+    .main-nav {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
