@@ -4,86 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini-Jeux - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#006A4E">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; color: #333; }
-        .container { max-width: 900px; margin: 0 auto; padding: 15px; }
-        header { text-align: center; color: white; padding: 20px; background: rgba(0,106,78,0.9); border-radius: 15px; margin-bottom: 20px; }
-        header h1 { font-size: 1.8em; }
-        header a { color: white; text-decoration: underline; }
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
-        .tab-btn { background: white; border: 3px solid #006A4E; color: #006A4E; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1em; transition: all 0.3s; }
-        .tab-btn:hover, .tab-btn.active { background: #006A4E; color: white; }
-        .game-panel { display: none; background: white; border-radius: 20px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .game-panel.active { display: block; }
-        .game-panel h2 { color: #006A4E; text-align: center; margin-bottom: 10px; }
-        .game-panel p.desc { text-align: center; color: #666; margin-bottom: 20px; }
-        .theme-selector { text-align: center; margin-bottom: 20px; }
-        .theme-btn { background: #FFE66D; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: bold; margin: 5px; transition: all 0.3s; }
-        .theme-btn:hover, .theme-btn.active { background: #F39C12; color: white; }
-        .score-display { text-align: center; font-size: 1.3em; font-weight: bold; color: #006A4E; margin: 15px 0; }
-
-        /* MEMORY GAME */
-        .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 500px; margin: 0 auto; }
-        .memory-card { aspect-ratio: 1; background: #006A4E; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 2em; cursor: pointer; transition: all 0.4s; color: white; user-select: none; border: 3px solid transparent; }
-        .memory-card.flipped { background: white; color: #333; border-color: #006A4E; transform: rotateY(180deg); }
-        .memory-card.matched { background: #4CAF50; color: white; border-color: #388E3C; }
-        .memory-card .card-front { display: none; }
-        .memory-card .card-back { font-size: 1.5em; }
-        .memory-card.flipped .card-front { display: block; }
-        .memory-card.flipped .card-back { display: none; }
-        .memory-card.matched .card-front { display: block; }
-        .memory-card.matched .card-back { display: none; }
-
-        /* MATCH GAME */
-        .match-container { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
-        .match-column { display: flex; flex-direction: column; gap: 10px; min-width: 140px; }
-        .match-item { background: #f0f0f0; padding: 15px 20px; border-radius: 12px; text-align: center; cursor: pointer; font-size: 1.2em; font-weight: bold; transition: all 0.3s; border: 3px solid transparent; user-select: none; }
-        .match-item:hover { border-color: #667eea; transform: scale(1.05); }
-        .match-item.selected { border-color: #006A4E; background: #E8F5E9; }
-        .match-item.correct { background: #4CAF50; color: white; border-color: #388E3C; }
-        .match-item.wrong { background: #FF5722; color: white; border-color: #D32F2F; animation: shake 0.5s; }
-        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-10px)} 75%{transform:translateX(10px)} }
-
-        /* RECORD GAME */
-        .record-container { text-align: center; }
-        .word-display { font-size: 3em; margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 15px; display: inline-block; min-width: 200px; }
-        .record-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
-        .record-btn { padding: 15px 30px; border: none; border-radius: 30px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s; }
-        .listen-btn { background: #2196F3; color: white; }
-        .listen-btn:hover { background: #1976D2; }
-        .mic-btn { background: #FF5722; color: white; }
-        .mic-btn:hover { background: #E64A19; }
-        .mic-btn.recording { background: #D32F2F; animation: pulse 1s infinite; }
-        @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
-        .play-btn { background: #4CAF50; color: white; }
-        .play-btn:hover { background: #388E3C; }
-        .next-btn { background: #006A4E; color: white; margin-top: 15px; }
-        .next-btn:hover { background: #004d38; }
-        .feedback { font-size: 1.5em; font-weight: bold; margin: 15px 0; min-height: 40px; }
-        .feedback.good { color: #4CAF50; }
-        .feedback.try-again { color: #FF9800; }
-
-        .result-box { text-align: center; padding: 30px; background: #E8F5E9; border-radius: 15px; margin-top: 20px; }
-        .result-box h3 { color: #006A4E; font-size: 1.8em; margin-bottom: 10px; }
-        .restart-btn { background: #006A4E; color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 15px; }
-        .restart-btn:hover { background: #004d38; }
-        footer { text-align: center; color: white; padding: 20px; margin-top: 30px; }
-        @media (max-width: 600px) {
-            .memory-grid { grid-template-columns: repeat(3, 1fr); }
-            .match-container { flex-direction: column; align-items: center; }
-            .word-display { font-size: 2em; }
-        }
-    </style>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
     <div class="container">
-        <header>
+        <nav class="top-nav-bar">
+            <a href="index.html" class="nav-link">🏠 Accueil</a>
+            <a href="parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
+            <a href="teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
+            <a href="games.html" class="nav-link highlight">🕹️ Mini-Jeux</a>
+        </nav>
+
+        <header class="header">
             <h1>🎮 Mini-Jeux Éducatifs</h1>
             <p>Apprends l'anglais en jouant avec Kossi et Afi !</p>
-            <a href="kids.html">← Retour Espace Enfants</a>
         </header>
 
         <div class="tabs">
@@ -92,7 +30,6 @@
             <button class="tab-btn" onclick="switchGame('record')">🎤 Prononciation</button>
         </div>
 
-        <!-- JEU 1 : MÉMOIRE -->
         <div id="memory" class="game-panel active">
             <h2>🧠 Jeu de Mémoire</h2>
             <p class="desc">Retourne les cartes et trouve les paires !</p>
@@ -107,7 +44,6 @@
             <div id="memoryResult" class="result-box" style="display:none;"></div>
         </div>
 
-        <!-- JEU 2 : ASSOCIATION -->
         <div id="match" class="game-panel">
             <h2>🔗 Jeu d'Association</h2>
             <p class="desc">Clique sur le mot anglais puis sur l'image correspondante !</p>
@@ -122,7 +58,6 @@
             <div id="matchResult" class="result-box" style="display:none;"></div>
         </div>
 
-        <!-- JEU 3 : PRONONCIATION -->
         <div id="record" class="game-panel">
             <h2>🎤 Jeu de Prononciation</h2>
             <p class="desc">Écoute le mot, prononce-le, puis compare !</p>
@@ -144,13 +79,12 @@
             </div>
         </div>
 
-        <footer>
+        <footer class="footer">
             <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
         </footer>
     </div>
 
     <script>
-    // ===================== DONNÉES DU PROGRAMME OFFICIEL =====================
     const gameData = {
         memory: {
             fruits: [{word:"Apple",emoji:"🍎"},{word:"Banana",emoji:"🍌"},{word:"Mango",emoji:"🥭"},{word:"Orange",emoji:"🍊"},{word:"Watermelon",emoji:"🍉"},{word:"Pineapple",emoji:"🍍"}],
@@ -171,7 +105,6 @@
         }
     };
 
-    // ===================== NAVIGATION ENTRE JEUX =====================
     function switchGame(gameId) {
         document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -179,7 +112,6 @@
         event.target.classList.add('active');
     }
 
-    // ===================== JEU 1 : MÉMOIRE =====================
     let memoryCards = [];
     let flippedCards = [];
     let memoryScore = 0;
@@ -251,10 +183,8 @@
         const box = document.getElementById('memoryResult');
         box.style.display = 'block';
         box.innerHTML = `<h3>🎉 Bravo Kossi !</h3><p>Tu as trouvé toutes les paires !</p><button class="restart-btn" onclick="loadMemory('fruits')">🔄 Rejouer</button>`;
-        addStars(10);
     }
 
-    // ===================== JEU 2 : ASSOCIATION =====================
     let matchSelected = null;
     let matchScoreVal = 0;
     let matchPairsLeft = 0;
@@ -330,7 +260,6 @@
                 document.getElementById('matchScore').textContent = matchScoreVal;
                 matchPairsLeft--;
                 matchSelected = null;
-                speakWord(el.dataset.type === 'word' ? el.textContent : matchSelected?.textContent || '');
                 if (matchPairsLeft === 0) showMatchResult();
             } else {
                 el.classList.add('wrong');
@@ -349,10 +278,8 @@
         const box = document.getElementById('matchResult');
         box.style.display = 'block';
         box.innerHTML = `<h3>🎉 Bravo Afi !</h3><p>Tu as associé toutes les paires ! Score : ${matchScoreVal}</p><button class="restart-btn" onclick="loadMatch('greetings')">🔄 Rejouer</button>`;
-        addStars(10);
     }
 
-    // ===================== JEU 3 : PRONONCIATION =====================
     let recordWords = [];
     let recordIndex = 0;
     let recordScoreVal = 0;
@@ -440,13 +367,11 @@
         recordIndex = (recordIndex + 1) % recordWords.length;
         document.getElementById('recordWord').textContent = recordWords[recordIndex];
         if (recordIndex === 0) {
-            addStars(5);
             document.getElementById('recordFeedback').textContent = '🎉 Tour terminé ! Bravo !';
             document.getElementById('recordFeedback').className = 'feedback good';
         }
     }
 
-    // ===================== UTILITAIRES =====================
     function shuffle(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -455,13 +380,6 @@
         return arr;
     }
 
-    function addStars(n) {
-        let stars = parseInt(localStorage.getItem('totalStars')) || 0;
-        stars += n;
-        localStorage.setItem('totalStars', stars);
-    }
-
-    // ===================== INITIALISATION =====================
     loadMemory('fruits');
     loadMatch('greetings');
     loadRecord('basics');
