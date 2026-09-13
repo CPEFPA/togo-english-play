@@ -770,6 +770,404 @@ body {
 }
 
 /* ========================================
+   MINI-JEUX - GAMES.HTML
+   ======================================== */
+.tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tab-btn {
+    background: white;
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 14px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.05em;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn:hover, .tab-btn.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 106, 78, 0.4);
+}
+
+.game-panel {
+    display: none;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--card-shadow);
+}
+
+.game-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.game-panel h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.game-panel p.desc {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.theme-selector {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.theme-btn {
+    background: linear-gradient(135deg, var(--accent-yellow), #FFD93D);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    margin: 6px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 230, 109, 0.4);
+}
+
+.theme-btn:hover, .theme-btn.active {
+    background: linear-gradient(135deg, #F39C12, #FFA726);
+    color: white;
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.5);
+}
+
+.score-display {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 20px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(0, 106, 78, 0.1), rgba(0, 137, 106, 0.1));
+    border-radius: 15px;
+}
+
+/* JEU DE MÉMOIRE */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white;
+    user-select: none;
+    border: 3px solid transparent;
+    box-shadow: 0 6px 20px rgba(0, 106, 78, 0.3);
+}
+
+.memory-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 106, 78, 0.5);
+}
+
+.memory-card.flipped {
+    background: white;
+    color: var(--text-dark);
+    border-color: var(--primary-color);
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    border-color: #388E3C;
+    animation: pulse 0.5s ease-out;
+}
+
+.memory-card .card-front {
+    display: none;
+}
+
+.memory-card .card-back {
+    font-size: 1.5em;
+}
+
+.memory-card.flipped .card-front {
+    display: block;
+}
+
+.memory-card.flipped .card-back {
+    display: none;
+}
+
+.memory-card.matched .card-front {
+    display: block;
+}
+
+.memory-card.matched .card-back {
+    display: none;
+}
+
+/* JEU D'ASSOCIATION */
+.match-container {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.match-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 150px;
+}
+
+.match-item {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 18px 25px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.3em;
+    font-weight: 700;
+    transition: var(--transition);
+    border: 3px solid transparent;
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.match-item:hover {
+    border-color: var(--secondary-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.match-item.selected {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(0, 106, 78, 0.1), rgba(0, 137, 106, 0.1));
+    transform: scale(1.08);
+}
+
+.match-item.correct {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    border-color: #388E3C;
+    animation: pulse 0.5s ease-out;
+}
+
+.match-item.wrong {
+    background: linear-gradient(135deg, #FF5722, #FF7043);
+    color: white;
+    border-color: #D32F2F;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* JEU DE PRONONCIATION */
+.record-container {
+    text-align: center;
+}
+
+.word-display {
+    font-size: 3.5em;
+    margin: 25px 0;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--secondary-color), #764ba2);
+    color: white;
+    border-radius: 20px;
+    display: inline-block;
+    min-width: 250px;
+    font-weight: 800;
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.record-btns {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+
+.record-btn {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 35px;
+    font-size: 1.15em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.listen-btn {
+    background: linear-gradient(135deg, #2196F3, #42A5F5);
+    color: white;
+}
+
+.listen-btn:hover {
+    background: linear-gradient(135deg, #1976D2, #2196F3);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.5);
+}
+
+.mic-btn {
+    background: linear-gradient(135deg, #FF5722, #FF7043);
+    color: white;
+}
+
+.mic-btn:hover {
+    background: linear-gradient(135deg, #E64A19, #FF5722);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 87, 34, 0.5);
+}
+
+.mic-btn.recording {
+    background: linear-gradient(135deg, #D32F2F, #F44336);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.play-btn {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+}
+
+.play-btn:hover {
+    background: linear-gradient(135deg, #388E3C, #4CAF50);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+}
+
+.next-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    margin-top: 20px;
+}
+
+.next-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 106, 78, 0.5);
+}
+
+.feedback {
+    font-size: 1.6em;
+    font-weight: 800;
+    margin: 20px 0;
+    min-height: 50px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.feedback.good {
+    color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.feedback.try-again {
+    color: #FF9800;
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.result-box {
+    text-align: center;
+    padding: 35px;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(102, 187, 106, 0.1));
+    border-radius: var(--border-radius);
+    margin-top: 25px;
+    border: 3px solid #4CAF50;
+}
+
+.result-box h3 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.restart-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 30px;
+    font-size: 1.15em;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: var(--transition);
+    box-shadow: 0 6px 20px rgba(0, 106, 78, 0.3);
+}
+
+.restart-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 106, 78, 0.5);
+}
+
+@media (max-width: 600px) {
+    .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .match-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .word-display {
+        font-size: 2.5em;
+        padding: 20px;
+        min-width: 200px;
+    }
+    
+    .record-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .record-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/* ========================================
    ESPACE ENSEIGNANTS
    ======================================== */
 .teacher-nav {
