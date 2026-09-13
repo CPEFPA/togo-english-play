@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Lignes anti-cache pour forcer la mise à jour automatique -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TogoEnglish Play - Apprendre l'anglais en s'amusant</title>
+    <title>Espace Enfants CP - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#006A4E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="TogoEnglish">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 <body>
     <div class="container">
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
-            <a href="/togo-english-play/kids.html" class="nav-link">🎮 Enfants</a>
-            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
+            <a href="/togo-english-play/kids.html" class="nav-link highlight">🎮 CP</a>
+            <a href="/togo-english-play/ce.html" class="nav-link">📚 CE</a>
+            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents CP</a>
+            <a href="/togo-english-play/parents-ce.html" class="nav-link">👨‍👩‍👧 Parents CE</a>
             <a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
-            <a href="/togo-english-play/games.html" class="nav-link highlight">🕹️ Mini-Jeux</a>
+            <a href="/togo-english-play/games.html" class="nav-link">🕹️ Jeux</a>
         </nav>
 
         <header class="header">
-            <h1>🎮 Espace Enfants</h1>
+            <h1>🎮 Espace Enfants CP</h1>
             <p>Apprends l'anglais en t'amusant avec Kossi et Afi !</p>
         </header>
 
@@ -50,30 +48,25 @@
         </div>
 
         <div id="lessonContent" class="lesson-content" style="display: none;">
-            <button onclick="backToUnits()" class="back-btn">← Retour aux unités</button>
-            
+            <button type="button" onclick="goBack()" class="back-btn">← Retour aux unités</button>
             <div class="lesson-header">
                 <h2 id="lessonTitle"></h2>
                 <p id="lessonTheme"></p>
             </div>
-
             <div class="video-section">
-                <h3>🎥 Regarde la vidéo</h3>
-                <div class="video-container">
-                    <iframe id="lessonVideo" src="" frameborder="0" allowfullscreen></iframe>
-                </div>
+                <h3>🎥 Vidéos de la semaine</h3>
+                <div id="videoList"></div>
             </div>
-
             <div class="flashcards-section">
                 <h3>🔤 Apprends les mots</h3>
                 <div id="flashcardsContainer" class="flashcards-grid"></div>
             </div>
-
             <div class="quiz-section">
                 <h3>🎯 Teste tes connaissances</h3>
                 <div id="quizContainer"></div>
-                <button onclick="completeLesson()" class="complete-btn">✅ J'ai terminé !</button>
             </div>
+            <button type="button" onclick="completeLesson()" class="complete-btn">✅ J'ai terminé ! (+5 ⭐)</button>
+            <button type="button" onclick="goBack()" class="back-btn" style="margin-top: 15px; width: 100%;">← Retour aux unités</button>
         </div>
 
         <footer class="footer">
@@ -81,6 +74,148 @@
         </footer>
     </div>
 
-    <script src="js/kids.js"></script>
+    <script>
+    let programData = {};
+    let currentUnit = null;
+    let totalStars = parseInt(localStorage.getItem('totalStars')) || 0;
+    let completedLessons = parseInt(localStorage.getItem('completedLessons')) || 0;
+
+    fetch('/togo-english-play/data/videos.json')
+        .then(r => r.json())
+        .then(data => { programData = data; displayUnits(); updateScore(); })
+        .catch(e => console.error('Erreur:', e));
+
+    function displayUnits() {
+        const grid = document.getElementById('unitsGrid');
+        grid.innerHTML = '<h2 style="color: white; text-align: center; margin-bottom: 20px;">Choisis ton unité :</h2>';
+        const icons = ['📚','👨‍👩‍👧','🍎','⚽','🧼','🦁'];
+        Object.keys(programData).forEach((key, i) => {
+            const unit = programData[key];
+            const card = document.createElement('div');
+            card.className = 'unit-card';
+            card.onclick = () => selectUnit(key);
+            card.innerHTML = `<div class="unit-icon">${icons[i] || '📖'}</div><h3>${unit.title}</h3><p>${unit.weeks.length} semaines</p>`;
+            grid.appendChild(card);
+        });
+    }
+
+    function selectUnit(unitKey) {
+        currentUnit = unitKey;
+        const unit = programData[unitKey];
+        const grid = document.getElementById('unitsGrid');
+        grid.innerHTML = `<h2 style="color: white; text-align: center; margin-bottom: 20px;">${unit.title}</h2>
+            <button type="button" onclick="displayUnits()" class="back-btn" style="margin: 0 auto 20px auto; display: block;">← Retour aux unités</button>`;
+        unit.weeks.forEach((week, i) => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+            card.onclick = () => selectWeek(i);
+            card.innerHTML = `<h3>Semaine ${week.week}</h3><p>${week.theme}</p><p style="color:#FF6B6B;font-weight:bold;">${week.videos.length} vidéo(s)</p>`;
+            grid.appendChild(card);
+        });
+    }
+
+    function selectWeek(weekIndex) {
+        const week = programData[currentUnit].weeks[weekIndex];
+        document.getElementById('unitsGrid').style.display = 'none';
+        document.getElementById('lessonContent').style.display = 'block';
+        document.getElementById('lessonTitle').textContent = programData[currentUnit].title;
+        document.getElementById('lessonTheme').textContent = `Semaine ${week.week} - ${week.theme}`;
+
+        const videoList = document.getElementById('videoList');
+        videoList.innerHTML = '';
+        week.videos.forEach(v => {
+            let videoId = v.youtubeId || '';
+            if (!videoId && v.url) {
+                if (v.url.includes('v=')) videoId = v.url.split('v=')[1].split('&')[0];
+                else if (v.url.includes('youtu.be/')) videoId = v.url.split('youtu.be/')[1];
+            }
+            const div = document.createElement('div');
+            div.className = 'video-card';
+            div.style.marginBottom = '25px';
+            div.innerHTML = `<div class="video-badge">${v.type ? v.type.toUpperCase() : 'VIDEO'}</div>
+                <h3>${v.title}</h3>
+                <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div>
+                <p style="color:#555;margin-top:10px;">🎯 ${v.objective || ''}</p>`;
+            videoList.appendChild(div);
+        });
+
+        const keywords = extractKeywords(week.theme);
+        const fc = document.getElementById('flashcardsContainer');
+        fc.innerHTML = '';
+        keywords.forEach(word => {
+            const card = document.createElement('div');
+            card.className = 'flashcard';
+            card.innerHTML = `<div class="flashcard-word">${word}</div><button type="button" onclick="speakWord('${word}')">🔊 Écouter</button>`;
+            fc.appendChild(card);
+        });
+
+        createQuiz(keywords);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function extractKeywords(theme) {
+        const t = theme.toLowerCase();
+        if (t.includes('greet') || t.includes('alphabet')) return ['Hello','Good morning','Good afternoon','A','B','C'];
+        if (t.includes('family') || t.includes('identity')) return ['Father','Mother','Brother','Sister','Name'];
+        if (t.includes('fruit') || t.includes('food')) return ['Apple','Banana','Mango','Orange','Rice'];
+        if (t.includes('body') || t.includes('sport') || t.includes('physical')) return ['Head','Hand','Foot','Eye','Nose'];
+        if (t.includes('hygien') || t.includes('health')) return ['Teeth','Hands','Soap','Water','Clean'];
+        if (t.includes('animal')) return ['Cat','Dog','Cow','Lion','Elephant'];
+        return ['Hello','School','Teacher','Book','Pen','Friend'];
+    }
+
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const u = new SpeechSynthesisUtterance(word);
+            u.lang = 'en-US'; u.rate = 0.8;
+            speechSynthesis.speak(u);
+        }
+    }
+
+    function createQuiz(keywords) {
+        const container = document.getElementById('quizContainer');
+        if (keywords.length < 2) { container.innerHTML = ''; return; }
+        const options = [keywords[0], keywords[1], 'Apple', 'Book'];
+        let html = `<div class="quiz-question"><p>Quel mot signifie "${keywords[0].toLowerCase()}" en anglais ?</p><div class="quiz-options">`;
+        options.forEach(opt => { html += `<button type="button" class="quiz-option" onclick="checkAnswer(this,'${opt}','${keywords[0]}')">${opt}</button>`; });
+        html += `</div><div id="quizResult"></div></div>`;
+        container.innerHTML = html;
+    }
+
+    function checkAnswer(btn, selected, correct) {
+        const result = document.getElementById('quizResult');
+        if (selected === correct) {
+            result.innerHTML = '<p style="color:#4CAF50;font-weight:bold;">✅ Bravo ! Bonne réponse !</p>';
+            btn.style.background = '#4CAF50';
+            totalStars += 1;
+            localStorage.setItem('totalStars', totalStars);
+            updateScore();
+        } else {
+            result.innerHTML = `<p style="color:#FF5722;font-weight:bold;">❌ La bonne réponse était : ${correct}</p>`;
+            btn.style.background = '#FF5722';
+        }
+    }
+
+    function completeLesson() {
+        completedLessons++; totalStars += 5;
+        localStorage.setItem('completedLessons', completedLessons);
+        localStorage.setItem('totalStars', totalStars);
+        updateScore();
+        alert(`🎉 Félicitations ! +5 étoiles !\nTotal : ${totalStars} ⭐`);
+        goBack();
+    }
+
+    function goBack() {
+        document.getElementById('lessonContent').style.display = 'none';
+        document.getElementById('unitsGrid').style.display = 'block';
+        if (currentUnit) selectUnit(currentUnit);
+        else displayUnits();
+    }
+
+    function updateScore() {
+        document.getElementById('totalStars').textContent = totalStars;
+        document.getElementById('completedLessons').textContent = completedLessons;
+    }
+    </script>
 </body>
 </html>
