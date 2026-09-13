@@ -1,0 +1,511 @@
+{
+  "preUnit": {
+    "title": "PRE-UNIT: Let's Remember",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Greetings & Alphabet",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Greeting Song",
+            "youtubeId": "03XgDWozJow",
+            "url": "https://youtu.be/03XgDWozJow",
+            "type": "song",
+            "objective": "Learn basic greetings"
+          },
+          {
+            "day": 1,
+            "title": "Self Introduction",
+            "youtubeId": "74FA1dyVVKs",
+            "url": "https://youtu.be/74FA1dyVVKs",
+            "type": "video",
+            "objective": "Introduce yourself"
+          },
+          {
+            "day": 2,
+            "title": "Alphabet Song",
+            "youtubeId": "v3dkRo2IDdg",
+            "url": "https://www.youtube.com/watch?v=v3dkRo2IDdg",
+            "type": "song",
+            "objective": "Learn the alphabet"
+          },
+          {
+            "day": 4,
+            "title": "Numbers Song (0-10)",
+            "youtubeId": "Cst_XJATiew",
+            "url": "https://youtu.be/Cst_XJATiew",
+            "type": "song",
+            "objective": "Count from 0 to 10"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Food & Body Parts",
+        "videos": [
+          {
+            "day": 3,
+            "title": "Head Shoulders Knees & Toes",
+            "youtubeId": "h4eueDYPTIg",
+            "url": "https://www.youtube.com/watch?v=h4eueDYPTIg",
+            "type": "song",
+            "objective": "Name body parts"
+          },
+          {
+            "day": 4,
+            "title": "Simon Says Game",
+            "youtubeId": "QRVTPFfOwcM",
+            "url": "https://www.youtube.com/watch?v=QRVTPFfOwcM",
+            "type": "game",
+            "objective": "Identify body parts through actions"
+          }
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Hygiene & Animals",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Wash Hands Song",
+            "youtubeId": "SUt8q0EKbms",
+            "url": "https://youtu.be/SUt8q0EKbms",
+            "type": "song",
+            "objective": "Practice body hygiene"
+          },
+          {
+            "day": 2,
+            "title": "Common Ailments",
+            "youtubeId": "gWcatCBc0YM",
+            "url": "https://youtu.be/gWcatCBc0YM",
+            "type": "video",
+            "objective": "Identify common ailments"
+          },
+          {
+            "day": 3,
+            "title": "Domestic Animals",
+            "youtubeId": "CA6Mofzh7jo",
+            "url": "https://youtu.be/CA6Mofzh7jo",
+            "type": "video",
+            "objective": "Name domestic animals"
+          },
+          {
+            "day": 4,
+            "title": "Wild Animals",
+            "youtubeId": "oMy9vkdImbs",
+            "url": "https://youtu.be/oMy9vkdImbs",
+            "type": "video",
+            "objective": "Name wild animals"
+          }
+        ]
+      }
+    ]
+  },
+  "unit1": {
+    "title": "UNIT 1: My School",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Greetings & Alphabet",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Hello Song with Bella",
+            "youtubeId": "q5BcGrOny-k",
+            "url": "https://youtu.be/q5BcGrOny-k",
+            "type": "song",
+            "objective": "Learn greetings"
+          },
+          {
+            "day": 1,
+            "title": "Alphabet Song",
+            "youtubeId": "v3dkRo2IDdg",
+            "url": "https://www.youtube.com/watch?v=v3dkRo2IDdg",
+            "type": "song",
+            "objective": "Sing alphabet song"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "About Myself",
+        "videos": [
+          {
+            "day": 1,
+            "title": "About Myself",
+            "youtubeId": "KZn42zsbPN0",
+            "url": "https://www.youtube.com/watch?v=KZn42zsbPN0",
+            "type": "video",
+            "objective": "Give basic information about themselves"
+          },
+          {
+            "day": 1,
+            "title": "Subject Pronouns: I, You, He, She",
+            "youtubeId": "9BmvvC9qe2s",
+            "url": "https://www.youtube.com/watch?v=9BmvvC9qe2s",
+            "type": "video",
+            "objective": "Introduce subject pronouns"
+          }
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Classroom Objects",
+        "videos": [
+          {
+            "day": 1,
+            "title": "School Supplies Song",
+            "youtubeId": "nVdteH89iQI",
+            "url": "https://www.youtube.com/watch?v=nVdteH89iQI",
+            "type": "song",
+            "objective": "Name classroom objects"
+          },
+          {
+            "day": 1,
+            "title": "School Supplies Vocabulary",
+            "youtubeId": "0CWWNzprEQ4",
+            "url": "https://www.youtube.com/watch?v=0CWWNzprEQ4",
+            "type": "video",
+            "objective": "Learn school supplies"
+          },
+          {
+            "day": 1,
+            "title": "Classroom Objects",
+            "youtubeId": "MuPV5x2jRzk",
+            "url": "https://www.youtube.com/watch?v=MuPV5x2jRzk",
+            "type": "video",
+            "objective": "Identify classroom objects"
+          }
+        ]
+      }
+    ]
+  },
+  "unit2": {
+    "title": "UNIT 2: My Identity",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Self-Identification & Praise",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Self Introduction",
+            "youtubeId": "UnEmEbWytI8",
+            "url": "https://youtu.be/UnEmEbWytI8",
+            "type": "video",
+            "objective": "Say more about themselves"
+          },
+          {
+            "day": 1,
+            "title": "About Me",
+            "youtubeId": "qfA4WzV2bpY",
+            "url": "https://youtu.be/qfA4WzV2bpY",
+            "type": "video",
+            "objective": "Give personal information"
+          },
+          {
+            "day": 1,
+            "title": "Good Job Song - Praise for Kids",
+            "youtubeId": "TO_VERIFY",
+            "url": "https://www.youtube.com/results?search_query=good+job+song+kids+praise",
+            "type": "song",
+            "objective": "Use praise formulations: good, nice, very good, well done",
+            "status": "REPLACEMENT_VIDEO",
+            "note": "Video de remplacement - lien original invalide dans le PDF"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Family",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Family Introduction",
+            "youtubeId": "uVYP8U2I8NA",
+            "url": "https://youtu.be/uVYP8U2I8NA",
+            "type": "video",
+            "objective": "Talk about family"
+          },
+          {
+            "day": 1,
+            "title": "Family Members",
+            "youtubeId": "x0mnJpty78E",
+            "url": "https://youtu.be/x0mnJpty78E",
+            "type": "video",
+            "objective": "Identify family members"
+          },
+          {
+            "day": 1,
+            "title": "My Parents",
+            "youtubeId": "5gCb22gVWA8",
+            "url": "https://youtu.be/5gCb22gVWA8",
+            "type": "video",
+            "objective": "Introduce parents"
+          }
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Home & School",
+        "videos": [
+          {
+            "day": 1,
+            "title": "My Home",
+            "youtubeId": "CNJF0Rs1mHE",
+            "url": "https://youtu.be/CNJF0Rs1mHE",
+            "type": "video",
+            "objective": "Describe home"
+          },
+          {
+            "day": 1,
+            "title": "Colors & Home",
+            "youtubeId": "tkpfg-1FJLU",
+            "url": "https://youtu.be/tkpfg-1FJLU",
+            "type": "video",
+            "objective": "Pair colors with home items"
+          }
+        ]
+      }
+    ]
+  },
+  "unit3": {
+    "title": "UNIT 3: Food",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Fruits & Vegetables",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Fruits Song",
+            "youtubeId": "m4f3MoGBU98",
+            "url": "https://www.youtube.com/watch?v=m4f3MoGBU98",
+            "type": "song",
+            "objective": "Identify fruits and vegetables"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Local & World Foods",
+        "videos": [
+          {
+            "day": 1,
+            "title": "World Food",
+            "youtubeId": "lW5TXrKbsq4",
+            "url": "https://www.youtube.com/watch?v=lW5TXrKbsq4",
+            "type": "video",
+            "objective": "Classify local and world foods"
+          }
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Meal Time Routines",
+        "videos": [
+          {
+            "day": 1,
+            "title": "This Is The Way We Eat Our Meal",
+            "youtubeId": "TO_VERIFY",
+            "url": "https://www.youtube.com/results?search_query=this+is+the+way+we+eat+our+meal+kids",
+            "type": "song",
+            "objective": "Learn meal time routines: breakfast, lunch, dinner",
+            "status": "REPLACEMENT_VIDEO",
+            "note": "Video de remplacement - N/A dans le programme original"
+          }
+        ]
+      }
+    ]
+  },
+  "unit4": {
+    "title": "UNIT 4: Physical Activities",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Body Parts",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Body Parts Introduction",
+            "youtubeId": "cm92rp7kYf0",
+            "url": "https://www.youtube.com/watch?v=cm92rp7kYf0",
+            "type": "video",
+            "objective": "Name body parts"
+          },
+          {
+            "day": 1,
+            "title": "Body Parts Song",
+            "youtubeId": "KiWuYfv2n_4",
+            "url": "https://www.youtube.com/watch?v=KiWuYfv2n_4",
+            "type": "song",
+            "objective": "Identify body parts"
+          },
+          {
+            "day": 1,
+            "title": "Head Shoulders Knees & Toes",
+            "youtubeId": "h4eueDYPTIg",
+            "url": "https://www.youtube.com/watch?v=h4eueDYPTIg",
+            "type": "song",
+            "objective": "Name body parts"
+          },
+          {
+            "day": 1,
+            "title": "Simon Says Game",
+            "youtubeId": "QRVTPFfOwcM",
+            "url": "https://www.youtube.com/watch?v=QRVTPFfOwcM",
+            "type": "game",
+            "objective": "Identify body parts"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Sports",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Physical Exercises 1",
+            "youtubeId": "oc4QS2USKmk",
+            "url": "https://youtu.be/oc4QS2USKmk",
+            "type": "video",
+            "objective": "Physical education exercises"
+          },
+          {
+            "day": 1,
+            "title": "Physical Exercises 2",
+            "youtubeId": "LhQY1Cy4IDw",
+            "url": "https://www.youtube.com/watch?v=LhQY1Cy4IDw",
+            "type": "video",
+            "objective": "Physical exercises"
+          },
+          {
+            "day": 1,
+            "title": "Physical Exercises 3",
+            "youtubeId": "X8Y3u8Ujfe8",
+            "url": "https://www.youtube.com/watch?v=X8Y3u8Ujfe8",
+            "type": "video",
+            "objective": "Physical exercises"
+          },
+          {
+            "day": 1,
+            "title": "Sports Types",
+            "youtubeId": "OnaPNbOJrMQ",
+            "url": "https://www.youtube.com/watch?v=OnaPNbOJrMQ",
+            "type": "video",
+            "objective": "Name different kinds of sports"
+          },
+          {
+            "day": 1,
+            "title": "Sports Vocabulary",
+            "youtubeId": "yZUeOF1UAk8",
+            "url": "https://www.youtube.com/watch?v=yZUeOF1UAk8",
+            "type": "video",
+            "objective": "Learn sports vocabulary"
+          }
+        ]
+      }
+    ]
+  },
+  "unit5": {
+    "title": "UNIT 5: Healthy Habits",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Body Hygiene",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Body Hygiene Song",
+            "youtubeId": "SUt8q0EKbms",
+            "url": "https://youtu.be/SUt8q0EKbms",
+            "type": "song",
+            "objective": "Practice body hygiene"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Healthy Diet & Ailments",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Healthy Diet Introduction",
+            "youtubeId": "a_B_vL3iHQM",
+            "url": "https://youtu.be/a_B_vL3iHQM",
+            "type": "video",
+            "objective": "Learn about healthy diet"
+          },
+          {
+            "day": 1,
+            "title": "Healthy Diet Song",
+            "youtubeId": "s_f_BWqZ6fc",
+            "url": "https://youtu.be/s_f_BWqZ6fc",
+            "type": "song",
+            "objective": "Healthy diet concepts"
+          },
+          {
+            "day": 1,
+            "title": "Common Ailments",
+            "youtubeId": "1UgdEH0cUQ8",
+            "url": "https://youtu.be/1UgdEH0cUQ8",
+            "type": "video",
+            "objective": "Identify common ailments"
+          },
+          {
+            "day": 1,
+            "title": "Ailments Symptoms",
+            "youtubeId": "Zm1KKcgQ7DM",
+            "url": "https://youtu.be/Zm1KKcgQ7DM",
+            "type": "video",
+            "objective": "Learn symptoms"
+          }
+        ]
+      }
+    ]
+  },
+  "unit6": {
+    "title": "UNIT 6: Domestic and Wild Animals",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Name Animals",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Farm Animals Song",
+            "youtubeId": "TO_VERIFY",
+            "url": "https://www.youtube.com/results?search_query=farm+animals+song+kids+english",
+            "type": "song",
+            "objective": "Name domestic animals: cat, dog, cow, pig, goat",
+            "status": "REPLACEMENT_VIDEO",
+            "note": "Video de remplacement - N/A dans le programme original"
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Identify Animals",
+        "videos": [
+          {
+            "day": 1,
+            "title": "Wild Animals",
+            "youtubeId": "oMy9vkdImbs",
+            "url": "https://youtu.be/oMy9vkdImbs",
+            "type": "video",
+            "objective": "Identify wild animals"
+          },
+          {
+            "day": 1,
+            "title": "Animal Games",
+            "youtubeId": "CA6Mofzh7jo",
+            "url": "https://youtu.be/CA6Mofzh7jo",
+            "type": "game",
+            "objective": "Play with animals"
+          }
+        ]
+      }
+    ]
+  }
+}
