@@ -6,12 +6,14 @@
     <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CE Interactif - TogoEnglish Play</title>
+    <title>Espace CE - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196F3">
 </head>
 <body>
     <div class="container">
-        <!-- Menu de navigation -->
+        <!-- BARRE DE NAVIGATION CORRIGÉE -->
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
             <a href="/togo-english-play/kids.html" class="nav-link">🎮 CP</a>
@@ -32,19 +34,15 @@
             <div class="score-item"><span class="score-icon">🏆</span><span class="score-value" id="completedLessons">0</span><span class="score-label">Leçons</span></div>
         </div>
 
-        <!-- Message d'erreur si le JSON ne charge pas -->
         <div id="errorMessage" style="display: none; background: #ff5252; color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px;">
             ⚠️ Erreur : Impossible de charger les données CE.
         </div>
 
-        <!-- Grille des unités et semaines -->
         <div class="units-grid" id="unitsGrid">
             <h2 style="color: white; text-align: center; margin-bottom: 20px;">📖 Choisis ton unité CE :</h2>
         </div>
 
-        <!-- Contenu de la leçon (caché au départ) -->
         <div id="lessonContent" class="lesson-content" style="display: none;">
-            <!-- Bouton type="button" pour empêcher tout rechargement de page -->
             <button type="button" onclick="goBackToUnits()" class="back-btn" style="margin-bottom: 20px;">← Retour au menu des unités CE</button>
             
             <div class="lesson-header">
@@ -77,8 +75,8 @@
     let totalStars = parseInt(localStorage.getItem('ce_totalStars')) || 0;
     let completedLessons = parseInt(localStorage.getItem('ce_completedLessons')) || 0;
 
-    // Charger les données
-    fetch('/togo-english-play/data/videos-ce.json')
+    // CHARGEMENT EXCLUSIF DU FICHIER CE
+    fetch('/togo-english-play/data/videos-ce.json?' + Date.now())
         .then(response => {
             if (!response.ok) throw new Error("Fichier non trouvé");
             return response.json();
@@ -94,7 +92,6 @@
             document.getElementById('errorMessage').style.display = 'block';
         });
 
-    // Afficher les 6 unités
     function displayUnits() {
         const grid = document.getElementById('unitsGrid');
         grid.innerHTML = '<h2 style="color: white; text-align: center; margin-bottom: 20px;">📖 Choisis ton unité CE :</h2>';
@@ -108,7 +105,6 @@
         });
     }
 
-    // Afficher les semaines d'une unité
     function selectUnit(unitKey) {
         currentUnit = unitKey;
         const unit = programData[unitKey];
@@ -124,14 +120,10 @@
         });
     }
 
-    // Afficher le contenu d'une semaine
     function selectWeek(weekIndex) {
         const week = programData[currentUnit].weeks[weekIndex];
-        
-        // Cacher la grille, montrer la leçon (SANS changer de page)
         document.getElementById('unitsGrid').style.display = 'none';
         document.getElementById('lessonContent').style.display = 'block';
-        
         document.getElementById('lessonTitle').textContent = programData[currentUnit].title;
         document.getElementById('lessonTheme').textContent = `Semaine ${week.week} : ${week.theme}`;
         
@@ -161,20 +153,14 @@
             card.innerHTML = `<div class="flashcard-word" style="text-transform: capitalize;">${word}</div><button type="button" onclick="speakWord('${word}')" style="margin-top: 10px;">🔊 Écouter</button>`;
             fc.appendChild(card);
         });
-        
-        // Remonter en haut de page
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Fonction de retour SÉCURISÉE (ne change pas l'URL)
     function goBackToUnits() {
         document.getElementById('lessonContent').style.display = 'none';
         document.getElementById('unitsGrid').style.display = 'block';
-        if (currentUnit) {
-            selectUnit(currentUnit);
-        } else {
-            displayUnits();
-        }
+        if (currentUnit) selectUnit(currentUnit);
+        else displayUnits();
     }
 
     function speakWord(word) {
@@ -186,8 +172,7 @@
     }
 
     function completeLesson() {
-        completedLessons++; 
-        totalStars += 5;
+        completedLessons++; totalStars += 5;
         localStorage.setItem('ce_totalStars', totalStars);
         localStorage.setItem('ce_completedLessons', completedLessons);
         updateScore();
