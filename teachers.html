@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Lignes anti-cache pour forcer la mise à jour automatique -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TogoEnglish Play - Apprendre l'anglais en s'amusant</title>
+    <title>Espace Enseignants - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#006A4E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="TogoEnglish">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 <body>
     <div class="container">
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
-            <a href="/togo-english-play/kids.html" class="nav-link">🎮 Enfants</a>
-            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
-            <a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
-            <a href="/togo-english-play/games.html" class="nav-link highlight">🕹️ Mini-Jeux</a>
+            <a href="/togo-english-play/kids.html" class="nav-link">🎮 CP</a>
+            <a href="/togo-english-play/ce.html" class="nav-link">📚 CE</a>
+            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents CP</a>
+            <a href="/togo-english-play/parents-ce.html" class="nav-link">👨‍👩‍👧 Parents CE</a>
+            <a href="/togo-english-play/teachers.html" class="nav-link highlight">👩‍🏫 Enseignants</a>
+            <a href="/togo-english-play/games.html" class="nav-link">🕹️ Jeux</a>
         </nav>
 
         <header class="header">
             <h1>👩‍🏫 Espace Enseignants</h1>
-            <p>Ressources pédagogiques officielles - Programme CP1 & CP2</p>
+            <p>Ressources pédagogiques officielles - Programmes CP & CE</p>
         </header>
 
         <div class="teacher-nav">
-            <button onclick="showSection('schedule')" class="nav-btn active">📅 Emploi du temps</button>
-            <button onclick="showSection('lesson-cards')" class="nav-btn">📝 Fiches pédagogiques</button>
-            <button onclick="showSection('assessment')" class="nav-btn">✅ Critères d'évaluation</button>
-            <button onclick="showSection('songs')" class="nav-btn">🎵 Paroles des chansons</button>
-            <button onclick="showSection('guidelines')" class="nav-btn">💡 Notes pédagogiques</button>
+            <button onclick="showSection('cp-guide')" class="nav-btn active">📘 Guide Pédagogique CP</button>
+            <button onclick="showSection('ce-guide')" class="nav-btn">📗 Guide Pédagogique CE</button>
+            <button onclick="showSection('schedule')" class="nav-btn">📅 Emploi du temps</button>
+            <button onclick="showSection('methodology')" class="nav-btn">💡 Méthodologie & Évaluation</button>
         </div>
 
-        <div id="schedule" class="section">
+        <!-- SECTION CP -->
+        <div id="cp-guide" class="section">
+            <h2>📘 Programme Cours Préparatoire (CP1 & CP2)</h2>
+            <p><strong>Note de Service N°024/2023/MEPST/CAB/SG</strong></p>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li>6 Unités d'enseignement sur 20 semaines.</li>
+                <li>Thèmes : Salutations, Identité, Nourriture, Activités physiques, Habitudes saines, Animaux.</li>
+                <li>Utilisation des "Lesson Cards" (Fiches pédagogiques) fournies lors de la formation des 184 enseignants pilotes.</li>
+            </ul>
+        </div>
+
+        <!-- SECTION CE (NOUVEAU - Basé sur le PDF officiel) -->
+        <div id="ce-guide" class="section" style="display: none;">
+            <h2>📗 Programme Cours Élémentaire (CE1 & CE2)</h2>
+            <p><strong>Note de Service N°018/2024/MEPS/CAB</strong> (Effectif à la rentrée 2024-2025)</p>
+            
+            <div class="info-box" style="margin-top: 20px;">
+                <h3>📋 Structure d'une unité type (4 à 5 semaines)</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Jours 1 & 2 :</strong> Introduction, écoute active, chansons et vocabulaire (utilisation de flashcards).</li>
+                    <li><strong>Jour 3 :</strong> Orthographe et prononciation (Spelling, singing, reciting).</li>
+                    <li><strong>Jours 4 & 5 :</strong> Construction de phrases simples et compréhension écrite (Reading comprehension).</li>
+                    <li><strong>Semaine 4 ou 5 :</strong> Évaluation des acquis (Assessment of learning outcomes) et révision générale.</li>
+                </ul>
+            </div>
+
+            <div class="info-box" style="margin-top: 20px;">
+                <h3>📚 Les 6 Unités du CE</h3>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Unit 1:</strong> School Description (4 semaines)</li>
+                    <li><strong>Unit 2:</strong> Appearances, Feelings & Emotions (4 semaines)</li>
+                    <li><strong>Unit 3:</strong> My Community (5 semaines)</li>
+                    <li><strong>Unit 4:</strong> The Environment (4 semaines)</li>
+                    <li><strong>Unit 5:</strong> Local & Global Celebrations (4 semaines)</li>
+                    <li><strong>Unit 6:</strong> Diversity & Culture (4 semaines)</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- SECTION EMPLOI DU TEMPS -->
+        <div id="schedule" class="section" style="display: none;">
             <h2>📅 Emploi du temps officiel (1h40 par semaine)</h2>
             <div class="schedule-table">
                 <table>
@@ -56,136 +89,67 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>7H30-7H45</td>
-                            <td>Éducation sociale</td>
+                            <td>20 min/jour</td>
                             <td class="english-slot">ANGLAIS</td>
-                            <td>Éducation sociale</td>
-                            <td>Éducation sociale</td>
-                            <td>Éducation sociale</td>
-                        </tr>
-                        <tr>
-                            <td>7H45-8H05</td>
                             <td class="english-slot">ANGLAIS</td>
-                            <td>J'apprends à parler</td>
-                            <td>J'apprends à parler</td>
-                            <td>J'apprends à parler</td>
-                            <td>J'apprends à parler</td>
-                        </tr>
-                        <tr>
-                            <td>8H05-8H25</td>
-                            <td>J'apprends à lire</td>
-                            <td>J'apprends à lire</td>
-                            <td>J'apprends à lire</td>
                             <td class="english-slot">ANGLAIS</td>
-                            <td>J'apprends à lire</td>
-                        </tr>
-                        <tr>
-                            <td>8H25-8H45</td>
-                            <td>J'apprends à écrire</td>
-                            <td>J'apprends à écrire</td>
                             <td class="english-slot">ANGLAIS</td>
-                            <td>J'apprends à écrire</td>
-                            <td>J'apprends à écrire</td>
-                        </tr>
-                        <tr>
-                            <td>8H45-9H10</td>
-                            <td>J'apprends à parler</td>
-                            <td>J'apprends à parler</td>
-                            <td>J'apprends à parler</td>
-                            <td>J'apprends à parler</td>
                             <td class="english-slot">ANGLAIS</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="info-box">
-                <h3>💡 Répartition hebdomadaire</h3>
-                <p><strong>Total :</strong> 1h40 par semaine (conforme aux recommandations UNESCO)</p>
-                <p><strong>Répartition :</strong> 20 minutes par jour, 5 jours par semaine</p>
+                <h3>💡 Recommandation UNESCO</h3>
+                <p>Le volume horaire de <strong>1h40 par semaine</strong> (réparti en 20 minutes par jour, 5 jours sur 7) est strictement conforme aux recommandations de l'UNESCO pour l'enseignement des langues étrangères au primaire (entre 1h30 et 2h).</p>
             </div>
         </div>
 
-        <div id="lesson-cards" class="section" style="display: none;">
-            <h2>📝 Fiches pédagogiques (Lesson Cards)</h2>
-            <div class="lesson-card-example">
-                <h3>CARD N°1 - Unit 1, Week 1</h3>
-                <div class="card-info">
-                    <p><strong>School:</strong> EPP Tokoin Tamè</p>
-                    <p><strong>Teacher:</strong> Mrs AMELASCO</p>
-                    <p><strong>Duration:</strong> 30 min</p>
-                    <p><strong>Theme:</strong> Greetings and alphabets</p>
-                </div>
-                <div class="card-objectives">
-                    <h4>Specific Objectives:</h4>
-                    <ul>
-                        <li>Differentiate types of greetings</li>
-                        <li>Sing the alphabets song</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="assessment" class="section" style="display: none;">
-            <h2>✅ Critères d'évaluation formative</h2>
-            <div class="unit-selector">
-                <button onclick="showUnitAssessment(1)" class="unit-btn">Unit 1</button>
-                <button onclick="showUnitAssessment(2)" class="unit-btn">Unit 2</button>
-                <button onclick="showUnitAssessment(3)" class="unit-btn">Unit 3</button>
-                <button onclick="showUnitAssessment(4)" class="unit-btn">Unit 4</button>
-                <button onclick="showUnitAssessment(5)" class="unit-btn">Unit 5</button>
-                <button onclick="showUnitAssessment(6)" class="unit-btn">Unit 6</button>
-            </div>
-            <div id="assessment-content"></div>
-        </div>
-
-        <div id="songs" class="section" style="display: none;">
-            <h2>🎵 Paroles des chansons</h2>
-            <div class="song-card">
-                <h3>Song 1: I like to eat (Unit 3)</h3>
-                <div class="lyrics">
-                    <p>I like to eat eat eat orange and apple (twice)</p>
-                    <p>I like to eat eat eat mango and banana (twice)</p>
-                    <p>I like to eat eat eat pineapple (twice)</p>
-                    <p>I like to eat eat eat watermelon (twice)</p>
-                </div>
-            </div>
-            <div class="song-card">
-                <h3>Song 2: This is the way (Unit 3)</h3>
-                <div class="lyrics">
-                    <p>This is the way I eat my food, eat my food eat my food,</p>
-                    <p>this is the way I eat my food early in the morning (shout: breakfast)</p>
-                    <br>
-                    <p>This is the way I eat my food, eat my food eat my food,</p>
-                    <p>this is the way I eat my food early in the afternoon (shout: lunch)</p>
-                    <br>
-                    <p>This is the way I eat my food, eat my food, eat my food,</p>
-                    <p>this is the way I eat my food late in the afternoon (shout: dinner)</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="guidelines" class="section" style="display: none;">
-            <h2>💡 Notes pédagogiques additionnelles</h2>
+        <!-- SECTION MÉTHODOLOGIE -->
+        <div id="methodology" class="section" style="display: none;">
+            <h2>💡 Méthodologie & Évaluation</h2>
             <div class="guideline-card">
-                <h3>1. Flashcards et Posters</h3>
-                <p>Les flashcards et posters sont des ressources alternatives qui peuvent être utilisées lorsque les enseignants ne peuvent pas accéder aux ressources en ligne.</p>
+                <h3>1. Approche Communicative</h3>
+                <p>Privilégier l'interaction orale et la pratique. Encourager l'immersion totale avec une utilisation minimale de la langue maternelle en classe.</p>
             </div>
             <div class="guideline-card">
-                <h3>2. Unit 3, Week 2 - Nourriture locale vs mondiale</h3>
-                <p>Les enseignants peuvent créer un poster sur "junk food vs healthy food" pour aider les apprenants à faire la distinction.</p>
+                <h3>2. Supports Pédagogiques</h3>
+                <p>Utilisation systématique de jeux, de chansons (ex: "Together", "Feeling Song"), de vidéos et de flashcards pour rendre l'apprentissage attrayant et amusant.</p>
             </div>
             <div class="guideline-card">
-                <h3>3. Unit 4 - Parties du corps et Sports</h3>
-                <p><strong>Parties du corps à focus :</strong> Head, Shoulders, Knees, Toes, Eyes, Ears, Mouth, Nose</p>
-                <p><strong>Sport à focus :</strong> Football et les objets liés au football</p>
+                <h3>3. Évaluation et Remédiation</h3>
+                <p>Évaluation régulière axée sur : la compréhension orale, la prononciation et la construction de phrases simples. Identification des difficultés pour une remédiation individuelle.</p>
+            </div>
+        </div>
+
+        <div class="contact-info" style="margin-top: 40px;">
+            <h3>📞 Support Pédagogique et Technique</h3>
+            <p>OBG International - Cres Poly Art</p>
+            <div class="phone-numbers">
+                <a href="tel:+16138502652" class="phone-btn">🇨🇦 +1 (613) 850-2652</a>
+                <a href="tel:+22890588358" class="phone-btn">🇹🇬 +228 90 58 83 58</a>
+                <a href="tel:+22893202722" class="phone-btn">🇹🇬 +228 93 20 27 22</a>
             </div>
         </div>
 
         <footer class="footer">
             <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
+            <p>Programme d'introduction de l'anglais au primaire - République Togolaise 🇹🇬</p>
         </footer>
     </div>
 
-    <script src="js/teachers.js"></script>
+    <script>
+        function showSection(sectionId) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+            // Désactiver tous les boutons
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Afficher la section demandée
+            document.getElementById(sectionId).style.display = 'block';
+            // Activer le bouton cliqué
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
