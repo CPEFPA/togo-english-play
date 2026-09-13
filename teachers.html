@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Enseignants - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>👩‍🏫 Espace Enseignants</h1>
+            <p>Ressources pédagogiques officielles - Programme CP1 & CP2</p>
+            <a href="index.html" style="color: white; text-decoration: underline;">← Retour à l'accueil</a>
+        </header>
+
+        <!-- Navigation par sections -->
+        <div class="teacher-nav">
+            <button onclick="showSection('schedule')" class="nav-btn active">📅 Emploi du temps</button>
+            <button onclick="showSection('lesson-cards')" class="nav-btn">📝 Fiches pédagogiques</button>
+            <button onclick="showSection('assessment')" class="nav-btn">✅ Critères d'évaluation</button>
+            <button onclick="showSection('songs')" class="nav-btn">🎵 Paroles des chansons</button>
+            <button onclick="showSection('guidelines')" class="nav-btn">💡 Notes pédagogiques</button>
+        </div>
+
+        <!-- Section Emploi du temps -->
+        <div id="schedule" class="section">
+            <h2>📅 Emploi du temps officiel (1h40 par semaine)</h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Horaires</th>
+                            <th>Lundi</th>
+                            <th>Mardi</th>
+                            <th>Mercredi</th>
+                            <th>Jeudi</th>
+                            <th>Vendredi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>7H30-7H45</td>
+                            <td>Éducation sociale</td>
+                            <td class="english-slot">ANGLAIS</td>
+                            <td>Éducation sociale</td>
+                            <td>Éducation sociale</td>
+                            <td>Éducation sociale</td>
+                        </tr>
+                        <tr>
+                            <td>7H45-8H05</td>
+                            <td class="english-slot">ANGLAIS</td>
+                            <td>J'apprends à parler</td>
+                            <td>J'apprends à parler</td>
+                            <td>J'apprends à parler</td>
+                            <td>J'apprends à parler</td>
+                        </tr>
+                        <tr>
+                            <td>8H05-8H25</td>
+                            <td>J'apprends à lire</td>
+                            <td>J'apprends à lire</td>
+                            <td>J'apprends à lire</td>
+                            <td class="english-slot">ANGLAIS</td>
+                            <td>J'apprends à lire</td>
+                        </tr>
+                        <tr>
+                            <td>8H25-8H45</td>
+                            <td>J'apprends à écrire</td>
+                            <td>J'apprends à écrire</td>
+                            <td class="english-slot">ANGLAIS</td>
+                            <td>J'apprends à écrire</td>
+                            <td>J'apprends à écrire</td>
+                        </tr>
+                        <tr>
+                            <td>8H45-9H10</td>
+                            <td>J'apprends à parler</td>
+                            <td>J'apprends à parler</td>
+                            <td>J'apprends à parler</td>
+                            <td>J'apprends à parler</td>
+                            <td class="english-slot">ANGLAIS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box">
+                <h3>💡 Répartition hebdomadaire</h3>
+                <p><strong>Total :</strong> 1h40 par semaine (conforme aux recommandations UNESCO)</p>
+                <p><strong>Répartition :</strong> 20 minutes par jour, 5 jours par semaine</p>
+            </div>
+        </div>
+
+        <!-- Section Fiches pédagogiques -->
+        <div id="lesson-cards" class="section" style="display: none;">
+            <h2>📝 Fiches pédagogiques (Lesson Cards)</h2>
+            <div class="lesson-card-example">
+                <h3>CARD N°1 - Unit 1, Week 1</h3>
+                <div class="card-info">
+                    <p><strong>School:</strong> EPP Tokoin Tamè</p>
+                    <p><strong>Teacher:</strong> Mrs AMELASCO</p>
+                    <p><strong>Duration:</strong> 30 min</p>
+                    <p><strong>Theme:</strong> Greetings and alphabets</p>
+                </div>
+                <div class="card-objectives">
+                    <h4>Specific Objectives:</h4>
+                    <ul>
+                        <li>Differentiate types of greetings</li>
+                        <li>Sing the alphabets song</li>
+                    </ul>
+                </div>
+                <div class="card-steps">
+                    <table class="steps-table">
+                        <thead>
+                            <tr>
+                                <th>Steps</th>
+                                <th>Teacher's Activities</th>
+                                <th>Learner's Activities</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Warm up</strong></td>
+                                <td>Ask learners to sing a song</td>
+                                <td>Sing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Revision</strong></td>
+                                <td>Greeting</td>
+                                <td>Greet</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Introduction</strong></td>
+                                <td>Show video on greetings<br>Watch alphabet video<br>Show flash cards</td>
+                                <td>Watch, observe and listen</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Repetition</strong></td>
+                                <td>Say words and ask to repeat<br>Teach greeting song<br>Teach alphabets song</td>
+                                <td>Repeat words<br>Learn songs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Application</strong></td>
+                                <td>Play greeting game<br>Help identify letters<br>Help name letters</td>
+                                <td>Play game<br>Identify letters<br>Name letters</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Assessment</strong></td>
+                                <td>Ask to greet according to time<br>Ask to sing alphabet song</td>
+                                <td>Greet according to time<br>Sing alphabet song</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-resources">
+                    <h4>Resources:</h4>
+                    <ul>
+                        <li>Flash cards</li>
+                        <li>Videos: <a href="https://youtu.be/q5BcGrOny-k" target="_blank">Hello Song</a>, <a href="https://www.youtube.com/watch?v=v3dkRo2IDdg" target="_blank">Alphabet Song</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Critères d'évaluation -->
+        <div id="assessment" class="section" style="display: none;">
+            <h2>✅ Critères d'évaluation formative</h2>
+            <div class="unit-selector">
+                <button onclick="showUnitAssessment(1)" class="unit-btn">Unit 1</button>
+                <button onclick="showUnitAssessment(2)" class="unit-btn">Unit 2</button>
+                <button onclick="showUnitAssessment(3)" class="unit-btn">Unit 3</button>
+                <button onclick="showUnitAssessment(4)" class="unit-btn">Unit 4</button>
+                <button onclick="showUnitAssessment(5)" class="unit-btn">Unit 5</button>
+                <button onclick="showUnitAssessment(6)" class="unit-btn">Unit 6</button>
+            </div>
+            <div id="assessment-content"></div>
+        </div>
+
+        <!-- Section Paroles des chansons -->
+        <div id="songs" class="section" style="display: none;">
+            <h2>🎵 Paroles des chansons</h2>
+            <div class="song-card">
+                <h3>Song 1: I like to eat (Unit 3)</h3>
+                <div class="lyrics">
+                    <p>I like to eat eat eat orange and apple (twice)</p>
+                    <p>I like to eat eat eat mango and banana (twice)</p>
+                    <p>I like to eat eat eat pineapple (twice)</p>
+                    <p>I like to eat eat eat watermelon (twice)</p>
+                </div>
+            </div>
+            <div class="song-card">
+                <h3>Song 2: This is the way (Unit 3)</h3>
+                <div class="lyrics">
+                    <p>This is the way I eat my food, eat my food eat my food,</p>
+                    <p>this is the way I eat my food early in the morning (shout: breakfast)</p>
+                    <br>
+                    <p>This is the way I eat my food, eat my food eat my food,</p>
+                    <p>this is the way I eat my food early in the afternoon (shout: lunch)</p>
+                    <br>
+                    <p>This is the way I eat my food, eat my food, eat my food,</p>
+                    <p>this is the way I eat my food late in the afternoon (shout: dinner)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Notes pédagogiques -->
+        <div id="guidelines" class="section" style="display: none;">
+            <h2>💡 Notes pédagogiques additionnelles</h2>
+            <div class="guideline-card">
+                <h3>1. Flashcards et Posters</h3>
+                <p>Les flashcards et posters sont des ressources alternatives qui peuvent être utilisées lorsque les enseignants ne peuvent pas accéder aux ressources en ligne via les liens fournis dans le programme.</p>
+            </div>
+            <div class="guideline-card">
+                <h3>2. Unit 3, Week 2 - Nourriture locale vs mondiale</h3>
+                <p>Pour classifier la nourriture locale et mondiale, les enseignants peuvent créer un poster sur "junk food vs healthy food" pour aider les apprenants à faire la distinction.</p>
+            </div>
+            <div class="guideline-card">
+                <h3>3. Unit 4 - Parties du corps et Sports</h3>
+                <p><strong>Parties du corps à focus :</strong> Head, Shoulders, Knees, Toes, Eyes, Ears, Mouth, Nose</p>
+                <p><strong>Sport à focus :</strong> Football et les objets liés au football</p>
+            </div>
+            <div class="guideline-card">
+                <h3>4. Unit 5, Week 1 - Hygiène corporelle</h3>
+                <p>Les enseignants ne pratiquent pas l'hygiène corporelle mais enseignent aux apprenants l'importance de pratiquer une hygiène corporelle de base : se brosser les dents, se laver les mains, etc.</p>
+            </div>
+            <div class="guideline-card">
+                <h3>5. Unit 6 - Animaux domestiques et sauvages</h3>
+                <p>Les types d'animaux doivent être introduits sur des jours différents de la semaine. Par exemple :</p>
+                <ul>
+                    <li>Day 1 Week 1 : Introduire les animaux domestiques</li>
+                    <li>Day 2 Week 1 : Pratiquer davantage</li>
+                    <li>Day 3 Week 1 : Introduire les animaux sauvages</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script src="js/teachers.js"></script>
+</body>
+</html>
