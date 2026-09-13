@@ -17,8 +17,7 @@
 </head>
 <body>
     <div class="container">
-        
-        <!-- Barre de navigation globale -->
+
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
             <a href="/togo-english-play/kids.html" class="nav-link">🎮 CP</a>
@@ -30,14 +29,12 @@
             <a href="/togo-english-play/games-ce.html" class="nav-link highlight">🎮 Jeux CE</a>
         </nav>
 
-        <!-- Bannière d'installation PWA -->
         <div id="installBanner" class="install-banner" style="display: none;">
             <p>📱 Installez TogoEnglish Play sur votre téléphone !</p>
             <button id="installBtn" class="install-btn">Installer</button>
             <button onclick="closeInstallBanner()" class="close-btn">✕</button>
         </div>
 
-        <!-- En-tête principal -->
         <header class="header">
             <div class="logo">
                 <h1>🇹🇬 TogoEnglish Play</h1>
@@ -45,7 +42,6 @@
             </div>
         </header>
 
-        <!-- Mascottes -->
         <div class="mascots">
             <div class="mascot">
                 <div class="mascot-circle">👦</div>
@@ -57,22 +53,21 @@
             </div>
         </div>
 
-        <!-- Section Programmes (CP + CE) -->
         <h2 style="color: white; text-align: center; margin: 20px 0; font-size: 1.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">📚 Nos Programmes</h2>
-        
+
         <nav class="main-nav">
             <a href="/togo-english-play/kids.html" class="nav-card kids-card">
                 <div class="nav-icon">🎮</div>
                 <h2>Espace CP</h2>
                 <p>Jeux, chansons et leçons interactives</p>
-                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">CP1 & CP2 • 6 unités</p>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">CP1 et CP2 - 6 unités</p>
             </a>
 
             <a href="/togo-english-play/ce.html" class="nav-card ce-cm-card">
                 <div class="nav-icon">📚</div>
                 <h2>Espace CE</h2>
                 <p>Programme officiel interactif</p>
-                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">CE1 & CE2 • 6 unités</p>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">CE1 et CE2 - 6 unités</p>
             </a>
 
             <a href="/togo-english-play/parents.html" class="nav-card parents-card">
@@ -90,13 +85,12 @@
             <a href="/togo-english-play/teachers.html" class="nav-card teachers-card">
                 <div class="nav-icon">👩‍🏫</div>
                 <h2>Espace Enseignants</h2>
-                <p>Fiches pédagogiques et évaluations</p>
+                <p>Guides pédagogiques CP et CE</p>
             </a>
         </nav>
 
-        <!-- Section Mini-Jeux -->
         <h2 style="color: white; text-align: center; margin: 30px 0 20px 0; font-size: 1.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">🕹️ Mini-Jeux Éducatifs</h2>
-        
+
         <nav class="main-nav" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
             <a href="/togo-english-play/games.html" class="nav-card games-card">
                 <div class="nav-icon">🎮</div>
@@ -113,23 +107,20 @@
             </a>
         </nav>
 
-        <!-- Nouveauté CE -->
-        <div class="program-info" style="border-left: 6px solid #2196F3; background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), white);">
+        <div class="program-info" style="border-left: 6px solid #2196F3; background: linear-gradient(135deg, rgba(33,150,243,0.1), white);">
             <h3 style="color: #2196F3;">✨ NOUVEAU : Programme CE Intégré !</h3>
             <p>Suite à la <strong>Note de Service N°018/2024/MEPS/CAB</strong>, le programme du Cours Élémentaire est désormais disponible dans l'application.</p>
-            <p class="highlight" style="color: #2196F3;">6 Unités • 25 semaines • 25 vidéos officielles</p>
+            <p class="highlight" style="color: #2196F3;">6 Unités - 25 semaines - 25 vidéos officielles</p>
             <a href="/togo-english-play/ce.html" class="guide-btn" style="background: linear-gradient(135deg, #2196F3, #1976D2);">📚 Découvrir le programme CE</a>
         </div>
 
-        <!-- Informations sur le programme officiel -->
         <div class="program-info">
             <h3>📚 Programmes Officiels Intégrés</h3>
-            <p>Cours Préparatoire (CP1 & CP2) et Cours Élémentaire (CE1 & CE2)</p>
+            <p>Cours Préparatoire (CP1 et CP2) et Cours Élémentaire (CE1 et CE2)</p>
             <p>Ministère des Enseignements Primaire et Secondaire</p>
             <p class="highlight">Notes de Service N°024/2023 et N°018/2024</p>
         </div>
 
-        <!-- Informations PWA -->
         <div class="pwa-info">
             <h3>📲 Mode Hors-Ligne Activé !</h3>
             <p>Une fois installée, l'application fonctionne même sans internet.</p>
@@ -139,14 +130,12 @@
             </p>
         </div>
 
-        <!-- Guide de déploiement -->
         <div class="guide-info">
             <h3>📄 Guide de Déploiement</h3>
             <p>Document officiel pour les écoles pilotes</p>
             <a href="/togo-english-play/guide.html" target="_blank" class="guide-btn">📖 Consulter le guide</a>
         </div>
 
-        <!-- Pied de page -->
         <footer class="footer">
             <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
             <p>Programme d'introduction de l'anglais au primaire - République Togolaise 🇹🇬</p>
