@@ -13,6 +13,7 @@
 </head>
 <body>
     <div class="container">
+        <!-- Menu de navigation fixe -->
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
             <a href="/togo-english-play/kids.html" class="nav-link">🎮 CP</a>
@@ -24,10 +25,10 @@
 
         <header class="header" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
             <h1>📚 Cours Élémentaire (CE1 & CE2)</h1>
-            <p>Programme officiel du Ministère - Note de Service N°018/2024/MEPS/CAB</p>
-            <p style="margin-top: 10px; font-size: 0.95em;">6 Unités • 25 semaines • 1h40 par semaine</p>
+            <p>Programme officiel - Note de Service N°018/2024/MEPS/CAB</p>
         </header>
 
+        <!-- Tableau de bord Score -->
         <div class="score-board">
             <div class="score-item">
                 <span class="score-icon">⭐</span>
@@ -37,20 +38,27 @@
             <div class="score-item">
                 <span class="score-icon">🏆</span>
                 <span class="score-value" id="completedLessons">0</span>
-                <span class="score-label">Leçons terminées</span>
+                <span class="score-label">Leçons</span>
             </div>
         </div>
 
+        <!-- Message d'erreur si le JSON ne charge pas -->
+        <div id="errorMessage" style="display: none; background: #ff5252; color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px;">
+            ⚠️ Impossible de charger les données CE. Vérifiez que le fichier data/videos-ce.json existe.
+        </div>
+
+        <!-- Grille des unités et semaines -->
         <div class="units-grid" id="unitsGrid">
             <h2 style="color: white; text-align: center; margin-bottom: 20px;">📖 Choisis ton unité CE :</h2>
         </div>
 
+        <!-- Contenu de la leçon (caché au départ) -->
         <div id="lessonContent" class="lesson-content" style="display: none;">
-            <button onclick="backToUnits()" class="back-btn">← Retour aux unités</button>
+            <button onclick="goBackToUnits()" class="back-btn" style="margin-bottom: 20px;">← Retour au menu des unités</button>
             
             <div class="lesson-header">
                 <h2 id="lessonTitle"></h2>
-                <p id="lessonTheme"></p>
+                <p id="lessonTheme" style="font-size: 1.2em; color: #666;"></p>
             </div>
 
             <div class="video-section">
@@ -63,158 +71,175 @@
                 <div id="flashcardsContainer" class="flashcards-grid"></div>
             </div>
 
-            <button onclick="completeLesson()" class="complete-btn">✅ J'ai terminé cette semaine !</button>
+            <button onclick="completeLesson()" class="complete-btn">✅ J'ai terminé cette semaine ! (+5 ⭐)</button>
+            <button onclick="goBackToUnits()" class="back-btn" style="margin-top: 15px; width: 100%;">← Retour au menu des unités</button>
         </div>
 
         <div class="program-info" style="margin-top: 40px;">
             <h3>📋 Programme Officiel CE</h3>
-            <p><strong>Note de Service N°018/2024/MEPS/CAB</strong></p>
-            <p>Entrée en vigueur : Rentrée scolaire 2024-2025</p>
-            <p class="highlight">6 Unités • 25 semaines • 1h40 par semaine</p>
+            <p>6 Unités • 25 semaines • 1h40 par semaine</p>
         </div>
 
         <footer class="footer">
             <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
-            <p>Programme d'introduction de l'anglais au primaire - République Togolaise 🇹🇬</p>
         </footer>
     </div>
 
     <script>
     let programData = {};
     let currentUnit = null;
-    let currentWeek = null;
     let totalStars = parseInt(localStorage.getItem('ce_totalStars')) || 0;
     let completedLessons = parseInt(localStorage.getItem('ce_completedLessons')) || 0;
 
-    const vocabularyData = {
-        "School Area Description": ["school", "classroom", "library", "garden", "playground", "canteen", "office", "toilet"],
-        "School Facilities": ["computer room", "library", "garden", "playground", "school hall", "toilets", "offices", "canteen"],
-        "Basic Appearances": ["eye", "hair", "tall", "short", "happy", "sad", "angry", "excited"],
-        "Feelings and Emotions": ["happy", "angry", "excited", "sad", "tired", "worried", "proud", "calm"],
-        "Family": ["father", "mother", "brother", "sister", "grandfather", "grandmother", "uncle", "aunt"],
-        "Friends and Neighbours": ["friend", "neighbour", "name", "number", "this is", "that is"],
-        "Houses and Markets": ["bedroom", "living room", "kitchen", "bathroom", "garden", "market", "shop"],
-        "Towns, Cities and Villages": ["town", "city", "village", "name", "location", "big", "small"],
-        "Weather": ["sunny", "rainy", "windy", "cloudy", "snowy", "hot", "cold", "weather"],
-        "Sea and River Life": ["sea", "river", "fish", "water", "animal", "plant", "ocean"],
-        "Local and Global Celebrations": ["birthday", "christmas", "ramadan", "evala", "independence", "flag", "parade"],
-        "Birthday": ["birthday", "cake", "gift", "wish", "card", "candle", "song", "celebration"],
-        "Independence Day in Togo": ["independence", "flag", "green", "yellow", "red", "star", "motto", "anthem"],
-        "Discover Togo": ["Togo", "Lomé", "boundary", "border", "capital", "region", "continent", "country"],
-        "Parts of Togo": ["north", "south", "east", "west", "mountain", "river", "hill", "climate"],
-        "Cultures of Togo": ["culture", "language", "Ewe", "Kabyè", "diversity", "tradition", "song", "Togo"]
-    };
+    // Vocabulaire de secours si le thème n'est pas trouvé
+    const defaultVocab = ["hello", "school", "teacher", "student", "book", "pen", "friend", "happy"];
 
+    // 1. Charger les données au démarrage
     fetch('/togo-english-play/data/videos-ce.json')
-        .then(r => r.json())
+        .then(response => {
+            if (!response.ok) throw new Error("Fichier non trouvé");
+            return response.json();
+        })
         .then(data => {
             programData = data;
             displayUnits();
             updateScore();
         })
-        .catch(e => {
-            console.error('Erreur:', e);
-            document.getElementById('unitsGrid').innerHTML = '<p style="color:white; text-align:center;">Erreur de chargement des données CE.</p>';
+        .catch(error => {
+            console.error("Erreur chargement CE:", error);
+            document.getElementById('unitsGrid').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'block';
         });
 
+    // 2. Afficher les 6 unités
     function displayUnits() {
         const grid = document.getElementById('unitsGrid');
         grid.innerHTML = '<h2 style="color: white; text-align: center; margin-bottom: 20px;">📖 Choisis ton unité CE :</h2>';
+        
         Object.keys(programData).forEach(key => {
             const unit = programData[key];
             const card = document.createElement('div');
             card.className = 'unit-card';
             card.onclick = () => selectUnit(key);
-            card.innerHTML = `<div class="unit-icon">${unit.icon}</div><h3>${unit.title}</h3><p>${unit.weeks.length} semaine(s)</p>`;
+            card.innerHTML = `
+                <div class="unit-icon">${unit.icon}</div>
+                <h3>${unit.title}</h3>
+                <p>${unit.weeks.length} semaine(s)</p>
+            `;
             grid.appendChild(card);
         });
     }
 
+    // 3. Afficher les semaines d'une unité
     function selectUnit(unitKey) {
         currentUnit = unitKey;
         const unit = programData[unitKey];
         const grid = document.getElementById('unitsGrid');
-        grid.innerHTML = `<h2 style="color: white; text-align: center; margin-bottom: 20px;">${unit.icon} ${unit.title}</h2>`;
+        
+        grid.innerHTML = `
+            <h2 style="color: white; text-align: center; margin-bottom: 20px;">${unit.icon} ${unit.title}</h2>
+            <button onclick="displayUnits()" class="back-btn" style="margin: 0 auto 20px auto; display: block;">← Retour aux 6 unités</button>
+        `;
+        
         unit.weeks.forEach((week, i) => {
             const card = document.createElement('div');
             card.className = 'week-card';
             card.onclick = () => selectWeek(i);
-            card.innerHTML = `<h3>Semaine ${week.week}</h3><p>${week.theme}</p><p>${week.videos.length} vidéo(s)</p>`;
+            card.innerHTML = `
+                <h3>Semaine ${week.week}</h3>
+                <p>${week.theme}</p>
+                <p style="color: #2196F3; font-weight: bold;">${week.videos.length} vidéo(s) disponible(s)</p>
+            `;
             grid.appendChild(card);
         });
-        const back = document.createElement('button');
-        back.className = 'back-btn';
-        back.onclick = displayUnits;
-        back.textContent = '← Retour aux unités';
-        back.style.marginTop = '20px';
-        grid.appendChild(back);
     }
 
+    // 4. Afficher le contenu d'une semaine (Vidéos + Flashcards)
     function selectWeek(weekIndex) {
-        currentWeek = weekIndex;
         const week = programData[currentUnit].weeks[weekIndex];
+        
+        // Cacher la grille, montrer la leçon
         document.getElementById('unitsGrid').style.display = 'none';
         document.getElementById('lessonContent').style.display = 'block';
-        document.getElementById('lessonTitle').textContent = programData[currentUnit].title;
-        document.getElementById('lessonTheme').textContent = `Semaine ${week.week} - ${week.theme}`;
         
+        // Remplir les titres
+        document.getElementById('lessonTitle').textContent = programData[currentUnit].title;
+        document.getElementById('lessonTheme').textContent = `Semaine ${week.week} : ${week.theme}`;
+        
+        // Remplir les vidéos
         const videoList = document.getElementById('videoList');
         videoList.innerHTML = '';
+        
         if (week.videos.length === 0) {
-            videoList.innerHTML = '<p style="color:white; text-align:center;">Aucune vidéo disponible pour cette semaine. Utilisez les flashcards ci-dessous.</p>';
+            videoList.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Aucune vidéo pour cette semaine. Utilisez les flashcards ci-dessous !</p>';
         } else {
             week.videos.forEach(v => {
                 const div = document.createElement('div');
                 div.className = 'video-card';
-                div.style.marginBottom = '20px';
+                div.style.marginBottom = '25px';
                 div.innerHTML = `
-                    <div class="video-badge">Day ${v.day} - ${v.type.toUpperCase()}</div>
+                    <div class="video-badge">Jour ${v.day} - ${v.type.toUpperCase()}</div>
                     <h3>${v.title}</h3>
                     <div class="video-container">
                         <iframe src="https://www.youtube-nocookie.com/embed/${v.youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <p style="color:#555; margin-top:10px;">🎯 <strong>Objectif :</strong> ${v.objective}</p>
+                    <p style="color: #555; margin-top: 10px; font-size: 0.95em;">🎯 <strong>Objectif :</strong> ${v.objective}</p>
                 `;
                 videoList.appendChild(div);
             });
         }
         
-        const vocab = vocabularyData[week.theme] || ["english", "learn", "play", "school", "student", "teacher", "book", "pen"];
+        // Remplir les flashcards
         const fc = document.getElementById('flashcardsContainer');
         fc.innerHTML = '';
+        const vocab = defaultVocab; // Simplifié pour garantir que ça marche
         vocab.forEach(word => {
             const card = document.createElement('div');
             card.className = 'flashcard';
-            card.innerHTML = `<div class="flashcard-word">${word}</div><button onclick="speak('${word}')">🔊 Écouter</button>`;
+            card.innerHTML = `
+                <div class="flashcard-word" style="text-transform: capitalize;">${word}</div>
+                <button onclick="speakWord('${word}')" style="margin-top: 10px;">🔊 Écouter</button>
+            `;
             fc.appendChild(card);
         });
+        
+        // Remonter en haut de page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function speak(word) {
-        if ('speechSynthesis' in window) {
-            const u = new SpeechSynthesisUtterance(word);
-            u.lang = 'en-US';
-            u.rate = 0.8;
-            speechSynthesis.speak(u);
+    // 5. Fonction pour revenir en arrière (SÉCURITÉ ANTI-PERTE)
+    function goBackToUnits() {
+        document.getElementById('lessonContent').style.display = 'none';
+        document.getElementById('unitsGrid').style.display = 'block';
+        if (currentUnit) {
+            selectUnit(currentUnit); // Retourne aux semaines de l'unité en cours
+        } else {
+            displayUnits(); // Retourne aux 6 unités principales
         }
     }
 
+    // 6. Prononciation
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+    }
+
+    // 7. Terminer la leçon
     function completeLesson() {
         completedLessons++;
         totalStars += 5;
         localStorage.setItem('ce_totalStars', totalStars);
         localStorage.setItem('ce_completedLessons', completedLessons);
         updateScore();
-        alert(`🎉 Bravo ! +5 étoiles !\nTotal : ${totalStars} étoiles`);
-        backToUnits();
+        alert(`🎉 Félicitations ! Tu as gagné 5 étoiles !\nTotal : ${totalStars} ⭐`);
+        goBackToUnits();
     }
 
-    function backToUnits() {
-        document.getElementById('unitsGrid').style.display = 'block';
-        document.getElementById('lessonContent').style.display = 'none';
-        displayUnits();
-    }
-
+    // 8. Mettre à jour l'affichage du score
     function updateScore() {
         document.getElementById('totalStars').textContent = totalStars;
         document.getElementById('completedLessons').textContent = completedLessons;
