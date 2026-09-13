@@ -29,8 +29,8 @@
 
         <div class="program-info">
             <h3>📚 Programme CE - 6 Unités</h3>
-            <p>Toutes les vidéos officielles du Ministère pour le Cours Élémentaire</p>
-            <p class="highlight">6 Unités • 25 semaines • 1h40 par semaine</p>
+            <p><strong>Toutes les vidéos officielles du Ministère pour le Cours Élémentaire</strong></p>
+            <p class="highlight" id="videoCount">Chargement des vidéos...</p>
         </div>
 
         <div id="videoList" class="video-grid"></div>
@@ -62,8 +62,10 @@
     </div>
 
     <script>
-    // CHARGEMENT EXCLUSIF DU PROGRAMME CE (PAS CP !)
-    fetch('/togo-english-play/data/videos-ce.json')
+    // CHARGEMENT EXCLUSIF DU PROGRAMME CE
+    let videoCounter = 0;
+    
+    fetch('/togo-english-play/data/videos-ce.json?' + Date.now())
         .then(response => {
             if (!response.ok) throw new Error("Fichier videos-ce.json non trouvé");
             return response.json();
@@ -71,14 +73,14 @@
         .then(data => {
             const list = document.getElementById('videoList');
             
-            // Parcourir uniquement les unités CE (unit1 à unit6)
             Object.keys(data).forEach(unitKey => {
                 const unit = data[unitKey];
                 
-                // Parcourir les semaines de chaque unité CE
                 unit.weeks.forEach(week => {
-                    // Parcourir les vidéos de chaque semaine CE
                     week.videos.forEach(v => {
+                        if (!v.youtubeId) return;
+                        
+                        videoCounter++;
                         const div = document.createElement('div');
                         div.className = 'video-card';
                         div.innerHTML = `
@@ -96,10 +98,15 @@
                     });
                 });
             });
+            
+            // Afficher le compteur de vidéos
+            document.getElementById('videoCount').textContent = 
+                `✅ ${videoCounter} vidéos du programme CE chargées (Programme officiel CE1 & CE2)`;
         })
         .catch(error => {
-            console.error("Erreur chargement CE:", error);
-            document.getElementById('videoList').innerHTML = '<p style="color:white; text-align:center; padding:40px;">⚠️ Erreur : Impossible de charger les vidéos CE. Vérifiez que le fichier data/videos-ce.json existe.</p>';
+            console.error("Erreur:", error);
+            document.getElementById('videoList').innerHTML = '<p style="color:white; text-align:center; padding:40px;">⚠️ Erreur : Impossible de charger les vidéos CE.</p>';
+            document.getElementById('videoCount').textContent = '❌ Erreur de chargement';
         });
     </script>
 </body>
