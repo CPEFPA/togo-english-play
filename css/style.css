@@ -1063,6 +1063,22 @@ body {
     border-color: #FF6B6B;
 }
 
+/* Style pour la carte Mini-Jeux sur l'accueil */
+.games-card {
+    border-top: 8px solid #9C27B0;
+}
+
+.games-card h2 {
+    color: #9C27B0;
+}
+
+/* Pour aligner 4 cartes sur les grands écrans */
+@media (min-width: 900px) {
+    .main-nav {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .nav-link.highlight:hover {
     background: #ff5252;
     transform: scale(1.05);
