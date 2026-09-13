@@ -378,3 +378,204 @@ body {
         justify-content: center;
     }
 }
+
+/* Styles pour l'Espace Enfants */
+.score-board {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.score-item {
+    text-align: center;
+}
+
+.score-icon {
+    font-size: 3em;
+    display: block;
+}
+
+.score-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #006A4E;
+    display: block;
+}
+
+.score-label {
+    font-size: 1em;
+    color: #666;
+}
+
+.units-grid, .lesson-content {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.unit-card, .week-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+.unit-card:hover, .week-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.unit-icon {
+    font-size: 4em;
+    margin-bottom: 15px;
+}
+
+.unit-card h3, .week-card h3 {
+    color: #006A4E;
+    margin-bottom: 10px;
+}
+
+.back-btn {
+    background: white;
+    color: #006A4E;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    background: #006A4E;
+    color: white;
+}
+
+.lesson-header {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lesson-header h2 {
+    color: #006A4E;
+    margin-bottom: 10px;
+}
+
+.video-section, .flashcards-section, .quiz-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.video-section h3, .flashcards-section h3, .quiz-section h3 {
+    color: #006A4E;
+    margin-bottom: 15px;
+}
+
+.flashcards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.flashcard {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.flashcard-word {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.flashcard button {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.quiz-question {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.quiz-option {
+    background: #006A4E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.quiz-option:hover {
+    background: #004d38;
+    transform: scale(1.05);
+}
+
+.complete-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.complete-btn:hover {
+    background: #45a049;
+}
+
+@media (max-width: 768px) {
+    .score-board {
+        gap: 20px;
+    }
+    
+    .score-icon {
+        font-size: 2em;
+    }
+    
+    .score-value {
+        font-size: 1.8em;
+    }
+    
+    .flashcards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

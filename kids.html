@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Enfants - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎮 Espace Enfants</h1>
+            <p>Apprends l'anglais en t'amusant avec Kossi et Afi !</p>
+            <a href="index.html" style="color: white; text-decoration: underline;">← Retour à l'accueil</a>
+        </header>
+
+        <!-- Score de l'enfant -->
+        <div class="score-board">
+            <div class="score-item">
+                <span class="score-icon">⭐</span>
+                <span class="score-value" id="totalStars">0</span>
+                <span class="score-label">Étoiles</span>
+            </div>
+            <div class="score-item">
+                <span class="score-icon">🏆</span>
+                <span class="score-value" id="completedLessons">0</span>
+                <span class="score-label">Leçons terminées</span>
+            </div>
+        </div>
+
+        <!-- Sélection de l'unité -->
+        <div class="units-grid" id="unitsGrid">
+            <h2 style="color: white; text-align: center; margin-bottom: 20px;">Choisis ton unité :</h2>
+        </div>
+
+        <!-- Contenu de la leçon (caché par défaut) -->
+        <div id="lessonContent" class="lesson-content" style="display: none;">
+            <button onclick="backToUnits()" class="back-btn">← Retour aux unités</button>
+            
+            <div class="lesson-header">
+                <h2 id="lessonTitle"></h2>
+                <p id="lessonTheme"></p>
+            </div>
+
+            <!-- Vidéo de la leçon -->
+            <div class="video-section">
+                <h3>🎥 Regarde la vidéo</h3>
+                <div class="video-container">
+                    <iframe id="lessonVideo" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Flashcards -->
+            <div class="flashcards-section">
+                <h3>🔤 Apprends les mots</h3>
+                <div id="flashcardsContainer" class="flashcards-grid"></div>
+            </div>
+
+            <!-- Mini-jeu Quiz -->
+            <div class="quiz-section">
+                <h3>🎯 Teste tes connaissances</h3>
+                <div id="quizContainer"></div>
+                <button onclick="completeLesson()" class="complete-btn">✅ J'ai terminé !</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script src="js/kids.js"></script>
+</body>
+</html>
