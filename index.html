@@ -18,15 +18,16 @@
 <body>
     <div class="container">
         
-        <!-- Barre de navigation globale (avec lien CE ajouté) -->
-                <nav class="top-nav-bar">
+        <!-- Barre de navigation globale -->
+        <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
             <a href="/togo-english-play/kids.html" class="nav-link">🎮 CP</a>
             <a href="/togo-english-play/ce.html" class="nav-link">📚 CE</a>
             <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents CP</a>
             <a href="/togo-english-play/parents-ce.html" class="nav-link">👨‍👩‍👧 Parents CE</a>
             <a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
-            <a href="/togo-english-play/games.html" class="nav-link highlight">🕹️ Jeux</a>
+            <a href="/togo-english-play/games.html" class="nav-link">🕹️ Jeux CP</a>
+            <a href="/togo-english-play/games-ce.html" class="nav-link highlight">🎮 Jeux CE</a>
         </nav>
 
         <!-- Bannière d'installation PWA -->
@@ -56,30 +57,34 @@
             </div>
         </div>
 
-        <!-- 5 Cartes principales -->
+        <!-- Section Programmes (CP + CE) -->
+        <h2 style="color: white; text-align: center; margin: 20px 0; font-size: 1.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">📚 Nos Programmes</h2>
+        
         <nav class="main-nav">
             <a href="/togo-english-play/kids.html" class="nav-card kids-card">
                 <div class="nav-icon">🎮</div>
                 <h2>Espace CP</h2>
                 <p>Jeux, chansons et leçons interactives</p>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">CP1 & CP2 • 6 unités</p>
             </a>
 
             <a href="/togo-english-play/ce.html" class="nav-card ce-cm-card">
                 <div class="nav-icon">📚</div>
                 <h2>Espace CE</h2>
                 <p>Programme officiel interactif</p>
-            </a>
-
-            <a href="/togo-english-play/games.html" class="nav-card games-card">
-                <div class="nav-icon">🕹️</div>
-                <h2>Mini-Jeux</h2>
-                <p>Mémoire, Association, Prononciation</p>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">CE1 & CE2 • 6 unités</p>
             </a>
 
             <a href="/togo-english-play/parents.html" class="nav-card parents-card">
                 <div class="nav-icon">👨‍👩‍👧</div>
-                <h2>Espace Parents</h2>
+                <h2>Parents CP</h2>
                 <p>Accompagnez votre enfant à la maison</p>
+            </a>
+
+            <a href="/togo-english-play/parents-ce.html" class="nav-card" style="border-top: 8px solid #FF9800;">
+                <div class="nav-icon">👨‍👩‍👧</div>
+                <h2 style="color: #FF9800;">Parents CE</h2>
+                <p>Accompagnez votre enfant du CE</p>
             </a>
 
             <a href="/togo-english-play/teachers.html" class="nav-card teachers-card">
@@ -88,6 +93,33 @@
                 <p>Fiches pédagogiques et évaluations</p>
             </a>
         </nav>
+
+        <!-- Section Mini-Jeux -->
+        <h2 style="color: white; text-align: center; margin: 30px 0 20px 0; font-size: 1.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">🕹️ Mini-Jeux Éducatifs</h2>
+        
+        <nav class="main-nav" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <a href="/togo-english-play/games.html" class="nav-card games-card">
+                <div class="nav-icon">🎮</div>
+                <h2>Mini-Jeux CP</h2>
+                <p>Mémoire, Association, Prononciation</p>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">Vocabulaire du CP</p>
+            </a>
+
+            <a href="/togo-english-play/games-ce.html" class="nav-card" style="border-top: 8px solid #9C27B0;">
+                <div class="nav-icon">🎲</div>
+                <h2 style="color: #9C27B0;">Mini-Jeux CE</h2>
+                <p>Vocabulaire officiel du CE</p>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">École, Émotions, Famille, Météo, Célébrations, Togo</p>
+            </a>
+        </nav>
+
+        <!-- Nouveauté CE -->
+        <div class="program-info" style="border-left: 6px solid #2196F3; background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), white);">
+            <h3 style="color: #2196F3;">✨ NOUVEAU : Programme CE Intégré !</h3>
+            <p>Suite à la <strong>Note de Service N°018/2024/MEPS/CAB</strong>, le programme du Cours Élémentaire est désormais disponible dans l'application.</p>
+            <p class="highlight" style="color: #2196F3;">6 Unités • 25 semaines • 25 vidéos officielles</p>
+            <a href="/togo-english-play/ce.html" class="guide-btn" style="background: linear-gradient(135deg, #2196F3, #1976D2);">📚 Découvrir le programme CE</a>
+        </div>
 
         <!-- Informations sur le programme officiel -->
         <div class="program-info">
