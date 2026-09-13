@@ -20,7 +20,7 @@
 
 
 
-\## 📖 À propos du projet
+\ 📖 À propos du projet
 
 
 
@@ -32,7 +32,7 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\### 🎯 Objectifs
+\ 🎯 Objectifs
 
 
 
@@ -52,11 +52,11 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\## 🌟 Fonctionnalités
+\ 🌟 Fonctionnalités
 
 
 
-\### 🎮 Espace Enfants
+\ 🎮 Espace Enfants
 
 \- \*\*6 unités d'apprentissage\*\* avec progression structurée
 
@@ -72,7 +72,7 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\### 👨‍👩‍👧 Espace Parents
+\ 👨‍👩‍👧 Espace Parents
 
 \- \*\*43+ vidéos éducatives\*\* classées par unité et semaine
 
@@ -86,7 +86,7 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\### 👩‍🏫 Espace Enseignants
+\ 👩‍🏫 Espace Enseignants
 
 \- \*\*Emploi du temps officiel\*\* (1h40/semaine réparti sur 5 jours)
 
@@ -104,11 +104,11 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\## 📚 Programme Officiel
+\ 📚 Programme Officiel
 
 
 
-\### Structure du cours
+\ Structure du cours
 
 \- \*\*Niveau :\*\* Cours Préparatoire (CP1 \& CP2)
 
@@ -120,7 +120,7 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\### Unités d'apprentissage
+\ Unités d'apprentissage
 
 1\. 🏫 \*\*My School\*\* - Salutations, alphabet, objets de la classe
 
@@ -140,7 +140,7 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\## 🚀 Technologies utilisées
+\ 🚀 Technologies utilisées
 
 
 
@@ -158,5 +158,5 @@ Cette application transforme le programme officiel du Ministère en une expérie
 
 
 
-\### Architecture
+\ Architecture
 
