@@ -319,3 +319,62 @@ body {
 .video-info p {
     margin: 8px 0;
 }
+
+/* Styles pour la section Contact */
+.contact-info {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-top: 40px;
+}
+
+.contact-info h3 {
+    color: #006A4E;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.phone-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.phone-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #006A4E;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 106, 78, 0.3);
+}
+
+.phone-btn:hover {
+    background: #004d38;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 106, 78, 0.4);
+}
+
+/* Responsive pour les téléphones */
+@media (max-width: 600px) {
+    .phone-numbers {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .phone-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
