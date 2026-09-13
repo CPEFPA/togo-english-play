@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Lignes anti-cache pour forcer la mise à jour automatique -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TogoEnglish Play - Apprendre l'anglais en s'amusant</title>
+    <title>Mini-Jeux CE - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#006A4E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="TogoEnglish">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 <body>
     <div class="container">
         <nav class="top-nav-bar">
             <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
-            <a href="/togo-english-play/kids.html" class="nav-link">🎮 Enfants</a>
-            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
+            <a href="/togo-english-play/kids.html" class="nav-link">🎮 CP</a>
+            <a href="/togo-english-play/ce.html" class="nav-link">📚 CE</a>
+            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents CP</a>
+            <a href="/togo-english-play/parents-ce.html" class="nav-link">👨‍👩‍👧 Parents CE</a>
             <a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
-            <a href="/togo-english-play/games.html" class="nav-link highlight">🕹️ Mini-Jeux</a>
+            <a href="/togo-english-play/games-ce.html" class="nav-link highlight">🕹️ Jeux CE</a>
         </nav>
 
-        <header class="header">
-            <h1>🎮 Mini-Jeux Éducatifs</h1>
-            <p>Apprends l'anglais en jouant avec Kossi et Afi !</p>
+        <header class="header" style="background: linear-gradient(135deg, #9C27B0, #7B1FA2);">
+            <h1>🎮 Mini-Jeux CE</h1>
+            <p>Programme officiel CE1 & CE2 - Note N°018/2024/MEPS/CAB</p>
+            <p style="margin-top: 10px; font-size: 0.95em;">Apprends le vocabulaire du CE en jouant !</p>
         </header>
 
         <div class="tabs">
@@ -38,45 +31,53 @@
             <button class="tab-btn" onclick="switchGame('record')">🎤 Prononciation</button>
         </div>
 
+        <!-- JEU DE MÉMOIRE -->
         <div id="memory" class="game-panel active">
-            <h2>🧠 Jeu de Mémoire</h2>
-            <p class="desc">Retourne les cartes et trouve les paires !</p>
+            <h2>🧠 Jeu de Mémoire CE</h2>
+            <p class="desc">Retourne les cartes et trouve les paires mot/emoji !</p>
             <div class="theme-selector">
-                <button class="theme-btn active" onclick="loadMemory('fruits')">🍎 Fruits</button>
-                <button class="theme-btn" onclick="loadMemory('animals')">🦁 Animaux</button>
-                <button class="theme-btn" onclick="loadMemory('body')">🦶 Corps</button>
-                <button class="theme-btn" onclick="loadMemory('school')">🏫 École</button>
+                <button class="theme-btn active" onclick="loadMemory('school')">🏫 École</button>
+                <button class="theme-btn" onclick="loadMemory('feelings')">😊 Émotions</button>
+                <button class="theme-btn" onclick="loadMemory('family')">👨‍👩‍👧 Famille</button>
+                <button class="theme-btn" onclick="loadMemory('weather')">🌤️ Météo</button>
+                <button class="theme-btn" onclick="loadMemory('celebrations')">🎉 Célébrations</button>
+                <button class="theme-btn" onclick="loadMemory('togo')">🇹🇬 Togo</button>
             </div>
             <div class="score-display">Paires trouvées : <span id="memoryScore">0</span> / <span id="memoryTotal">0</span></div>
             <div id="memoryGrid" class="memory-grid"></div>
             <div id="memoryResult" class="result-box" style="display:none;"></div>
         </div>
 
+        <!-- JEU D'ASSOCIATION -->
         <div id="match" class="game-panel">
-            <h2>🔗 Jeu d'Association</h2>
-            <p class="desc">Clique sur le mot anglais puis sur l'image correspondante !</p>
+            <h2>🔗 Jeu d'Association CE</h2>
+            <p class="desc">Clique sur le mot anglais puis sur l'emoji correspondant !</p>
             <div class="theme-selector">
-                <button class="theme-btn active" onclick="loadMatch('greetings')">👋 Salutations</button>
-                <button class="theme-btn" onclick="loadMatch('colors')">🎨 Couleurs</button>
-                <button class="theme-btn" onclick="loadMatch('family')">👨‍👩‍👧 Famille</button>
-                <button class="theme-btn" onclick="loadMatch('food')">🍕 Nourriture</button>
+                <button class="theme-btn active" onclick="loadMatch('school')">🏫 École</button>
+                <button class="theme-btn" onclick="loadMatch('appearances')">👁️ Apparences</button>
+                <button class="theme-btn" onclick="loadMatch('house')">🏠 Maison</button>
+                <button class="theme-btn" onclick="loadMatch('sea')">🐟 Vie marine</button>
+                <button class="theme-btn" onclick="loadMatch('independence')">🇹🇬 Indépendance</button>
             </div>
             <div class="score-display">Score : <span id="matchScore">0</span></div>
             <div id="matchContainer" class="match-container"></div>
             <div id="matchResult" class="result-box" style="display:none;"></div>
         </div>
 
+        <!-- JEU DE PRONONCIATION -->
         <div id="record" class="game-panel">
-            <h2>🎤 Jeu de Prononciation</h2>
+            <h2>🎤 Jeu de Prononciation CE</h2>
             <p class="desc">Écoute le mot, prononce-le, puis compare !</p>
             <div class="theme-selector">
-                <button class="theme-btn active" onclick="loadRecord('basics')">👋 Base</button>
-                <button class="theme-btn" onclick="loadRecord('numbers')">🔢 Nombres</button>
-                <button class="theme-btn" onclick="loadRecord('animals')">🦁 Animaux</button>
+                <button class="theme-btn active" onclick="loadRecord('school')">🏫 École</button>
+                <button class="theme-btn" onclick="loadRecord('feelings')">😊 Émotions</button>
+                <button class="theme-btn" onclick="loadRecord('family')">👨‍👩‍👧 Famille</button>
+                <button class="theme-btn" onclick="loadRecord('weather')">🌤️ Météo</button>
+                <button class="theme-btn" onclick="loadRecord('celebrations')">🎉 Célébrations</button>
             </div>
             <div class="score-display">Mots réussis : <span id="recordScore">0</span> / <span id="recordTotal">0</span></div>
             <div class="record-container">
-                <div class="word-display" id="recordWord">Hello</div>
+                <div class="word-display" id="recordWord">School</div>
                 <div class="record-btns">
                     <button class="record-btn listen-btn" onclick="listenWord()">🔊 Écouter</button>
                     <button class="record-btn mic-btn" id="micBtn" onclick="toggleRecord()">🎙️ S'enregistrer</button>
@@ -87,29 +88,74 @@
             </div>
         </div>
 
+        <div class="program-info" style="margin-top: 40px;">
+            <h3>📚 Vocabulaire du Programme CE</h3>
+            <p>Tous les mots utilisés dans ces jeux proviennent du programme officiel CE1 & CE2</p>
+            <p class="highlight">6 Unités • 25 semaines • Vocabulaire progressif</p>
+        </div>
+
         <footer class="footer">
             <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
         </footer>
     </div>
 
     <script>
-    const gameData = {
+    // DONNÉES SPÉCIFIQUES AU PROGRAMME CE
+    const ceGameData = {
         memory: {
-            fruits: [{word:"Apple",emoji:"🍎"},{word:"Banana",emoji:"🍌"},{word:"Mango",emoji:"🥭"},{word:"Orange",emoji:"🍊"},{word:"Watermelon",emoji:"🍉"},{word:"Pineapple",emoji:"🍍"}],
-            animals: [{word:"Cat",emoji:"🐱"},{word:"Dog",emoji:"🐶"},{word:"Cow",emoji:"🐄"},{word:"Lion",emoji:"🦁"},{word:"Elephant",emoji:"🐘"},{word:"Goat",emoji:"🐐"}],
-            body: [{word:"Head",emoji:"👤"},{word:"Eyes",emoji:"👀"},{word:"Mouth",emoji:"👄"},{word:"Hand",emoji:"✋"},{word:"Foot",emoji:"🦶"},{word:"Nose",emoji:"👃"}],
-            school: [{word:"Book",emoji:"📖"},{word:"Pen",emoji:"🖊️"},{word:"Bag",emoji:"🎒"},{word:"Desk",emoji:"🪑"},{word:"Board",emoji:"📋"},{word:"Ruler",emoji:"📏"}]
+            school: [
+                {word:"Library",emoji:"📚"},{word:"Garden",emoji:"🌳"},{word:"Playground",emoji:"⚽"},
+                {word:"Canteen",emoji:"🍽️"},{word:"Computer room",emoji:"💻"},{word:"Toilets",emoji:"🚻"}
+            ],
+            feelings: [
+                {word:"Happy",emoji:"😊"},{word:"Sad",emoji:"😢"},{word:"Angry",emoji:"😠"},
+                {word:"Excited",emoji:"🤩"},{word:"Tired",emoji:"😴"},{word:"Surprised",emoji:"😲"}
+            ],
+            family: [
+                {word:"Father",emoji:"👨"},{word:"Mother",emoji:"👩"},{word:"Brother",emoji:"👦"},
+                {word:"Sister",emoji:"👧"},{word:"Grandfather",emoji:"👴"},{word:"Grandmother",emoji:"👵"}
+            ],
+            weather: [
+                {word:"Sunny",emoji:"☀️"},{word:"Rainy",emoji:"🌧️"},{word:"Windy",emoji:"💨"},
+                {word:"Cloudy",emoji:"☁️"},{word:"Snowy",emoji:"❄️"},{word:"Hot",emoji:"🔥"}
+            ],
+            celebrations: [
+                {word:"Birthday",emoji:"🎂"},{word:"Cake",emoji:"🎂"},{word:"Gifts",emoji:"🎁"},
+                {word:"Candles",emoji:"🕯️"},{word:"Christmas",emoji:"🎄"},{word:"Flag",emoji:"🏳️"}
+            ],
+            togo: [
+                {word:"Togo",emoji:"🇹🇬"},{word:"Lomé",emoji:"🏙️"},{word:"North",emoji:"⬆️"},
+                {word:"South",emoji:"⬇️"},{word:"Mountain",emoji:"⛰️"},{word:"River",emoji:"🏞️"}
+            ]
         },
         match: {
-            greetings: [{word:"Hello",emoji:"👋"},{word:"Good morning",emoji:"🌅"},{word:"Good night",emoji:"🌙"},{word:"Goodbye",emoji:"🚶"},{word:"Thank you",emoji:"🙏"}],
-            colors: [{word:"Red",emoji:"🔴"},{word:"Blue",emoji:"🔵"},{word:"Green",emoji:"🟢"},{word:"Yellow",emoji:"🟡"},{word:"White",emoji:"⚪"}],
-            family: [{word:"Father",emoji:"👨"},{word:"Mother",emoji:"👩"},{word:"Brother",emoji:"👦"},{word:"Sister",emoji:"👧"},{word:"Baby",emoji:"👶"}],
-            food: [{word:"Bread",emoji:"🍞"},{word:"Rice",emoji:"🍚"},{word:"Egg",emoji:"🥚"},{word:"Milk",emoji:"🥛"},{word:"Fish",emoji:"🐟"}]
+            school: [
+                {word:"Library",emoji:"📚"},{word:"Garden",emoji:"🌳"},{word:"Playground",emoji:"⚽"},
+                {word:"Canteen",emoji:"🍽️"},{word:"Office",emoji:"🏢"},{word:"Flag",emoji:"🏳️"}
+            ],
+            appearances: [
+                {word:"Eye",emoji:"👁️"},{word:"Hair",emoji:"💇"},{word:"Smile",emoji:"😊"},
+                {word:"Tall",emoji:"🧍"},{word:"Short",emoji:"🧒"},{word:"Hand",emoji:"✋"}
+            ],
+            house: [
+                {word:"Bedroom",emoji:"🛏️"},{word:"Kitchen",emoji:"🍳"},{word:"Bathroom",emoji:"🚿"},
+                {word:"Living room",emoji:"🛋️"},{word:"Garden",emoji:"🌳"},{word:"Door",emoji:"🚪"}
+            ],
+            sea: [
+                {word:"Fish",emoji:"🐟"},{word:"Whale",emoji:"🐋"},{word:"Shark",emoji:"🦈"},
+                {word:"Octopus",emoji:"🐙"},{word:"Crab",emoji:"🦀"},{word:"Shell",emoji:"🐚"}
+            ],
+            independence: [
+                {word:"Flag",emoji:"🇹🇬"},{word:"Star",emoji:"⭐"},{word:"Flame",emoji:"🔥"},
+                {word:"Parade",emoji:"🎖️"},{word:"Anthem",emoji:"🎵"},{word:"Freedom",emoji:"🕊️"}
+            ]
         },
         record: {
-            basics: ["Hello","Good morning","Goodbye","My name is","Thank you","Please","Sorry","Yes","No"],
-            numbers: ["One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten"],
-            animals: ["Cat","Dog","Lion","Elephant","Monkey","Bird","Fish","Cow","Goat","Rabbit"]
+            school: ["School","Library","Garden","Playground","Canteen","Computer","Teacher","Pupil"],
+            feelings: ["Happy","Sad","Angry","Excited","Tired","Surprised","Worried","Proud"],
+            family: ["Father","Mother","Brother","Sister","Grandfather","Grandmother","Uncle","Aunt"],
+            weather: ["Sunny","Rainy","Windy","Cloudy","Snowy","Hot","Cold","Weather"],
+            celebrations: ["Birthday","Christmas","Ramadan","Independence","Flag","Cake","Gift","Candle"]
         }
     };
 
@@ -120,6 +166,7 @@
         event.target.classList.add('active');
     }
 
+    // JEU DE MÉMOIRE
     let memoryCards = [];
     let flippedCards = [];
     let memoryScore = 0;
@@ -133,7 +180,7 @@
         memoryLocked = false;
         document.getElementById('memoryResult').style.display = 'none';
 
-        const data = gameData.memory[theme];
+        const data = ceGameData.memory[theme];
         const pairs = [];
         data.forEach(item => {
             pairs.push({id: item.word + '_w', pairId: item.word, display: item.word, type: 'word'});
@@ -190,9 +237,10 @@
     function showMemoryResult() {
         const box = document.getElementById('memoryResult');
         box.style.display = 'block';
-        box.innerHTML = `<h3>🎉 Bravo Kossi !</h3><p>Tu as trouvé toutes les paires !</p><button class="restart-btn" onclick="loadMemory('fruits')">🔄 Rejouer</button>`;
+        box.innerHTML = `<h3>🎉 Bravo !</h3><p>Tu as trouvé toutes les paires du programme CE !</p><button class="restart-btn" onclick="loadMemory('school')">🔄 Rejouer</button>`;
     }
 
+    // JEU D'ASSOCIATION
     let matchSelected = null;
     let matchScoreVal = 0;
     let matchPairsLeft = 0;
@@ -205,7 +253,7 @@
         document.getElementById('matchResult').style.display = 'none';
         document.getElementById('matchScore').textContent = '0';
 
-        const data = shuffle([...gameData.match[theme]]);
+        const data = shuffle([...ceGameData.match[theme]]);
         matchPairsLeft = data.length;
 
         const container = document.getElementById('matchContainer');
@@ -285,9 +333,10 @@
     function showMatchResult() {
         const box = document.getElementById('matchResult');
         box.style.display = 'block';
-        box.innerHTML = `<h3>🎉 Bravo Afi !</h3><p>Tu as associé toutes les paires ! Score : ${matchScoreVal}</p><button class="restart-btn" onclick="loadMatch('greetings')">🔄 Rejouer</button>`;
+        box.innerHTML = `<h3>🎉 Bravo !</h3><p>Tu as associé toutes les paires ! Score : ${matchScoreVal}</p><button class="restart-btn" onclick="loadMatch('school')">🔄 Rejouer</button>`;
     }
 
+    // JEU DE PRONONCIATION
     let recordWords = [];
     let recordIndex = 0;
     let recordScoreVal = 0;
@@ -299,7 +348,7 @@
     function loadRecord(theme) {
         document.querySelectorAll('#record .theme-btn').forEach(b => b.classList.remove('active'));
         event.target.classList.add('active');
-        recordWords = shuffle([...gameData.record[theme]]);
+        recordWords = shuffle([...ceGameData.record[theme]]);
         recordIndex = 0;
         recordScoreVal = 0;
         recordedBlob = null;
@@ -340,7 +389,7 @@
                         recordedBlob = new Blob(audioChunks, {type: 'audio/webm'});
                         document.getElementById('playBtn').disabled = false;
                         stream.getTracks().forEach(t => t.stop());
-                        document.getElementById('recordFeedback').textContent = '✅ Enregistrement terminé ! Écoute ta voix et compare.';
+                        document.getElementById('recordFeedback').textContent = '✅ Enregistrement terminé ! Écoute ta voix.';
                         document.getElementById('recordFeedback').className = 'feedback good';
                     };
                     mediaRecorder.start();
@@ -351,7 +400,7 @@
                     document.getElementById('recordFeedback').className = 'feedback try-again';
                 })
                 .catch(() => {
-                    document.getElementById('recordFeedback').textContent = '⚠️ Micro non autorisé. Autorise le micro dans ton navigateur.';
+                    document.getElementById('recordFeedback').textContent = '⚠️ Micro non autorisé.';
                     document.getElementById('recordFeedback').className = 'feedback try-again';
                 });
         }
@@ -388,9 +437,10 @@
         return arr;
     }
 
-    loadMemory('fruits');
-    loadMatch('greetings');
-    loadRecord('basics');
+    // Initialisation
+    loadMemory('school');
+    loadMatch('school');
+    loadRecord('school');
     </script>
 </body>
 </html>
