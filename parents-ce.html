@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espace Parents CE - TogoEnglish Play</title>
@@ -21,8 +23,15 @@
 
         <header class="header" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
             <h1>👨‍👩‍👧 Espace Parents CE</h1>
-            <p>Accompagnez votre enfant du CE : 10 à 20 minutes par jour</p>
+            <p>Programme officiel CE1 & CE2 - Note de Service N°018/2024/MEPS/CAB</p>
+            <p style="margin-top: 10px; font-size: 0.95em;">Accompagnez votre enfant : 10 à 20 minutes par jour</p>
         </header>
+
+        <div class="program-info">
+            <h3>📚 Programme CE - 6 Unités</h3>
+            <p>Toutes les vidéos officielles du Ministère pour le Cours Élémentaire</p>
+            <p class="highlight">6 Unités • 25 semaines • 1h40 par semaine</p>
+        </div>
 
         <div id="videoList" class="video-grid"></div>
 
@@ -39,6 +48,7 @@
 
         <div class="contact-info">
             <h3>📞 Besoin d'aide ?</h3>
+            <p>OBG International - Cres Poly Art</p>
             <div class="phone-numbers">
                 <a href="tel:+16138502652" class="phone-btn">🇨🇦 +1 (613) 850-2652</a>
                 <a href="tel:+22890588358" class="phone-btn">🇹🇬 +228 90 58 83 58</a>
@@ -52,24 +62,44 @@
     </div>
 
     <script>
+    // CHARGEMENT EXCLUSIF DU PROGRAMME CE (PAS CP !)
     fetch('/togo-english-play/data/videos-ce.json')
-        .then(r => r.json())
+        .then(response => {
+            if (!response.ok) throw new Error("Fichier videos-ce.json non trouvé");
+            return response.json();
+        })
         .then(data => {
             const list = document.getElementById('videoList');
+            
+            // Parcourir uniquement les unités CE (unit1 à unit6)
             Object.keys(data).forEach(unitKey => {
                 const unit = data[unitKey];
+                
+                // Parcourir les semaines de chaque unité CE
                 unit.weeks.forEach(week => {
+                    // Parcourir les vidéos de chaque semaine CE
                     week.videos.forEach(v => {
                         const div = document.createElement('div');
                         div.className = 'video-card';
-                        div.innerHTML = `<div class="video-badge">${unit.icon} Unit ${unitKey.replace('unit','')} - Semaine ${week.week}</div>
+                        div.innerHTML = `
+                            <div class="video-badge">${unit.icon} ${unit.title} - Semaine ${week.week}</div>
                             <h3>${v.title}</h3>
-                            <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/${v.youtubeId}" frameborder="0" allowfullscreen></iframe></div>
-                            <div class="video-info"><p>🎯 ${v.objective}</p><p>📅 Jour ${v.day} - ${v.type}</p></div>`;
+                            <div class="video-container">
+                                <iframe src="https://www.youtube-nocookie.com/embed/${v.youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="video-info">
+                                <p>🎯 <strong>Objectif :</strong> ${v.objective}</p>
+                                <p>📅 Jour ${v.day} - ${v.type ? v.type.toUpperCase() : 'VIDEO'}</p>
+                            </div>
+                        `;
                         list.appendChild(div);
                     });
                 });
             });
+        })
+        .catch(error => {
+            console.error("Erreur chargement CE:", error);
+            document.getElementById('videoList').innerHTML = '<p style="color:white; text-align:center; padding:40px;">⚠️ Erreur : Impossible de charger les vidéos CE. Vérifiez que le fichier data/videos-ce.json existe.</p>';
         });
     </script>
 </body>
