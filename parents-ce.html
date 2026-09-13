@@ -23,14 +23,13 @@
 
         <header class="header" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
             <h1>👨‍👩‍👧 Espace Parents CE</h1>
-            <p>Programme officiel CE1 & CE2 - Note de Service N°018/2024/MEPS/CAB</p>
-            <p style="margin-top: 10px; font-size: 0.95em;">Accompagnez votre enfant : 10 à 20 minutes par jour</p>
+            <p>Programme officiel CE1 & CE2 - Note N°018/2024/MEPS/CAB</p>
         </header>
 
         <div class="program-info">
             <h3>📚 Programme CE - 6 Unités</h3>
-            <p><strong>Toutes les vidéos officielles du Ministère pour le Cours Élémentaire</strong></p>
-            <p class="highlight" id="videoCount">Chargement des vidéos...</p>
+            <p><strong>Vidéos officielles du Ministère pour le Cours Élémentaire</strong></p>
+            <p class="highlight" id="videoCount">Chargement...</p>
         </div>
 
         <div id="videoList" class="video-grid"></div>
@@ -62,10 +61,10 @@
     </div>
 
     <script>
-    // CHARGEMENT EXCLUSIF DU PROGRAMME CE
     let videoCounter = 0;
     
-    fetch('/togo-english-play/data/videos-ce.json?' + Date.now())
+    // CHARGEMENT EXCLUSIF DU PROGRAMME CE (avec timestamp anti-cache)
+    fetch('/togo-english-play/data/videos-ce.json?t=' + Date.now())
         .then(response => {
             if (!response.ok) throw new Error("Fichier videos-ce.json non trouvé");
             return response.json();
@@ -75,11 +74,9 @@
             
             Object.keys(data).forEach(unitKey => {
                 const unit = data[unitKey];
-                
                 unit.weeks.forEach(week => {
                     week.videos.forEach(v => {
                         if (!v.youtubeId) return;
-                        
                         videoCounter++;
                         const div = document.createElement('div');
                         div.className = 'video-card';
@@ -87,7 +84,7 @@
                             <div class="video-badge">${unit.icon} ${unit.title} - Semaine ${week.week}</div>
                             <h3>${v.title}</h3>
                             <div class="video-container">
-                                <iframe src="https://www.youtube-nocookie.com/embed/${v.youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube-nocookie.com/embed/${v.youtubeId}" frameborder="0" allowfullscreen></iframe>
                             </div>
                             <div class="video-info">
                                 <p>🎯 <strong>Objectif :</strong> ${v.objective}</p>
@@ -99,9 +96,8 @@
                 });
             });
             
-            // Afficher le compteur de vidéos
             document.getElementById('videoCount').textContent = 
-                `✅ ${videoCounter} vidéos du programme CE chargées (Programme officiel CE1 & CE2)`;
+                `✅ ${videoCounter} vidéos du programme CE (Cours Élémentaire)`;
         })
         .catch(error => {
             console.error("Erreur:", error);
