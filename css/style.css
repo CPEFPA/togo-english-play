@@ -991,3 +991,41 @@ body {
     background: #ff5252;
     transform: scale(1.05);
 }
+
+/* Barre de navigation globale pour ne jamais se perdre */
+.top-nav-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+}
+
+.nav-link.highlight {
+    background: #FF6B6B;
+    border-color: #FF6B6B;
+}
+
+.nav-link.highlight:hover {
+    background: #ff5252;
+    transform: scale(1.05);
+}
