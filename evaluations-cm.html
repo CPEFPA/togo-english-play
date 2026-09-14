@@ -1,0 +1,877 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évaluations CM - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #FF5722; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { color: #FF5722; font-size: 2.5em; margin-bottom: 15px; }
+        .unit-selector { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .unit-btn { padding: 12px 20px; border: none; background: #e0e0e0; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        .unit-btn.active { background: #FF5722; color: white; }
+        .evaluation-card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px; page-break-inside: avoid; }
+        .evaluation-card h3 { color: #FF5722; margin-top: 0; border-bottom: 2px solid #FF5722; padding-bottom: 10px; }
+        .evaluation-card h4 { color: #006A4E; margin-top: 20px; }
+        .question { background: #f9f9f9; padding: 15px; border-radius: 10px; margin: 15px 0; line-height: 1.6; }
+        .answer-key { background: #E8F5E9; padding: 15px; border-radius: 10px; margin-top: 15px; border-left: 4px solid #4CAF50; }
+        .answer-key h4 { color: #4CAF50; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th { background: #FF5722; color: white; padding: 10px; text-align: left; }
+        td { padding: 10px; border: 1px solid #ddd; }
+        .print-btn { background: #FF5722; color: white; padding: 15px 30px; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1.1em; display: block; margin: 40px auto; }
+        @media print {
+            .back-home-btn, .unit-selector, .print-btn { display: none; }
+            .evaluation-card { border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/teachers.html" class="back-home-btn">← Retour aux enseignants</a>
+        
+        <div class="page-header">
+            <h1>📝 Évaluations CM</h1>
+            <p>Toutes les évaluations hebdomadaires et de fin d'unité avec corrigés</p>
+        </div>
+
+        <div class="unit-selector">
+            <button class="unit-btn active" onclick="showUnit('preunit', this)">⭐ Pre-Unit</button>
+            <button class="unit-btn" onclick="showUnit('unit1', this)">🏘️ Unit 1</button>
+            <button class="unit-btn" onclick="showUnit('unit2', this)">🏞️ Unit 2</button>
+            <button class="unit-btn" onclick="showUnit('unit3', this)">💪 Unit 3</button>
+            <button class="unit-btn" onclick="showUnit('unit4', this)">👨‍⚕️ Unit 4</button>
+            <button class="unit-btn" onclick="showUnit('unit5', this)">🌍 Unit 5</button>
+            <button class="unit-btn" onclick="showUnit('unit6', this)">🌱 Unit 6</button>
+        </div>
+
+        <div id="evaluationsContainer"></div>
+
+        <button class="print-btn" onclick="window.print()">🖨️ Imprimer les Évaluations</button>
+    </div>
+
+    <script>
+        const evaluationsData = {
+            preunit: {
+                week2: {
+                    title: "Week 2 - Classroom Objects",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "fill", text: "Write <strong>there is</strong> or <strong>there are</strong> in the correct blank.", items: [
+                            "1. ___________ six books in my bag.",
+                            "2. ___________ an eraser on the desk.",
+                            "3. ___________ my table.",
+                            "4. ___________ the pencil sharpener.",
+                            "5. ___________ two teachers in the class."
+                        ]}
+                    ],
+                    answers: "1. There are, 2. There is, 3. There is, 4. There is, 5. There are"
+                },
+                week3: {
+                    title: "Week 3 - Body Parts & Days",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "open", text: "<strong>Part 1:</strong> What's in your classroom? Make three sentences about what's in your classroom.", example: "Example: There are thirty-two learners."},
+                        {type: "draw", text: "<strong>Part 2:</strong> Draw a face and label three parts."}
+                    ],
+                    answers: "Part 1: Answers vary (e.g., There are five chairs. There is a board. There are two windows.)"
+                }
+            },
+            unit1: {
+                week1: {
+                    title: "Week 1 - Community & Neighbourhood",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part 1:</strong> Choose the correct answer", items: [
+                            "1. What is a neighbourhood?",
+                            "   A. A big country",
+                            "   B. A place around where you live ✓",
+                            "   C. A school classroom",
+                            "",
+                            "2. Where do people grow food? Write one sentence.",
+                            "   Answer: A farm is where people grow food."
+                        ]},
+                        {type: "match", text: "<strong>Part 2:</strong> Match the place to its purpose", items: [
+                            "Hospital/Clinic → is a place where sick people go for health care",
+                            "Library → is a place where people read books",
+                            "Church/Mosque → is a place where people pray"
+                        ]}
+                    ],
+                    answers: "1. B. 2. A farm is where people grow food. Matching: Hospital=sick people, Library=read books, Church=pray."
+                },
+                week2: {
+                    title: "Week 2 - Social Virtues",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "table", text: "Fill in the chart with <strong>Yes, it is.</strong> or <strong>No, it isn't.</strong>", headers: ["#", "Word", "Social Virtue?"], rows: [
+                            ["1", "Patience", "Yes, it is."],
+                            ["2", "Laziness", "No, it isn't."],
+                            ["3", "Love", "Yes, it is."],
+                            ["4", "Anger", "No, it isn't."],
+                            ["5", "Unity", "Yes, it is."]
+                        ]}
+                    ],
+                    answers: "1. Yes, it is. 2. No, it isn't. 3. Yes, it is. 4. No, it isn't. 5. Yes, it is."
+                },
+                week3: {
+                    title: "Week 3 - Sharing Resources",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "tf", text: "<strong>Part 1:</strong> Answer with TRUE or FALSE", items: [
+                            "1. Being part of a community is helping and sharing with others around you. → TRUE",
+                            "2. Ignoring your neighbours is a good way to help your community. → FALSE",
+                            "3. Everyone, including children can help make the community a better place. → TRUE"
+                        ]},
+                        {type: "short", text: "<strong>Part 2:</strong> Give a short answer", items: [
+                            "4. Name two types of teamwork you can do in your classroom.",
+                            "5. What can happen if nobody helps in their community?"
+                        ]},
+                        {type: "reading", text: "<strong>Part 3:</strong> Read the text and answer", passage: "Community development means people working together to make their neighborhood or village better. It includes building schools, cleaning areas, planting trees, helping others, and making life good for everyone.", questions: [
+                            "6. What is community development?",
+                            "   A. Playing alone at home",
+                            "   B. Helping to improve your neighborhood ✓",
+                            "   C. Watching TV all day",
+                            "",
+                            "7. Which of these is an example of community development?",
+                            "   A. Throwing trash on the ground",
+                            "   B. Planting trees and cleaning streets ✓",
+                            "   C. Fighting with neighbors",
+                            "",
+                            "8. Who can take part in community development?",
+                            "   A. Only teachers",
+                            "   B. Only parents",
+                            "   C. Everyone in the community ✓"
+                        ]}
+                    ],
+                    answers: "1. True 2. False 3. True. 4. Answers vary (I can clean the classroom. I can help my classmate.) 5. The community will be sad, dirty, etc. 6. B 7. B 8. C"
+                },
+                unit: {
+                    title: "Unit 1 Assessment - Communities and Neighbourhood",
+                    type: "Unit Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part 1:</strong> Choose the correct answer", items: [
+                            "1. What is a neighbourhood?",
+                            "   A. A big country",
+                            "   B. A place around where you live ✓",
+                            "   C. A school classroom",
+                            "",
+                            "2. Where do people grow food? Write one sentence.",
+                            "   Answer: A farm is where people grow food."
+                        ]},
+                        {type: "match", text: "<strong>Part 2:</strong> Match the place to its purpose", items: [
+                            "Hospital/Clinic → is a place where sick people go for health care",
+                            "Library → is a place where people read books",
+                            "Church/Mosque → is a place where people pray"
+                        ]},
+                        {type: "table", text: "<strong>Part 3:</strong> Fill in the chart with <strong>Yes, it is.</strong> or <strong>No, it isn't.</strong>", headers: ["#", "Word", "Social Virtue?"], rows: [
+                            ["1", "Patience", "Yes, it is."],
+                            ["2", "Laziness", "No, it isn't."],
+                            ["3", "Love", "Yes, it is."],
+                            ["4", "Anger", "No, it isn't."],
+                            ["5", "Unity", "Yes, it is."]
+                        ]},
+                        {type: "tf", text: "<strong>Part 4:</strong> Answer with TRUE or FALSE", items: [
+                            "6. Being part of a community is helping and sharing with others around you. → TRUE",
+                            "7. Ignoring your neighbours is a good way to help your community. → FALSE",
+                            "8. Everyone, including children can help make the community a better place. → TRUE"
+                        ]},
+                        {type: "short", text: "<strong>Part 5:</strong> Give a short answer", items: [
+                            "9. Name two types of teamwork you can do in your classroom.",
+                            "10. What can happen if nobody helps in their community?"
+                        ]},
+                        {type: "reading", text: "<strong>Part 6:</strong> Read the text and answer", passage: "Community development means people working together to make their neighborhood or village better. It includes building schools, cleaning areas, planting trees, helping others, and making life good for everyone.", questions: [
+                            "11. What is community development?",
+                            "    A. Playing alone at home",
+                            "    B. Helping to improve your neighborhood ✓",
+                            "    C. Watching TV all day",
+                            "",
+                            "12. Which of these is an example of community development?",
+                            "    A. Throwing trash on the ground",
+                            "    B. Planting trees and cleaning streets ✓",
+                            "    C. Fighting with neighbors",
+                            "",
+                            "13. Who can take part in community development?",
+                            "    A. Only teachers",
+                            "    B. Only parents",
+                            "    C. Everyone in the community ✓"
+                        ]}
+                    ],
+                    answers: "1. B 2. A farm is where people grow food. Part 2: Hospital=sick people, Library=read books, Church=pray. Part 3: 1.Yes 2.No 3.Yes 4.No 5.Yes. Part 4: 6.True 7.False 8.True. 9. Answers vary. 10. The community will be sad, dirty. 11. B 12. B 13. C"
+                }
+            },
+            unit2: {
+                week1: {
+                    title: "Week 1 - Outdoor Activities",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part 1:</strong> Circle the correct answer.", items: [
+                            "1. Which of the following is an outdoor activity?",
+                            "   a. Watching TV",
+                            "   b. Running ✓",
+                            "   c. Sitting in my desk",
+                            "",
+                            "2. Why are outdoor activities good for you?",
+                            "   a. They make you tired",
+                            "   b. They are boring",
+                            "   c. They improve your health and fitness ✓"
+                        ]},
+                        {type: "reading", text: "<strong>Part 2:</strong> Read the text carefully and answer the questions.", passage: "Playing football increases teamwork. Rolling balls helps us learn about science. Taking a field trip helps us learn about nature.", questions: [
+                            "1. How many activities are in the text?",
+                            "2. Are football and taking a field trip indoor activities?",
+                            "3. What do you like to do outdoors?"
+                        ]}
+                    ],
+                    answers: "1. b 2. c. Part 2: 1. Three 2. No, they aren't. (or They are outdoor activities.) 3. Answers vary"
+                },
+                week2: {
+                    title: "Week 2 - Landscape Description",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "short", text: "<strong>Part 1:</strong> Answer with a complete sentence. (Yes, it is or No, it isn't).", items: [
+                            "1. Is a landscape a kind of animal?",
+                            "2. Is a mountain a natural part of a landscape?"
+                        ]},
+                        {type: "fill", text: "<strong>Part 2:</strong> Complete the sentence with the correct word: coastal, natural, rural", items: [
+                            "3. Forests, mountains, rivers are ................ landscapes.",
+                            "4. Villages, farms, fields are ............. landscapes.",
+                            "5. A beach is a .................. landscape."
+                        ]}
+                    ],
+                    answers: "1. No, it isn't. 2. Yes, it is. 3. Natural 4. Rural 5. Coastal"
+                },
+                week3: {
+                    title: "Week 3 - Landscapes in Togo",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "fill", text: "<strong>Part 1:</strong> Complete the short answers using « Do or Does »", items: [
+                            "1. Do learners study about landscapes at school? Yes, they ......",
+                            "2. Does Togo have forests and savannahs? Yes, it............",
+                            "3. Do you live near a river? Yes, I.........."
+                        ]},
+                        {type: "short", text: "<strong>Part 2:</strong> Answer with: Yes I do / No I don't.", items: [
+                            "4. Do you visit Mount Agou during the holidays?",
+                            "5. Do you know Kpime waterfalls?"
+                        ]}
+                    ],
+                    answers: "1. Do 2. Does 3. Do 4. Answer varies 5. Yes, I do."
+                },
+                unit: {
+                    title: "Unit 2 Assessment - The Outdoors and Landscape",
+                    type: "Unit Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part 1:</strong> Circle the correct answer.", items: [
+                            "1. Which of the following is an outdoor activity?",
+                            "   a. Watching TV",
+                            "   b. Running ✓",
+                            "   c. Sitting in my desk",
+                            "",
+                            "2. Why are outdoor activities good for you?",
+                            "   a. They make you tired",
+                            "   b. They are boring",
+                            "   c. They improve your health and fitness ✓"
+                        ]},
+                        {type: "reading", text: "<strong>Part 2:</strong> Read the text carefully and answer the questions.", passage: "Playing football increases teamwork. Rolling balls helps us learn about science. Taking a field trip helps us learn about nature.", questions: [
+                            "1. How many activities are in the text?",
+                            "2. Are football and taking a field trip indoor activities?",
+                            "3. What do you like to do outdoors?"
+                        ]},
+                        {type: "short", text: "<strong>Part 3:</strong> Answer with a complete sentence. (Yes, it is or No, it isn't).", items: [
+                            "1. Is a landscape a kind of animal?",
+                            "2. Is a mountain a natural part of a landscape?"
+                        ]},
+                        {type: "fill", text: "<strong>Part 4:</strong> Complete the sentence with the correct word: coastal, natural, rural", items: [
+                            "3. Forests, mountains, rivers are ................ Landscapes.",
+                            "4. Villages, farms, fields are ............. Landscapes.",
+                            "5. A beach is a .................. landscape."
+                        ]},
+                        {type: "fill", text: "<strong>Part 5:</strong> Complete the short answers using « Do or Does »", items: [
+                            "4. Do learners study about landscapes at school? Yes, they ......",
+                            "5. Does Togo have forests and savannahs? Yes, it............",
+                            "6. Do you live near a river? Yes, I.........."
+                        ]},
+                        {type: "short", text: "<strong>Part 6:</strong> Answer with: Yes I do / No I don't.", items: [
+                            "a. Do you visit Mount Agou during the holidays?",
+                            "d. Do you know Kpime waterfalls?"
+                        ]}
+                    ],
+                    answers: "Part 1: 1.b 2.c. Part 2: 1.Three 2.No, they aren't. 3.Answers vary. Part 3: 1.No, it isn't. 2.Yes, it is. Part 4: 3.Natural 4.Rural 5.Coastal. Part 5: 4.Do 5.Does 6.Do. Part 6: Answers vary."
+                }
+            },
+            unit3: {
+                week1: {
+                    title: "Week 1 - Healthy Lifestyle",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "tf", text: "<strong>Part 1:</strong> State whether the following sentences are True or False.", items: [
+                            "1. A healthy lifestyle promotes well-being. → True",
+                            "2. Walking is not part of a healthy lifestyle. → False",
+                            "3. Getting enough sleep is not part of healthy lifestyle. → False"
+                        ]},
+                        {type: "short", text: "<strong>Part 2:</strong> Answer the following questions with a short sentence.", items: [
+                            "4. List two areas of a healthy lifestyle.",
+                            "5. Write two benefits of brushing your teeth."
+                        ]}
+                    ],
+                    answers: "1. True 2. False 3. False. 4. Answers vary (eating healthy food, exercising, sleeping 8 hours, brushing teeth, washing hands, relaxing). 5. When I brush my teeth, it keeps my mouth clean and makes my teeth healthy."
+                },
+                week2: {
+                    title: "Week 2 - Unhealthy Habits",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part 1:</strong> Choose the correct answer from the options below", items: [
+                            "1. A balanced diet is..............",
+                            "   a) Eating a variety of nutritious foods. ✓",
+                            "   b) Not eating at all.",
+                            "   c) Eating only one type of food.",
+                            "",
+                            "2. What is one of the harmful habits to avoid?",
+                            "   a) Exercising",
+                            "   b) Smoking ✓",
+                            "   c) Washing my hands"
+                        ]},
+                        {type: "unscramble", text: "<strong>Part 2:</strong> Rearrange the following letters correctly to form words", items: [
+                            "3. d-b-o-y → body",
+                            "4. h-n-a-d-s → hands",
+                            "5. d-f-o-o → food"
+                        ]}
+                    ],
+                    answers: "1. A 2. B 3. body 4. hands 5. food"
+                },
+                week3: {
+                    title: "Week 3 - Healthy Lifestyle at Home/School",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "short", text: "Answer the following questions.", items: [
+                            "1. What can we do to keep our school compound clean?",
+                            "2. Is cleaning the bathroom a healthy lifestyle at home and school? YES/NO Why?",
+                            "3. We should use the bin to keep our neighbourhood clean. YES/NO",
+                            "4. We should wash our clothes to keep our homes clean. YES/NO",
+                            "5. We should pick up trash to keep our schools dirty. YES/NO"
+                        ]}
+                    ],
+                    answers: "1. Answers vary. 2. Yes, because it keeps from spreading diseases. 3. Yes 4. Yes 5. No"
+                },
+                unit: {
+                    title: "Unit 3 Assessment - Healthy Lifestyle",
+                    type: "Unit Assessment",
+                    questions: [
+                        {type: "tf", text: "State whether the following sentences are True or False.", items: [
+                            "1. A healthy lifestyle promotes well-being. → True",
+                            "2. Walking is not part of a healthy lifestyle. → False",
+                            "3. If I have enough sleep, it is not part of healthy lifestyle. → False"
+                        ]},
+                        {type: "short", text: "Answer the following questions with a short sentence.", items: [
+                            "4. List two areas of a healthy lifestyle.",
+                            "5. Write two importance of brushing your teeth."
+                        ]},
+                        {type: "mcq", text: "Choose the correct answer from the options below", items: [
+                            "6. A balanced diet is..............",
+                            "   a) Eating a variety of nutritious foods. ✓",
+                            "   b) Not eating at all.",
+                            "   c) Eating only one type of food.",
+                            "",
+                            "7. What is one of the harmful habits to avoid?",
+                            "   a) Exercising",
+                            "   b) Smoking ✓",
+                            "   c) Washing my hands"
+                        ]},
+                        {type: "unscramble", text: "Rearrange the following letters correctly to form words.", items: [
+                            "8. d-b-o-y → body",
+                            "9. h-n-a-d-s → hands",
+                            "10. d-f-o-o → food"
+                        ]},
+                        {type: "short", text: "Answer the following questions.", items: [
+                            "11. What can we do to keep our school compound clean?",
+                            "12. Is cleaning the bathroom a healthy lifestyle at home and school? YES/NO Why?",
+                            "13. We should use the bin to keep our neighbourhood clean. YES/NO",
+                            "14. We should wash our clothes to keep our homes clean. YES/NO",
+                            "15. We should pick up trash to keep our schools dirty. YES/NO"
+                        ]}
+                    ],
+                    answers: "1.True 2.False 3.False. 4.Answers vary. 5.When I brush my teeth, it keeps my mouth clean and makes my teeth healthy. 6.A 7.B. 8.body 9.hands 10.food. 11.Answers vary. 12.Yes. 13.Yes 14.Yes 15.No"
+                }
+            },
+            unit4: {
+                week1: {
+                    title: "Week 1 - Professions",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "rearrange", text: "<strong>Part 1:</strong> Rearrange the words to make meaningful sentences", items: [
+                            "1. teaches / in the classroom. / learners / A teacher → A teacher teaches learners in the classroom.",
+                            "2. in a hospital. / treats / A doctor / patients → A doctor treats patients in a hospital.",
+                            "3. on the farm. / grows food / A farmer → A farmer grows food on the farm."
+                        ]},
+                        {type: "correct", text: "<strong>Part 2:</strong> The following statements are false. Rewrite the correct form.", items: [
+                            "4. A carpenter grows food on the farm.",
+                            "   → A carpenter makes wooden things in a workshop. OR A farmer grows food on the farm.",
+                            "",
+                            "5. A doctor makes wooden things in a workshop.",
+                            "   → A doctor treats patients in the hospital. OR A carpenter makes wooden things in a workshop."
+                        ]}
+                    ],
+                    answers: "1. A teacher teaches learners in the classroom. 2. A doctor treats patients in a hospital. 3. A farmer grows food on the farm. 4. A carpenter makes wooden things in a workshop. 5. A doctor treats patients in the hospital."
+                },
+                week2: {
+                    title: "Week 2 - Professions (List #2)",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "fill", text: "Add « –or » or « –er » to write a correct profession", items: [
+                            "Example: Doct+ or = Doctor",
+                            "1. Driv+...= Driver",
+                            "2. Act+...= Actor",
+                            "3. Shopkeep+...= Shopkeeper",
+                            "4. Tail+...= Tailor",
+                            "5. Police offic+...= Police officer"
+                        ]}
+                    ],
+                    answers: "1. Driver 2. Actor 3. Shopkeeper 4. Tailor 5. Police officer"
+                },
+                week3: {
+                    title: "Week 3 - Careers",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "dialogue", text: "Complete the following dialogue", items: [
+                            "Me: I would like to be............. What about you?",
+                            "You: I want to become.............................",
+                            "Me: Where do you want to work?",
+                            "You: I want to work.................."
+                        ]}
+                    ],
+                    answers: "Answers vary (e.g., Me: I would like to be a teacher. You: I want to become a doctor. Me: Where do you want to work? You: I want to work in a hospital.)"
+                },
+                unit: {
+                    title: "Unit 4 Assessment - Professions and Careers",
+                    type: "Unit Assessment",
+                    questions: [
+                        {type: "rearrange", text: "<strong>Part 1:</strong> Rearrange the words to have meaningful sentences", items: [
+                            "1. teaches / in the classroom. / learners / A teacher",
+                            "2. in a hospital. / treats / A doctor / patients",
+                            "3. on the farm. / A farmer / grows food"
+                        ]},
+                        {type: "correct", text: "<strong>Part 2:</strong> The following statements are false, rewrite the correct form.", items: [
+                            "4. A carpenter grows food on the farm.",
+                            "5. A doctor makes wooden things in a workshop"
+                        ]},
+                        {type: "fill", text: "<strong>Part 3:</strong> Add « –or » or « –er » to write a correct profession", items: [
+                            "Example: Doct+ or = Doctor",
+                            "1. Driv+...= Driver",
+                            "2. Act+...= Actor",
+                            "3. Shopkeep+...= Shopkeeper",
+                            "4. Tail+...= Tailor",
+                            "5. Police offic+...= Police officer"
+                        ]},
+                        {type: "dialogue", text: "<strong>Part 4:</strong> Complete the following dialogue", items: [
+                            "Kofi: I would like to be............. What about you?",
+                            "Yao: I want to become.............................",
+                            "Kofi: Where do you want to work?",
+                            "Yao: I want to work.................."
+                        ]}
+                    ],
+                    answers: "Part 1: 1.A teacher teaches learners in the classroom. 2.A doctor treats patients in a hospital. 3.A farmer grows food on the farm. Part 2: 4.A carpenter makes wooden things in a workshop. 5.A doctor treats patients in the hospital. Part 3: 1.Driver 2.Actor 3.Shopkeeper 4.Tailor 5.Police officer. Part 4: Answers vary."
+                }
+            },
+            unit5: {
+                week1: {
+                    title: "Week 1 - Technology",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part A:</strong> Multiple Choice", items: [
+                            "1. What is the main use of communication technology?",
+                            "   a) To cook food",
+                            "   b) To talk or send messages ✓",
+                            "   c) To build houses",
+                            "   d) To drive cars",
+                            "",
+                            "2. Which is a type of transportation technology?",
+                            "   a) Computer",
+                            "   b) Plane ✓",
+                            "   c) Stethoscope",
+                            "   d) Hammer",
+                            "",
+                            "3. What do doctors use in medical technology?",
+                            "   a) Blackboard",
+                            "   b) Remote",
+                            "   c) Cement",
+                            "   d) Microscope ✓"
+                        ]},
+                        {type: "fill", text: "<strong>Part B:</strong> Fill in the Blanks", items: [
+                            "4. A crane is used in <strong>Construction</strong> technology to lift heavy objects.",
+                            "5. A tablet is an example of <strong>Educational</strong> technology that helps learners learn."
+                        ]},
+                        {type: "match", text: "<strong>Part C:</strong> Match the Columns", items: [
+                            "Column A (Technology Type) → Column B (Tool/Example)",
+                            "1. Educational → e) Projector",
+                            "2. Medical → a) Stethoscope",
+                            "3. Construction → d) Cement Mixer",
+                            "4. Transportation → c) Train",
+                            "5. Communication → b) Email"
+                        ]},
+                        {type: "short", text: "<strong>Part D:</strong> Write short answers", items: [
+                            "6. Name one tool used in educational technology.",
+                            "7. Why is medical technology important?"
+                        ]},
+                        {type: "fill", text: "<strong>Part E:</strong> Fill in the Blanks: Technology Definition", passage: "Technology is the use of <strong>machines</strong>, tools, and skills to solve problems or make life <strong>easier</strong>. We use technology in schools, <strong>homes</strong>, hospitals, and many other places.", items: [
+                            "Choose from: easier, machines, homes"
+                        ]}
+                    ],
+                    answers: "Part A: 1.B 2.B 3.D. Part B: 4.Construction 5.Educational. Part C: 1.E 2.A 3.D 4.C 5.B. Part D: 6.Answers vary (tablet, projector, smart board). 7.Medical technology helps us treat diseases. Part E: machines, easier, homes"
+                },
+                week2: {
+                    title: "Week 2 - Diversity in Togo",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "mcq", text: "1. Multiple Choice – What is diversity?", items: [
+                            "   a) Everyone looking the same",
+                            "   b) Differences among people in things like language, food, and culture ✓",
+                            "   c) Playing the same game",
+                            "   d) Wearing the same clothes"
+                        ]},
+                        {type: "short", text: "2. Same and different – Choose two people groups from Togo. Tell 1 thing that is the same and 2 things that are different.", items: [
+                            "   Answer: Answers vary (e.g., Moba and Ewe people both use CFA currency. Moba people speak Moba, while Ewe people speak Ewe. Moba people eat Fili, while Ewe people eat Fufu.)"
+                        ]}
+                    ],
+                    answers: "1. B. 2. Answers vary."
+                },
+                week3: {
+                    title: "Week 3 - Global Diversity",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "fill", text: "<strong>Part 1.</strong> Fill in the Blank", items: [
+                            "People in <strong>different</strong> countries speak different <strong>languages</strong> like French, English, or Ewe.",
+                            "(Options: colours, languages, different)"
+                        ]},
+                        {type: "match", text: "<strong>Part 2.</strong> Match the Columns", items: [
+                            "Column A (Type of Diversity) → Column B (Example)",
+                            "1. Language → c) Speaking Chinese",
+                            "2. Country → a) Ghana",
+                            "3. Currency → b) Using CFA",
+                            "4. Cultural Celebration → d) Thanksgiving"
+                        ]}
+                    ],
+                    answers: "Part 1. Different, languages. Part 2: 1.C 2.A 3.B 4.D"
+                },
+                week4: {
+                    title: "Week 4 - Global Connections",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "unscramble", text: "<strong>Part 1</strong> – Word Scramble – Unscramble the letters to form words.", items: [
+                            "a) N H O P E → phone",
+                            "b) T E C O H L O G Y N → technology",
+                            "c) L O B G A L → global",
+                            "d) M A I L E → email",
+                            "e) A L T B E T → tablet"
+                        ]},
+                        {type: "match", text: "<strong>Part 2</strong> – Match the word with the correct meaning.", items: [
+                            "Words: 1. Internet, 2. Email, 3. Teamwork, 4. Sell, 5. Airplane",
+                            "Meanings:",
+                            "   a) Flies people around the world → 5. Airplane",
+                            "   b) Sends messages fast → 2. Email",
+                            "   c) To give something for money → 4. Sell",
+                            "   d) Do things with a group to succeed → 3. Teamwork",
+                            "   e) Connects people globally online → 1. Internet"
+                        ]}
+                    ],
+                    answers: "Part 1: A.phone B.technology C.global D.email E.Tablet. Part 2: 1.E 2.B 3.D 4.C 5.A"
+                },
+                unit: {
+                    title: "Unit 5 Assessment - Technology, Diversity and Globalisation",
+                    type: "Unit Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part A:</strong> Multiple Choice", items: [
+                            "1. What is the main use of communication technology?",
+                            "   a) To cook food",
+                            "   b) To talk or send messages ✓",
+                            "   c) To build houses",
+                            "   d) To drive cars",
+                            "",
+                            "2. Which is a type of transportation technology?",
+                            "   a) Computer",
+                            "   b) Plane ✓",
+                            "   c) Stethoscope",
+                            "   d) Hammer",
+                            "",
+                            "3. What do doctors use in medical technology?",
+                            "   a) Blackboard",
+                            "   b) Microscope ✓",
+                            "   c) Cement",
+                            "   d) Remote"
+                        ]},
+                        {type: "fill", text: "<strong>Part B:</strong> Fill in the Blanks", items: [
+                            "4. A crane is used in <strong>Construction</strong> technology to lift heavy objects.",
+                            "5. A tablet is an example of <strong>Educational</strong> technology that helps learners learn."
+                        ]},
+                        {type: "match", text: "<strong>Part C:</strong> Match the Columns", items: [
+                            "Column A (Technology Type) → Column B (Tool/Example)",
+                            "1. Educational → e) Projector",
+                            "2. Medical → a) Stethoscope",
+                            "3. Construction → d) Cement Mixer",
+                            "4. Transportation → c) Train",
+                            "5. Communication → b) Email"
+                        ]},
+                        {type: "short", text: "<strong>Part D:</strong> Short Answer", items: [
+                            "6. Name one tool used in educational technology.",
+                            "7. Why is medical technology important?"
+                        ]},
+                        {type: "fill", text: "<strong>Part E:</strong> Fill in the Blanks: Technology Definition", passage: "Technology is the use of <strong>machines</strong>, tools, and skills to solve problems or make life <strong>easier</strong>. We use technology in schools, <strong>homes</strong>, hospitals, and many other places.", items: [
+                            "Choose from: easier, machines, homes"
+                        ]},
+                        {type: "mcq", text: "<strong>Part F:</strong> Multiple Choice – What is diversity?", items: [
+                            "   a) Everyone looking the same",
+                            "   b) Differences among people in things like language, food, and culture ✓",
+                            "   c) Playing the same game",
+                            "   d) Wearing the same clothes"
+                        ]},
+                        {type: "short", text: "<strong>Part G:</strong> Same and different – Choose two people groups from Togo. Tell 1 thing that is the same and 2 things that are different.", items: [
+                            "   Answer: Answers vary."
+                        ]},
+                        {type: "fill", text: "<strong>Part H:</strong> Fill in the Blank", items: [
+                            "People in <strong>different</strong> countries speak different <strong>languages</strong> like French, English, or Ewe.",
+                            "(Options: colours, languages, different)"
+                        ]},
+                        {type: "match", text: "<strong>Part I:</strong> Match the Columns", items: [
+                            "Column A (Type of Diversity) → Column B (Example)",
+                            "1. Language → c) Speaking Chinese",
+                            "2. Country → a) Ghana",
+                            "3. Currency → b) Using CFA",
+                            "4. Cultural Celebration → d) Thanksgiving"
+                        ]},
+                        {type: "unscramble", text: "<strong>Part J:</strong> Word Scramble – Unscramble the letters to form words.", items: [
+                            "a) N H O P E → phone",
+                            "b) T E C O H L O G Y N → technology",
+                            "c) L O B G A L → global",
+                            "d) M A I L E → email",
+                            "e) A L T B E T → tablet"
+                        ]},
+                        {type: "match", text: "<strong>Part K:</strong> Match the words with their meanings.", items: [
+                            "Words: 1. Internet, 2. Email, 3. Teamwork, 4. Sell, 5. Airplane",
+                            "Meanings:",
+                            "   a) Flies people around the world → 5. Airplane",
+                            "   b) Sends messages fast → 2. Email",
+                            "   c) To give something for money → 4. Sell",
+                            "   d) Do things with a group to succeed → 3. Teamwork",
+                            "   e) Connects people globally online → 1. Internet"
+                        ]}
+                    ],
+                    answers: "Part A: 1.B 2.B 3.B. Part B: 4.Construction 5.Educational. Part C: 1.E 2.A 3.D 4.C 5.B. Part D: 6.Answers vary. 7.Medical technology helps us treat diseases. Part E: machines, easier, homes. Part F: B. Part G: Answers vary. Part H: Different, languages. Part I: 1.C 2.A 3.B 4.D. Part J: A.phone B.technology C.global D.email E.Tablet. Part K: 1.E 2.B 3.D 4.C 5.A"
+                }
+            },
+            unit6: {
+                week1: {
+                    title: "Week 1 - Environment",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part A:</strong> Multiple Choice", items: [
+                            "1. What is the environment?",
+                            "   a) The air, land, water, and living things around us ✓",
+                            "   b) A machine",
+                            "   c) an airplane",
+                            "",
+                            "2. Which of these is an environmental problem?",
+                            "   a) Planting trees",
+                            "   b) Pollution ✓",
+                            "   c) Playing soccer"
+                        ]},
+                        {type: "match", text: "<strong>Part B:</strong> Match the Columns", items: [
+                            "Column A (Problem) → Column B (Description)",
+                            "3. Pollution → c) Dirty air and water",
+                            "4. Deforestation → a) Cutting down too many trees",
+                            "5. Waste → b) not turning off the tap"
+                        ]},
+                        {type: "fill", text: "<strong>Part C:</strong> Fill in the Blank", items: [
+                            "6. We can help the environment by <strong>saving</strong> water and <strong>turning</strong> off taps.",
+                            "(Options: saving, turning)"
+                        ]},
+                        {type: "tf", text: "<strong>Part D:</strong> True or False", items: [
+                            "7. Recycling old bottles and papers helps protect the Earth. → True"
+                        ]}
+                    ],
+                    answers: "1.A 2.B. Part B: 3.C 4.A 5.B. Part C: 6.saving, turning. Part D: 7.True"
+                },
+                week2: {
+                    title: "Week 2 - Climate Change",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part A:</strong> Multiple Choice", items: [
+                            "1. What is climate change?",
+                            "   a) When the Earth gets hotter over time ✓",
+                            "   b) When it rains every day",
+                            "   c) When people eat ice cream",
+                            "",
+                            "2. Which of the following causes climate change?",
+                            "   a) Planting trees",
+                            "   b) Car emissions (smoke from cars) ✓",
+                            "   c) Drinking water"
+                        ]},
+                        {type: "match", text: "<strong>Part B:</strong> Match the Cause to the Action", items: [
+                            "Column A (Cause) → Column B (Action)",
+                            "3. Cutting down trees → a) Removes too many trees",
+                            "4. Car pollution → b) Releases gases into the air"
+                        ]},
+                        {type: "fill", text: "<strong>Part C:</strong> Fill in the Blank", items: [
+                            "5. Climate change is <strong>caused</strong> by cutting too many <strong>trees</strong>.",
+                            "(Options: caused, trees)"
+                        ]}
+                    ],
+                    answers: "1.A 2.B. Part B: 3.A 4.B. Part C: 5.Caused, trees"
+                },
+                week3: {
+                    title: "Week 3 - Eco-Friendly Actions",
+                    type: "Weekly Assessment",
+                    questions: [
+                        {type: "reading", text: "Read the following passage and answer the questions below.", passage: "Caring for Our Earth - We can all help the Earth by doing small eco-friendly actions every day. Planting trees gives us clean air and shade. Not littering keeps our environment clean and safe for people and animals. We can also save water by turning off the tap when brushing our teeth. These simple actions protect our planet.", questions: [
+                            "1. Multiple Choice: How does planting trees help?",
+                            "   a) It cleans the air ✓",
+                            "   b) It cuts the grass",
+                            "   c) It wastes water",
+                            "",
+                            "2. Fill in the Blank: We should not <strong>litter</strong> on the ground to keep the Earth clean.",
+                            "   (Options: litter, sweep)",
+                            "",
+                            "3. True or False: Turning off the tap while brushing your teeth saves water. → True",
+                            "",
+                            "4. Match the Action to Its Benefit:",
+                            "   1. Planting trees → b) Gives clean air",
+                            "   2. Not littering → a) Keeps nature clean",
+                            "   3. Saving water → c) Protects water",
+                            "",
+                            "5. Short Answer: Write one sentence to tell how you help protect the environment at home or school.",
+                            "   Answer: Answers vary."
+                        ]}
+                    ],
+                    answers: "1.A 2.Litter 3.True. 4. 1-B 2-A 3-C. 5.Answers vary."
+                },
+                unit: {
+                    title: "Unit 6 Assessment - Environmental Actions and Climate Change",
+                    type: "Unit Assessment",
+                    questions: [
+                        {type: "mcq", text: "<strong>Part A:</strong> Multiple Choice", items: [
+                            "1. What is the environment?",
+                            "   a) The air, land, water, and living things around us ✓",
+                            "   b) A machine",
+                            "   c) an airplane",
+                            "",
+                            "2. Which of these is an environmental problem?",
+                            "   a) Planting trees",
+                            "   b) Pollution ✓",
+                            "   c) Playing soccer"
+                        ]},
+                        {type: "match", text: "<strong>Part B:</strong> Match the Column", items: [
+                            "Column A (Problem) → Column B (Description)",
+                            "3. Pollution → c) Dirty air and water",
+                            "4. Deforestation → a) Cutting down too many trees",
+                            "5. Waste → b) Turning off the tap"
+                        ]},
+                        {type: "fill", text: "<strong>Part C:</strong> Fill in the Blank", items: [
+                            "6. We can help the environment by <strong>saving</strong> water and <strong>turning</strong> off taps.",
+                            "(Options: saving, spilling, turning)"
+                        ]},
+                        {type: "tf", text: "<strong>Part D:</strong> True or False", items: [
+                            "7. Recycling old bottles and papers helps protect the Earth. → True"
+                        ]},
+                        {type: "mcq", text: "<strong>Part E:</strong> Multiple Choice", items: [
+                            "8. What is climate change?",
+                            "   a) When the Earth gets hotter over time ✓",
+                            "   b) When it rains every day",
+                            "   c) When people eat ice cream",
+                            "",
+                            "9. Which of the following causes climate change?",
+                            "   a) Planting trees",
+                            "   b) Car emissions (smoke from cars) ✓",
+                            "   c) Drinking water"
+                        ]},
+                        {type: "match", text: "<strong>Part F:</strong> Match the Cause to the Action", items: [
+                            "Column A (Cause) → Column B (Action)",
+                            "10. Cutting down trees → a) Removes too many trees",
+                            "11. Car pollution → b) Releases gases into the air"
+                        ]},
+                        {type: "fill", text: "<strong>Part G:</strong> Fill in the Blank", items: [
+                            "12. Climate change is <strong>caused</strong> by cutting too many <strong>trees</strong>.",
+                            "(Options: animals, caused, trees)",
+                            "",
+                            "13. We should not <strong>litter</strong> on the ground to keep the Earth clean.",
+                            "(Options: litter, plant)"
+                        ]},
+                        {type: "tf", text: "<strong>Part I:</strong> True or False", items: [
+                            "14. Turning off the tap while brushing your teeth saves water. → True"
+                        ]},
+                        {type: "match", text: "<strong>Part J:</strong> Match the Action to Its Benefit", items: [
+                            "Action → Benefit",
+                            "15. Planting trees → b) Gives clean air",
+                            "16. Not littering → a) Keeps nature clean",
+                            "17. Saving water → c) Protects water"
+                        ]},
+                        {type: "short", text: "<strong>Part K:</strong> Short Answer", items: [
+                            "18. Write one sentence to tell how you help protect the environment at home or school.",
+                            "   Answer: Answers vary."
+                        ]}
+                    ],
+                    answers: "1.A 2.B. Part B: 3.C 4.A 5.B. Part C: 6.saving, turning. Part D: 7.True. Part E: 8.A 9.B. Part F: 10.A 11.B. Part G: 12.caused, trees 13.litter. Part I: 14.True. Part J: 15.B 16.A 17.C. Part K: 18.Answers vary."
+                }
+            }
+        };
+
+        function showUnit(unitKey, btn) {
+            document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const container = document.getElementById('evaluationsContainer');
+            container.innerHTML = '';
+            
+            const unitData = evaluationsData[unitKey];
+            
+            Object.keys(unitData).forEach(key => {
+                const evalData = unitData[key];
+                const card = document.createElement('div');
+                card.className = 'evaluation-card';
+                
+                let questionsHTML = '';
+                evalData.questions.forEach(q => {
+                    questionsHTML += '<div class="question">';
+                    questionsHTML += '<p>' + q.text + '</p>';
+                    if (q.items) {
+                        questionsHTML += '<ul style="margin: 10px 0; padding-left: 20px;">';
+                        q.items.forEach(item => {
+                            questionsHTML += '<li style="margin: 5px 0;">' + item + '</li>';
+                        });
+                        questionsHTML += '</ul>';
+                    }
+                    if (q.headers && q.rows) {
+                        questionsHTML += '<table><thead><tr>';
+                        q.headers.forEach(h => questionsHTML += '<th>' + h + '</th>');
+                        questionsHTML += '</tr></thead><tbody>';
+                        q.rows.forEach(row => {
+                            questionsHTML += '<tr>';
+                            row.forEach(cell => questionsHTML += '<td>' + cell + '</td>');
+                            questionsHTML += '</tr>';
+                        });
+                        questionsHTML += '</tbody></table>';
+                    }
+                    if (q.passage) {
+                        questionsHTML += '<p style="background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0;"><em>' + q.passage + '</em></p>';
+                    }
+                    if (q.example) {
+                        questionsHTML += '<p style="color: #666; font-style: italic;">' + q.example + '</p>';
+                    }
+                    questionsHTML += '</div>';
+                });
+                
+                card.innerHTML = `
+                    <h3>${evalData.title}</h3>
+                    <p style="color: #666; font-style: italic;">${evalData.type}</p>
+                    ${questionsHTML}
+                    <div class="answer-key">
+                        <h4>✅ Corrigé (Answer Key)</h4>
+                        <p>${evalData.answers}</p>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+        
+        showUnit('preunit', document.querySelector('.unit-btn'));
+    </script>
+</body>
+</html>
