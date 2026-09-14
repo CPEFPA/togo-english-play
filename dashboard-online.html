@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tableau de Bord - TogoEnglish Play</title>
-<link rel="stylesheet" href="css/style.css">
-<style>
-.container{max-width:800px;margin:0 auto;padding:40px 20px}
-.back-btn{display:inline-block;background:#9C27B0;color:white;padding:10px 20px;border-radius:25px;text-decoration:none;font-weight:bold;margin-bottom:30px}
-.hero{text-align:center;padding:60px 20px;background:linear-gradient(135deg,#9C27B0,#7B1FA2);border-radius:25px;margin-bottom:40px;color:white}
-.hero h1{font-size:2.5em;margin-bottom:20px}
-.hero p{font-size:1.3em;margin-bottom:30px}
-.big-btn{display:inline-block;background:white;color:#9C27B0;padding:25px 50px;border-radius:35px;text-decoration:none;font-weight:bold;font-size:1.5em;box-shadow:0 5px 20px rgba(0,0,0,0.3)}
-.big-btn:hover{transform:translateY(-5px)}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px}
-.feature{background:white;padding:25px;border-radius:15px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,0.1)}
-.feature-icon{font-size:3em;margin-bottom:15px}
-.feature h3{color:#9C27B0;margin-bottom:10px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Visuel - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #9C27B0; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
+        .hero { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #9C27B0, #7B1FA2); border-radius: 25px; margin-bottom: 40px; color: white; }
+        .hero h1 { font-size: 2.5em; margin-bottom: 15px; }
+        .hero p { font-size: 1.2em; margin-bottom: 25px; }
+        .dashboard-container { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px; overflow: hidden; }
+        .dashboard-frame { width: 100%; height: 800px; border: none; border-radius: 10px; }
+        .buttons { text-align: center; margin-top: 30px; }
+        .btn { display: inline-block; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin: 10px; color: white; transition: transform 0.2s; }
+        .btn:hover { transform: translateY(-3px); }
+        .btn-sheet { background: #2196F3; }
+        .btn-looker { background: #4CAF50; }
+    </style>
 </head>
 <body>
-<div class="container">
-<a href="/togo-english-play/index.html" class="back-btn">← Retour à l'accueil</a>
-<div class="hero">
-<h1>📊 Tableau de Bord Officiel</h1>
-<p>Statistiques en temps réel de toutes les tablettes</p>
-<a href="https://docs.google.com/spreadsheets/d/1bFjp0pikoQARcpt8NgyOzB02EVMAG-dmbcXwdiq3wAs/edit" target="_blank" class="big-btn">📊 Ouvrir le Tableau de Bord</a>
-</div>
-<div class="features">
-<div class="feature"><div class="feature-icon">📈</div><h3>Temps Réel</h3><p>Données mises à jour instantanément</p></div>
-<div class="feature"><div class="feature-icon">🌍</div><h3>Multi-Appareils</h3><p>Toutes les tablettes suivies</p></div>
-<div class="feature"><div class="feature-icon">📥</div><h3>Exportable</h3><p>Export Excel ou PDF</p></div>
-<div class="feature"><div class="feature-icon">🔒</div><h3>Sécurisé</h3><p>Données protégées par Google</p></div>
-</div>
-</div>
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/index.html" class="back-home-btn">← Retour à l'accueil</a>
+        
+        <div class="hero">
+            <h1>📊 Tableau de Bord Analytique</h1>
+            <p>Statistiques en temps réel avec graphiques interactifs</p>
+        </div>
+
+        <div class="dashboard-container">
+            <iframe src="https://datastudio.google.com/embed/reporting/7c62ff3c-dc73-45c8-8021-a3c58a1c32c4/page/page_12345" class="dashboard-frame" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+        </div>
+
+        <div class="buttons">
+            <a href="https://docs.google.com/spreadsheets/d/1bFjp0pikoQARcpt8NgyOzB02EVMAG-dmbcXwdiq3wAs/edit" target="_blank" class="btn btn-sheet">📊 Voir les données brutes (Google Sheet)</a>
+            <a href="https://datastudio.google.com/reporting/7c62ff3c-dc73-45c8-8021-a3c58a1c32c4/page/page_12345" target="_blank" class="btn btn-looker">🔍 Ouvrir le rapport en plein écran</a>
+        </div>
+    </div>
 </body>
 </html>
