@@ -6,12 +6,14 @@
     <title>Espace Enseignants - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: background 0.3s; }
-        .back-home-btn:hover { background: #004d38; }
-        .page-header { text-align: center; margin-bottom: 40px; }
-        .page-header h1 { color: #006A4E; font-size: 2em; margin-bottom: 10px; }
-        .page-header p { color: #666; font-size: 1.1em; }
-    </style>
+    .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: background 0.3s; }
+    .back-home-btn:hover { background: #004d38; }
+    .page-header { text-align: center; margin-bottom: 50px; padding: 20px; }
+    .page-header h1 { color: #006A4E; font-size: 2.5em; margin-bottom: 15px; }
+    .page-header p { color: #666; font-size: 1.2em; }
+    .main-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; padding: 20px; justify-items: center; }
+    .nav-card { width: 100%; max-width: 350px; }
+</style>
 </head>
 <body>
     <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
@@ -21,34 +23,22 @@
             <p>Guides pédagogiques et méthodologie pour tous les niveaux</p>
         </div>
         <nav class="main-nav">
-            <a href="/togo-english-play/teachers.html#cp" class="nav-card kids-card">
+            <a href="/togo-english-play/teachers-cp.html" class="nav-card kids-card">
                 <div class="nav-icon">🎮</div>
                 <h2>Guide Pédagogique CP</h2>
                 <p>Programme, méthodologie et évaluation CP</p>
             </a>
-            <a href="/togo-english-play/teachers.html#ce" class="nav-card ce-cm-card">
+            <a href="/togo-english-play/teachers-ce.html" class="nav-card ce-cm-card">
                 <div class="nav-icon">📚</div>
                 <h2>Guide Pédagogique CE</h2>
                 <p>Programme, méthodologie et évaluation CE</p>
             </a>
-            <a href="/togo-english-play/teachers.html#cm" class="nav-card" style="border-top: 8px solid #FF5722;">
+            <a href="/togo-english-play/teachers-cm.html" class="nav-card" style="border-top: 8px solid #FF5722;">
                 <div class="nav-icon">🎓</div>
                 <h2 style="color: #FF5722;">Guide Pédagogique CM</h2>
                 <p>Architecture prête, en attente du programme</p>
             </a>
         </nav>
-        <div id="cp" style="margin-top:40px; padding:20px; background:#f9f9f9; border-radius:15px;">
-            <h3>📘 Ressources CP</h3>
-            <p>Accédez au guide complet du Cours Préparatoire (6 unités, 20 semaines).</p>
-        </div>
-        <div id="ce" style="margin-top:20px; padding:20px; background:#f9f9f9; border-radius:15px; border-left: 4px solid #2196F3;">
-            <h3 style="color:#2196F3;">📗 Ressources CE</h3>
-            <p>Accédez au guide complet du Cours Élémentaire (6 unités, 25 semaines, Note N°018/2024).</p>
-        </div>
-        <div id="cm" style="margin-top:20px; padding:20px; background:#f9f9f9; border-radius:15px; border-left: 4px solid #FF5722;">
-            <h3 style="color:#FF5722;">🎓 Ressources CM</h3>
-            <p>L'intégration du guide pédagogique pour le Cours Moyen sera effectuée sous 48h après réception du document officiel.</p>
-        </div>
     </div>
 </body>
 </html>
