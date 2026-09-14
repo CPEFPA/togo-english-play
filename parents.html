@@ -1,73 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Lignes anti-cache pour forcer la mise à jour automatique -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TogoEnglish Play - Apprendre l'anglais en s'amusant</title>
+    <title>Espace Parents - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#006A4E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="TogoEnglish">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: background 0.3s; }
+        .back-home-btn:hover { background: #004d38; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { color: #006A4E; font-size: 2em; margin-bottom: 10px; }
+        .page-header p { color: #666; font-size: 1.1em; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <nav class="top-nav-bar">
-            <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
-            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
-            <a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
-            <a href="/togo-english-play/games.html" class="nav-link">🕹️ Jeux</a>
-         </nav>
-
-        <header class="header">
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/index.html" class="back-home-btn">← Retour à l'accueil</a>
+        <div class="page-header">
             <h1>👨‍👩‍👧 Espace Parents</h1>
-            <p>Accompagnez votre enfant : 10 à 20 minutes par jour suffisent !</p>
-        </header>
-
-        <div class="filters" style="text-align: center; margin-bottom: 30px;">
-            <button onclick="filterVideos('all')" class="filter-btn">Toutes les vidéos</button>
-            <button onclick="filterVideos('song')" class="filter-btn">🎵 Chansons</button>
-            <button onclick="filterVideos('video')" class="filter-btn">🎬 Vidéos</button>
-            <button onclick="filterVideos('game')" class="filter-btn">🎮 Jeux</button>
+            <p>Accompagnez votre enfant, quel que soit son niveau</p>
         </div>
-
-        <div id="videoList" class="video-grid"></div>
-
-        <div class="program-info" style="margin-top: 40px;">
-            <h3>💡 5 Conseils pour les parents</h3>
-            <ol style="text-align: left; max-width: 600px; margin: 0 auto; line-height: 1.8;">
-                <li>Regardez la vidéo <strong>avec</strong> votre enfant, pas à sa place.</li>
-                <li>Répétez les mots <strong>ensemble</strong> (même si vous ne parlez pas anglais !).</li>
-                <li>Utilisez les mots dans la <strong>vie quotidienne</strong>.</li>
-                <li><strong>Félicitez</strong> chaque effort : "Very good!", "Well done!".</li>
-                <li><strong>10 minutes par jour</strong> valent mieux qu'1 heure par semaine.</li>
-            </ol>
-        </div>
-
-        <div class="contact-info">
-            <h3>📞 Besoin d'aide, de conseils ou de personnalisation ?</h3>
-            <p style="margin-bottom: 20px; color: #555; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Pour toutes personnalisations de l'application, conseils pédagogiques ou suivis, notre équipe est à votre disposition.
-            </p>
-            <div class="phone-numbers">
-                <a href="tel:+16138502652" class="phone-btn">🇨🇦 +1 (613) 850-2652</a>
-                <a href="tel:+22890588358" class="phone-btn">🇹🇬 +228 90 58 83 58</a>
-                <a href="tel:+22893202722" class="phone-btn">🇹🇬 +228 93 20 27 22</a>
-            </div>
-        </div>
-
-        <footer class="footer">
-            <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
-        </footer>
+        <nav class="main-nav">
+            <a href="/togo-english-play/kids.html" class="nav-card kids-card">
+                <div class="nav-icon">🎮</div>
+                <h2>Parents CP</h2>
+                <p>Vidéos et conseils pour le Cours Préparatoire</p>
+            </a>
+            <a href="/togo-english-play/parents-ce.html" class="nav-card ce-cm-card">
+                <div class="nav-icon">📚</div>
+                <h2>Parents CE</h2>
+                <p>Vidéos et conseils pour le Cours Élémentaire</p>
+            </a>
+            <a href="/togo-english-play/parents-cm.html" class="nav-card" style="border-top: 8px solid #FF5722;">
+                <div class="nav-icon">🎓</div>
+                <h2 style="color: #FF5722;">Parents CM</h2>
+                <p>Bientôt disponible</p>
+            </a>
+        </nav>
     </div>
-
-    <script src="js/parents.js"></script>
 </body>
 </html>

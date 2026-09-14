@@ -1,411 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espace Enseignants - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: background 0.3s; }
+        .back-home-btn:hover { background: #004d38; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { color: #006A4E; font-size: 2em; margin-bottom: 10px; }
+        .page-header p { color: #666; font-size: 1.1em; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <nav class="top-nav-bar">
-          <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
-          <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
-          <a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
-          <a href="/togo-english-play/games.html" class="nav-link">🕹️ Jeux</a>
-        </nav>
-
-        <header class="header">
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/index.html" class="back-home-btn">← Retour à l'accueil</a>
+        <div class="page-header">
             <h1>👩‍🏫 Espace Enseignants</h1>
-            <p>Guides Pédagogiques Complets - Programmes Officiels CP & CE</p>
-        </header>
-
-        <div class="teacher-nav">
-            <button type="button" onclick="showTab('cp')" class="nav-btn active">📘 Guide CP</button>
-            <button type="button" onclick="showTab('ce')" class="nav-btn">📗 Guide CE</button>
-            <button type="button" onclick="showTab('method')" class="nav-btn">💡 Méthodologie</button>
-            <button type="button" onclick="showTab('eval')" class="nav-btn">✅ Évaluation</button>
-            <button type="button" onclick="showTab('schedule')" class="nav-btn">📅 Emploi du temps</button>
+            <p>Guides pédagogiques et méthodologie pour tous les niveaux</p>
         </div>
-
-        <div id="cp" class="tab-content">
-            <h2>📘 Programme Cours Préparatoire (CP1 & CP2)</h2>
-            <p><strong>Note de Service N°024/2023/MEPST/CAB/SG</strong></p>
-            <p style="margin: 15px 0; font-size: 1.1em;"><strong>6 Unités • 20 semaines • 1h40 par semaine</strong></p>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>🎯 Objectifs Généraux du CP</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Familiariser les élèves avec les sons, mots et expressions de base de l'anglais</li>
-                    <li>Introduire des thématiques simples : famille, animaux, fruits, couleurs</li>
-                    <li>Encourager l'expression orale avec des phrases courtes et simples</li>
-                    <li>Favoriser la compréhension orale à travers chansons et histoires</li>
-                    <li>Introduire de manière ludique les premiers éléments de grammaire et vocabulaire</li>
-                </ul>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 1: Greetings and Alphabets (4 semaines)</h3>
-                <p><strong>Objectif :</strong> À la fin de cette unité, l'élève doit pouvoir saluer et se présenter</p>
-                <p><strong>Vocabulaire :</strong> Hello, Good morning, Good afternoon, Goodbye, My name is, Thank you, Please, Sorry</p>
-                <p><strong>Alphabet :</strong> A à Z (chanson de l'alphabet)</p>
-                <p><strong>Chansons :</strong> Hello Song, Alphabet Song</p>
-                <p><strong>Compétences :</strong> Saluer, se présenter, remercier, s'excuser</p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 2: My Family and Identity (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Présenter sa famille et son identité</p>
-                <p><strong>Vocabulaire :</strong> Father, Mother, Brother, Sister, Grandfather, Grandmother, Uncle, Aunt, Name, Age</p>
-                <p><strong>Structures :</strong> This is my..., I am... years old, My name is...</p>
-                <p><strong>Chansons :</strong> Family Song, Identity Song</p>
-                <p><strong>Compétences :</strong> Présenter les membres de la famille, dire son âge et son nom</p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 3: Fruits and Food (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Nommer les fruits et aliments de base</p>
-                <p><strong>Vocabulaire :</strong> Apple, Banana, Mango, Orange, Watermelon, Pineapple, Bread, Rice, Egg, Milk, Fish</p>
-                <p><strong>Structures :</strong> I like..., I don't like..., This is a..., These are...</p>
-                <p><strong>Chansons :</strong> Fruits Song, Food Song</p>
-                <p><strong>Compétences :</strong> Nommer les fruits et aliments, exprimer ses goûts</p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 4: Physical Activities and Sports (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Décrire les activités physiques et sports</p>
-                <p><strong>Vocabulaire :</strong> Run, Jump, Walk, Play, Football, Basketball, Dance, Sing, Read, Write</p>
-                <p><strong>Structures :</strong> I can..., I like to..., Let's play...</p>
-                <p><strong>Chansons :</strong> Actions Song, Sports Song</p>
-                <p><strong>Compétences :</strong> Décrire des actions, parler de ses activités préférées</p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 5: Hygiene and Health (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Parler de l'hygiène et de la santé</p>
-                <p><strong>Vocabulaire :</strong> Wash hands, Brush teeth, Take a bath, Clean, Soap, Water, Toothbrush, Towel</p>
-                <p><strong>Structures :</strong> I wash..., I brush..., We must..., Don't...</p>
-                <p><strong>Chansons :</strong> Hygiene Song, Health Song</p>
-                <p><strong>Compétences :</strong> Donner des instructions d'hygiène, parler de la santé</p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 6: Animals (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Nommer les animaux et décrire leurs caractéristiques</p>
-                <p><strong>Vocabulaire :</strong> Cat, Dog, Cow, Goat, Lion, Elephant, Monkey, Bird, Fish, Rabbit</p>
-                <p><strong>Structures :</strong> This is a..., It has..., It can..., I like...</p>
-                <p><strong>Chansons :</strong> Animals Song, Farm Song</p>
-                <p><strong>Compétences :</strong> Nommer les animaux, décrire leurs caractéristiques</p>
-            </div>
+        <nav class="main-nav">
+            <a href="#cp" class="nav-card kids-card">
+                <div class="nav-icon">🎮</div>
+                <h2>Guide Pédagogique CP</h2>
+                <p>Programme, méthodologie et évaluation CP</p>
+            </a>
+            <a href="#ce" class="nav-card ce-cm-card">
+                <div class="nav-icon">📚</div>
+                <h2>Guide Pédagogique CE</h2>
+                <p>Programme, méthodologie et évaluation CE</p>
+            </a>
+            <a href="#cm" class="nav-card" style="border-top: 8px solid #FF5722;">
+                <div class="nav-icon">🎓</div>
+                <h2 style="color: #FF5722;">Guide Pédagogique CM</h2>
+                <p>Architecture prête, en attente du programme</p>
+            </a>
+        </nav>
+        
+        <div id="cp" style="margin-top:40px; padding:20px; background:#f9f9f9; border-radius:15px;">
+            <h3>📘 Ressources CP</h3>
+            <p>Accédez au guide complet du Cours Préparatoire (6 unités, 20 semaines).</p>
         </div>
-
-        <div id="ce" class="tab-content" style="display:none;">
-            <h2>📗 Programme Cours Élémentaire (CE1 & CE2)</h2>
-            <p><strong>Note de Service N°018/2024/MEPS/CAB</strong></p>
-            <p style="margin: 15px 0; font-size: 1.1em;"><strong>6 Unités • 25 semaines • 1h40 par semaine</strong></p>
-            <p style="margin: 15px 0;"><strong>Effectif à la rentrée 2024-2025</strong></p>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>🎯 Objectifs Généraux du CE</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Renforcer les compétences linguistiques acquises au CP</li>
-                    <li>Préparer les élèves à une meilleure intégration dans le monde globalisé</li>
-                    <li>Offrir une ouverture sur d'autres cultures et perspectives</li>
-                    <li>Développer l'intérêt et la confiance dans l'apprentissage de l'anglais</li>
-                </ul>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 1: School Description (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Utiliser des mots et expressions liés à l'école</p>
-                <p><strong>Vocabulaire :</strong> Name of school, Location, Computer room, Library, Garden, Playground, School hall, Toilets, Offices, Assembly/Flag, Canteen</p>
-                <p><strong>Chansons :</strong> "Together" by Songs for School, School Description Song</p>
-                <p><strong>Lien YouTube :</strong> <a href="https://youtu.be/xiygQUPfCGI" target="_blank">Together Song</a> | <a href="https://youtu.be/G5Dd96MN4pc" target="_blank">School Description</a></p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 2: Appearances, Feelings and Emotions (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Décrire les apparences, exprimer les sentiments et émotions</p>
-                <p><strong>Vocabulaire Apparences :</strong> Eye, hair, build, height, type of hair, type of complexion</p>
-                <p><strong>Vocabulaire Émotions (21 mots) :</strong> Happy, angry, excited, embarrassed, cold, hot, surprised, tired, upset, worried, nervous, proud, sad, confused, afraid, poorly, calm, stressed, disappointed, mad, thankful</p>
-                <p><strong>Chansons :</strong> Appearance Song 1 & 2, Feeling Song</p>
-                <p><strong>Lien YouTube :</strong> <a href="https://youtu.be/RpuF57cIltw" target="_blank">Appearance 1</a> | <a href="https://youtu.be/-J7HcVLsCrY" target="_blank">Feeling Song</a></p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 3: My Community (5 semaines)</h3>
-                <p><strong>Objectif :</strong> Présenter famille, amis, voisins, décrire maisons, marchés, villes/villages</p>
-                <p><strong>Vocabulaire Famille :</strong> Nuclear family (father, mother, brothers, sisters), Extended family (grandparents, aunt, uncle, cousin, niece, nephew)</p>
-                <p><strong>Vocabulaire Maison :</strong> Bedroom, living room, kitchen, bathroom, dining room, compound, garden</p>
-                <p><strong>Chansons :</strong> Family Song 1 & 2, Welcome to My House</p>
-                <p><strong>Lien YouTube :</strong> <a href="https://youtu.be/d_WQEw13TCo" target="_blank">Family Song</a> | <a href="https://youtu.be/pwiOUlULJIM" target="_blank">My House</a></p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 4: The Environment (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Parler du temps qu'il fait, découvrir la vie marine/fluviale</p>
-                <p><strong>Vocabulaire Weather :</strong> Sunny, rainy, windy, cloudy, snowy, hot, cold</p>
-                <p><strong>Vocabulaire Sea Life :</strong> 10 water animals, water plants</p>
-                <p><strong>Chansons :</strong> The Sun Comes Up!, Weather Song 2 & 3</p>
-                <p><strong>Lien YouTube :</strong> <a href="https://youtu.be/n0LMmytTIeo" target="_blank">Sun Comes Up</a> | <a href="https://youtu.be/Oxw6FoUNeT4" target="_blank">Sea Life</a></p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 5: Local and Global Celebrations (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Nommer célébrations locales/globales, parler anniversaire, Jour de l'Indépendance</p>
-                <p><strong>Célébrations Locales :</strong> Evala (Kabyè), Kouroubi (Tchokossi), Yèkèkè (Guin), D'pontre-N'nidak (Bassar), Tingbapab (Moba), Odon-Itsu (Ifè/Houdou/Adja/Fon), Ayizan (Ewé), Agbogbozan (Ewé)</p>
-                <p><strong>Célébrations Globales :</strong> Christmas, Ramadan</p>
-                <p><strong>Anniversaire :</strong> Birthday songs, cake, gifts, wishes, cards, candles</p>
-                <p><strong>Indépendance Togo :</strong> Flag (3 bandes vertes, 2 jaunes, étoile blanche sur carré rouge), Motto (Work, Freedom, Homeland), Anthem (Land of our ancestors)</p>
-                <p><strong>Lien YouTube :</strong> <a href="https://youtu.be/PzkYc4EfPPc" target="_blank">Birthday Song</a> | <a href="https://youtu.be/oqpMtH3__Q8" target="_blank">Independence</a></p>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>📚 Unit 6: Diversity and Culture (4 semaines)</h3>
-                <p><strong>Objectif :</strong> Découvrir le Togo, identifier ses parties, nommer les cultures</p>
-                <p><strong>Vocabulaire :</strong> Name of country, Boundaries/Borders, Capital city, Regions</p>
-                <p><strong>Parties du Togo :</strong> North, South, East, West, hills, mountains, rivers, climate/seasons</p>
-                <p><strong>Activités :</strong> Nommer les cultures/langues parlées au Togo, chanter dans sa langue</p>
-                <p><strong>Support :</strong> Use map and globe to show and point to</p>
-            </div>
+        <div id="ce" style="margin-top:20px; padding:20px; background:#f9f9f9; border-radius:15px; border-left: 4px solid #2196F3;">
+            <h3 style="color:#2196F3;">📗 Ressources CE</h3>
+            <p>Accédez au guide complet du Cours Élémentaire (6 unités, 25 semaines, Note N°018/2024).</p>
         </div>
-
-        <div id="method" class="tab-content" style="display:none;">
-            <h2>💡 Méthodologie d'Enseignement</h2>
-            
-            <div class="guideline-card">
-                <h3>1. Approche Communicative</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Privilégier l'interaction orale et la pratique de la langue</li>
-                    <li>Encourager l'immersion totale dans la langue anglaise</li>
-                    <li>Utilisation minimale de la langue maternelle en classe</li>
-                    <li>Maximiser le temps de parole des élèves</li>
-                </ul>
-            </div>
-
-            <div class="guideline-card">
-                <h3>2. Structure Type d'une Semaine (5 jours)</h3>
-                <p><strong>Jour 1-2 :</strong> Introduction, écoute active, chansons, vocabulaire avec flashcards</p>
-                <p><strong>Jour 3 :</strong> Spelling (orthographe), Singing (chant), Reciting (récitation), Prononciation</p>
-                <p><strong>Jour 4-5 :</strong> Using words to make sentences, Reading comprehension</p>
-                <p><strong>Semaine 4 (CP) ou 4-5 (CE) :</strong> Assessment of Learning Outcomes</p>
-            </div>
-
-            <div class="guideline-card">
-                <h3>3. Supports Pédagogiques</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li><strong>Flashcards :</strong> Présentation du vocabulaire visuel</li>
-                    <li><strong>Chansons :</strong> Mémorisation et prononciation</li>
-                    <li><strong>Vidéos :</strong> Immersion et compréhension culturelle</li>
-                    <li><strong>Jeux :</strong> Apprentissage attrayant et amusant</li>
-                    <li><strong>Posters :</strong> Affichage du vocabulaire en classe</li>
-                    <li><strong>Lesson Cards :</strong> Fiches pédagogiques fournies lors de la formation</li>
-                </ul>
-            </div>
-
-            <div class="guideline-card">
-                <h3>4. Techniques d'Enseignement</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li><strong>Total Physical Response (TPR) :</strong> Associer les mots aux gestes</li>
-                    <li><strong>Choral Drilling :</strong> Répétition collective pour la prononciation</li>
-                    <li><strong>Role Play :</strong> Mises en situation pour la communication</li>
-                    <li><strong>Storytelling :</strong> Histoires courtes pour la compréhension</li>
-                    <li><strong>Songs and Rhymes :</strong> Chansons et comptines pour la mémorisation</li>
-                    <li><strong>Games :</strong> Jeux éducatifs pour la consolidation</li>
-                </ul>
-            </div>
-
-            <div class="guideline-card">
-                <h3>5. Gestion de la Classe</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Alterner entre travail individuel, en paires et en groupe</li>
-                    <li>Varier les activités toutes les 5-7 minutes</li>
-                    <li>Encourager la participation de tous les élèves</li>
-                    <li>Créer un environnement bienveillant et positif</li>
-                    <li>Utiliser le renforcement positif (félicitations, étoiles, etc.)</li>
-                </ul>
-            </div>
+        <div id="cm" style="margin-top:20px; padding:20px; background:#f9f9f9; border-radius:15px; border-left: 4px solid #FF5722;">
+            <h3 style="color:#FF5722;">🎓 Ressources CM</h3>
+            <p>L'intégration du guide pédagogique pour le Cours Moyen sera effectuée sous 48h après réception du document officiel.</p>
         </div>
-
-        <div id="eval" class="tab-content" style="display:none;">
-            <h2>✅ Évaluation et Remédiation</h2>
-
-            <div class="guideline-card">
-                <h3>1. Principes d'Évaluation</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li><strong>Évaluation formative :</strong> Continue et régulière tout au long de l'apprentissage</li>
-                    <li><strong>Évaluation sommative :</strong> À la fin de chaque unité (semaine 4 ou 5)</li>
-                    <li><strong>Bienveillance :</strong> Encourager plutôt que sanctionner</li>
-                    <li><strong>Progression :</strong> Évaluer les progrès individuels</li>
-                </ul>
-            </div>
-
-            <div class="guideline-card">
-                <h3>2. Compétences à Évaluer</h3>
-                <p><strong>Compréhension Orale (Listening) :</strong></p>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Comprendre des instructions simples</li>
-                    <li>Identifier des mots et expressions familiers</li>
-                    <li>Comprendre des chansons et histoires courtes</li>
-                </ul>
-
-                <p style="margin-top: 15px;"><strong>Expression Orale (Speaking) :</strong></p>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Prononciation correcte des mots</li>
-                    <li>Se présenter et présenter les autres</li>
-                    <li>Utiliser des phrases simples et courtes</li>
-                    <li>Participer aux chansons et comptines</li>
-                </ul>
-
-                <p style="margin-top: 15px;"><strong>Compréhension Écrite (Reading) :</strong></p>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Reconnaître les mots écrits</li>
-                    <li>Comprendre des textes très simples</li>
-                    <li>Association mot-image</li>
-                </ul>
-
-                <p style="margin-top: 15px;"><strong>Expression Écrite (Writing) :</strong></p>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Écrire des mots simples (spelling)</li>
-                    <li>Construire des phrases très courtes</li>
-                    <li>Copie correcte</li>
-                </ul>
-            </div>
-
-            <div class="guideline-card">
-                <h3>3. Types d'Activités d'Évaluation</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li><strong>QCM :</strong> Identification de mots/images</li>
-                    <li><strong>Appariement :</strong> Associer mot anglais et image</li>
-                    <li><strong>Complétion :</strong> Compléter des phrases simples</li>
-                    <li><strong>Expression orale :</strong> Dialogue guidé, présentation</li>
-                    <li><strong>Écoute :</strong> Compréhension de consignes orales</li>
-                    <li><strong>Jeux éducatifs :</strong> Quiz interactifs via l'application</li>
-                </ul>
-            </div>
-
-            <div class="guideline-card">
-                <h3>4. Remédiation</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Observer les élèves pendant les activités</li>
-                    <li>Analyser les résultats des évaluations</li>
-                    <li>Identifier les compétences non acquises</li>
-                    <li>Activités de renforcement individualisées</li>
-                    <li>Réutilisation des flashcards et chansons</li>
-                    <li>Travail en petits groupes de niveau</li>
-                    <li>Utilisation de l'application pour révision à la maison</li>
-                    <li>Suivi individuel des progrès</li>
-                </ul>
-            </div>
-
-            <div class="guideline-card">
-                <h3>5. Évaluation à la Fin de Chaque Unité</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li><strong>Day 1-3 :</strong> Révision générale des acquis de l'unité</li>
-                    <li><strong>Day 4 :</strong> General revision (révision complète)</li>
-                    <li><strong>Day 5 :</strong> Assessment (évaluation formelle)</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="schedule" class="tab-content" style="display:none;">
-            <h2>📅 Emploi du Temps Officiel</h2>
-            
-            <div class="info-box">
-                <h3>⏰ Volume Horaire</h3>
-                <p><strong>20 minutes par jour, 5 jours par semaine</strong></p>
-                <p><strong>Total hebdomadaire : 1h40</strong></p>
-                <p style="margin-top: 10px;"><strong>Conformité UNESCO :</strong> Recommandation entre 1h30 et 2h pour l'enseignement des langues étrangères au primaire</p>
-            </div>
-
-            <div class="schedule-table" style="margin-top: 25px;">
-                <h3>📋 Répartition Hebdomadaire Type</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Jour</th>
-                            <th>Activités</th>
-                            <th>Durée</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Lundi</strong></td>
-                            <td>Introduction du thème, écoute active, chansons</td>
-                            <td>20 min</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Mardi</strong></td>
-                            <td>Pratique orale, jeux de rôles, activités interactives</td>
-                            <td>20 min</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Mercredi</strong></td>
-                            <td>Spelling, singing, reciting, prononciation</td>
-                            <td>20 min</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Jeudi</strong></td>
-                            <td>Construction de phrases, compréhension écrite</td>
-                            <td>20 min</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Vendredi</strong></td>
-                            <td>Consolidation, production libre, préparation évaluation</td>
-                            <td>20 min</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="info-box" style="margin-top: 25px;">
-                <h3>💡 Recommandations</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Respecter le volume horaire de 20 minutes par jour</li>
-                    <li>Varier les activités pour maintenir l'attention des élèves</li>
-                    <li>Utiliser les chansons et jeux pour rendre l'apprentissage ludique</li>
-                    <li>Évaluer régulièrement (semaine 4 ou 5 de chaque unité)</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="contact-info" style="margin-top: 40px;">
-            <h3>📞 Support Pédagogique et Technique</h3>
-            <p>OBG International - Cres Poly Art</p>
-            <div class="phone-numbers">
-                <a href="tel:+16138502652" class="phone-btn">🇨🇦 +1 (613) 850-2652</a>
-                <a href="tel:+22890588358" class="phone-btn">🇹🇬 +228 90 58 83 58</a>
-                <a href="tel:+22893202722" class="phone-btn">🇹🇬 +228 93 20 27 22</a>
-            </div>
-        </div>
-
-        <footer class="footer">
-            <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
-        </footer>
     </div>
-
-    <script>
-    function showTab(tabId) {
-        // Cacher tous les contenus
-        document.getElementById('cp').style.display = 'none';
-        document.getElementById('ce').style.display = 'none';
-        document.getElementById('method').style.display = 'none';
-        document.getElementById('eval').style.display = 'none';
-        document.getElementById('schedule').style.display = 'none';
-        
-        // Afficher le contenu sélectionné
-        document.getElementById(tabId).style.display = 'block';
-        
-        // Retirer la classe active de tous les boutons
-        var buttons = document.querySelectorAll('.nav-btn');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
-        }
-        
-        // Ajouter la classe active au bouton cliqué
-        event.target.classList.add('active');
-    }
-    </script>
 </body>
 </html>
