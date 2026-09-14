@@ -1,0 +1,245 @@
+﻿{
+  "preunit": {
+    "title": "PRE-UNIT: I Am Special",
+    "icon": "⭐",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Greetings, Alphabet, Numbers 1-20",
+        "videos": [
+          {"day": 1, "title": "Hello Song for Kids", "youtubeId": "q5BcGrOny-k", "type": "song", "objective": "Practice greetings"},
+          {"day": 2, "title": "Alphabet Song", "youtubeId": "v3dkRo2Iddg", "type": "song", "objective": "Learn the alphabet"},
+          {"day": 3, "title": "Introducing Myself", "youtubeId": "j-Z6Zp2e-uA", "type": "video", "objective": "Tell my name"},
+          {"day": 4, "title": "Subject Pronouns", "youtubeId": "9BmvvC9qe2s", "type": "video", "objective": "I/my, you/your, he/him, she/her"},
+          {"day": 5, "title": "Counting 1-10", "youtubeId": "85M1yxIcHpw", "type": "song", "objective": "Count from 1 to 10"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Classroom Objects and Commands",
+        "videos": [
+          {"day": 1, "title": "Classroom Objects", "youtubeId": "EUu4BztIw9M", "type": "video", "objective": "Name classroom objects"},
+          {"day": 2, "title": "Counting 1-20", "youtubeId": "zYtVeYJGRHI", "type": "song", "objective": "Count from 1 to 20"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Body Parts and Days of the Week",
+        "videos": [
+          {"day": 1, "title": "Body Parts Song", "youtubeId": "BwHMMZQGFoM", "type": "song", "objective": "Name body parts"},
+          {"day": 2, "title": "Days of the Week Song", "youtubeId": "mXMofxtDPUQ", "type": "song", "objective": "Learn days of the week"}
+        ]
+      }
+    ]
+  },
+  "unit1": {
+    "title": "UNIT 1: Communities and Neighbourhood",
+    "icon": "🏘️",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Define Community and Neighbourhood",
+        "videos": [
+          {"day": 1, "title": "What is a Community?", "youtubeId": "mZyXnGA_vjw", "type": "video", "objective": "Define community and neighbourhood"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Social Virtues",
+        "videos": [
+          {"day": 1, "title": "Virtue Tree Activity", "youtubeId": "KlVD6TirUYI", "type": "video", "objective": "Learn social virtues"},
+          {"day": 2, "title": "We Are Here Together", "youtubeId": "mZyXnGA_vjw", "type": "song", "objective": "Unity and teamwork song"},
+          {"day": 3, "title": "Self Control Song", "youtubeId": "wInmY6PyYxU", "type": "song", "objective": "Practice patience"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Share Resources and Community Development",
+        "videos": [
+          {"day": 1, "title": "Children Community Service", "youtubeId": "RoTpw1bjcDc", "type": "video", "objective": "Community engagement"}
+        ]
+      },
+      {
+        "week": 4,
+        "theme": "Assessment",
+        "videos": [
+          {"day": 1, "title": "We Are Here Together (Review)", "youtubeId": "mZyXnGA_vjw", "type": "song", "objective": "Unit review"}
+        ]
+      }
+    ]
+  },
+  "unit2": {
+    "title": "UNIT 2: The Outdoors and Landscape",
+    "icon": "🏞️",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Outdoor Activities",
+        "videos": [
+          {"day": 1, "title": "Warm Up Song Outdoor", "youtubeId": "c1LVM6RgRRc", "type": "song", "objective": "Outdoor activities introduction"},
+          {"day": 2, "title": "Outdoor Activity Song", "youtubeId": "xdtS6f6nTbk", "type": "song", "objective": "Practice outdoor vocabulary"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Landscape Description",
+        "videos": [
+          {"day": 1, "title": "Landforms Teaching Video", "youtubeId": "pmpAfM_bQJs", "type": "video", "objective": "Define and describe landscapes"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Landscapes in Togo",
+        "videos": [
+          {"day": 1, "title": "Togo Monuments", "youtubeId": "Fa4g7dJYqjc", "type": "video", "objective": "Discover Togo landscapes"}
+        ]
+      },
+      {
+        "week": 4,
+        "theme": "Assessment",
+        "videos": []
+      }
+    ]
+  },
+  "unit3": {
+    "title": "UNIT 3: Healthy Lifestyle",
+    "icon": "💪",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Define Healthy Lifestyle",
+        "videos": [
+          {"day": 1, "title": "Healthy Habits Video", "youtubeId": "YMnIhyWjrb4", "type": "video", "objective": "Define healthy lifestyle"},
+          {"day": 2, "title": "Healthy Lifestyle Song", "youtubeId": "8xu8qNXb51M", "type": "song", "objective": "Benefits of healthy living"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Unhealthy Habits to Avoid",
+        "videos": [
+          {"day": 1, "title": "Unhealthy Habits Song", "youtubeId": "vCMNOiQlnD0", "type": "song", "objective": "Identify unhealthy habits"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Healthy Lifestyle at Home, School, Neighbourhood",
+        "videos": [
+          {"day": 1, "title": "Healthy Habits Teaching", "youtubeId": "dhpCdqOtuj0", "type": "video", "objective": "Practice healthy habits"}
+        ]
+      },
+      {
+        "week": 4,
+        "theme": "Assessment",
+        "videos": []
+      }
+    ]
+  },
+  "unit4": {
+    "title": "UNIT 4: Professions and Careers",
+    "icon": "👨‍⚕️",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Define and Name Professions",
+        "videos": [
+          {"day": 1, "title": "Professions Teaching Video", "youtubeId": "okc5P7RAzBQ", "type": "video", "objective": "Define professions"},
+          {"day": 2, "title": "Professions Song", "youtubeId": "ckKQclquAXU", "type": "song", "objective": "Name different professions"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Describe Professions",
+        "videos": [
+          {"day": 1, "title": "Professions and Workplaces", "youtubeId": "okc5P7RAzBQ", "type": "video", "objective": "Describe professions"},
+          {"day": 2, "title": "Professions Song (Review)", "youtubeId": "ckKQclquAXU", "type": "song", "objective": "Practice vocabulary"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Define Career",
+        "videos": [
+          {"day": 1, "title": "What Do You Want to Be?", "youtubeId": "DA8DF6VdX3E", "type": "song", "objective": "Express career aspirations"}
+        ]
+      },
+      {
+        "week": 4,
+        "theme": "Assessment",
+        "videos": []
+      }
+    ]
+  },
+  "unit5": {
+    "title": "UNIT 5: Technology, Diversity and Globalisation",
+    "icon": "🌍",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Define Technology",
+        "videos": [
+          {"day": 1, "title": "Technology Tools Video", "youtubeId": "difvQyWFmxw", "type": "video", "objective": "Define technology and tools"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Diversity in Togo",
+        "videos": [
+          {"day": 1, "title": "Hello in Different Languages", "youtubeId": "472AnCrHYVs", "type": "song", "objective": "Celebrate diversity"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Diversity Around the World",
+        "videos": [
+          {"day": 1, "title": "Ethnic Groups in Togo", "youtubeId": "JeR3k5jfqyc", "type": "video", "objective": "Recognize diversity"}
+        ]
+      },
+      {
+        "week": 4,
+        "theme": "Global Connections",
+        "videos": [
+          {"day": 1, "title": "We Work Together", "youtubeId": "mZyXnGA_vjw", "type": "song", "objective": "Cooperation and teamwork"}
+        ]
+      },
+      {
+        "week": 5,
+        "theme": "Assessment",
+        "videos": []
+      }
+    ]
+  },
+  "unit6": {
+    "title": "UNIT 6: Environmental Actions and Climate Change",
+    "icon": "🌱",
+    "weeks": [
+      {
+        "week": 1,
+        "theme": "Define Environment",
+        "videos": [
+          {"day": 1, "title": "Environment Teaching Video", "youtubeId": "gEk6JLJNg0U", "type": "video", "objective": "Define environment"},
+          {"day": 2, "title": "Actions to Protect Environment", "youtubeId": "belXC_IoW4o", "type": "video", "objective": "Protect the environment"},
+          {"day": 3, "title": "Environment Song", "youtubeId": "Mk922Msk-SA", "type": "song", "objective": "Eco-friendly actions"}
+        ]
+      },
+      {
+        "week": 2,
+        "theme": "Climate Change",
+        "videos": [
+          {"day": 1, "title": "Climate Change Song 1", "youtubeId": "cn9PhiDJp-A", "type": "song", "objective": "Understand climate change"},
+          {"day": 2, "title": "Climate Change Song 2", "youtubeId": "MhS9FNdcgLU", "type": "song", "objective": "Causes and effects"}
+        ]
+      },
+      {
+        "week": 3,
+        "theme": "Eco-Friendly Actions",
+        "videos": [
+          {"day": 1, "title": "Eco Actions Teaching", "youtubeId": "OasbYWF4_S8", "type": "video", "objective": "Practice eco-friendly actions"}
+        ]
+      },
+      {
+        "week": 4,
+        "theme": "Assessment",
+        "videos": []
+      }
+    ]
+  }
+}

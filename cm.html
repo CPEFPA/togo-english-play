@@ -4,51 +4,39 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CM - TogoEnglish Play</title>
+    <title>Espace CM - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
-</head> 
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #FF5722; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
+        .page-header { text-align: center; margin-bottom: 30px; }
+        .page-header h1 { color: #FF5722; font-size: 2em; margin-bottom: 10px; }
+        .unit-card { background: white; border-radius: 15px; padding: 25px; text-align: center; cursor: pointer; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .unit-card:hover { transform: translateY(-5px); }
+        .unit-icon { font-size: 3em; margin-bottom: 15px; }
+    </style>
+</head>
 <body>
-    <div class="container">
-        <a href="/togo-english-play/index.html" class="back-home-btn">← Retour à l'accueil</a>
-
-<header class="header" style="background: linear-gradient(135deg, #FF9800, #F57C00);">
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/students.html" class="back-home-btn">← Retour aux niveaux</a>
+        <div class="page-header">
             <h1>🎓 Cours Moyen (CM1 & CM2)</h1>
-            <p>Architecture prête pour l'intégration du programme officiel</p>
-        </header>
-
-        <div class="program-info">
-            <h3>🚀 État d'avancement</h3>
-            <p>L'application <strong>TogoEnglish Play</strong> a été conçue avec une architecture évolutive.</p>
-            <p class="highlight">✅ CP1 & CP2 : Opérationnel</p>
-            <p class="highlight">✅ CE1 & CE2 : Opérationnel</p>
-            <p class="highlight" style="color: #FF9800;">🔄 CM1 & CM2 : En attente du document officiel du Ministère</p>
+            <p>Programme officiel du Ministère - 6 Unités • 24 semaines</p>
         </div>
-
-        <div class="program-info" style="margin-top: 30px; border-left: 6px solid #FF9800;">
-            <h3>📋 Prochaines étapes pour le CM</h3>
-            <ol style="text-align: left; max-width: 600px; margin: 15px auto; line-height: 1.8;">
-                <li>Réception du programme officiel CM du Ministère.</li>
-                <li>Extraction des vidéos, vocabulaire et objectifs pédagogiques.</li>
-                <li>Intégration dans l'application sous 48h (même structure que le CE).</li>
-                <li>Formation des enseignants pilotes.</li>
-            </ol>
-        </div>
-
-        <div class="contact-info" style="margin-top: 40px;">
-            <h3>📞 Contact pour l'intégration du CM</h3>
-            <p>OBG International - Cres Poly Art</p>
-            <div class="phone-numbers">
-                <a href="tel:+16138502652" class="phone-btn">🇨🇦 +1 (613) 850-2652</a>
-                <a href="tel:+22890588358" class="phone-btn">🇹🇬 +228 90 58 83 58</a>
-                <a href="tel:+22893202722" class="phone-btn">🇹🇬 +228 93 20 27 22</a>
-            </div>
-        </div>
-
-        <footer class="footer">
-            <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
-        </footer>
+        <div class="units-grid" id="unitsGrid"></div>
     </div>
+    <script>
+        fetch('/togo-english-play/data/videos-cm.json?' + Date.now())
+            .then(r => r.json())
+            .then(data => {
+                const grid = document.getElementById('unitsGrid');
+                Object.keys(data).forEach(key => {
+                    const unit = data[key];
+                    const card = document.createElement('div');
+                    card.className = 'unit-card';
+                    card.innerHTML = `<div class="unit-icon">${unit.icon}</div><h3>${unit.title}</h3><p>${unit.weeks.length} semaines</p>`;
+                    grid.appendChild(card);
+                });
+            });
+    </script>
 </body>
 </html>
-
-

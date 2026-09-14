@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Jeux CM - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #FF5722; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
+        .page-header { text-align: center; margin-bottom: 30px; }
+        .page-header h1 { color: #FF5722; font-size: 2em; }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 20px; border: none; background: #e0e0e0; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        .tab-btn.active { background: #FF5722; color: white; }
+        .game-panel { display: none; } .game-panel.active { display: block; }
+        .memory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; max-width: 600px; margin: 0 auto; }
+        .memory-card { background: #FF5722; color: white; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 1.2em; font-weight: bold; }
+        .memory-card.flipped, .memory-card.matched { background: white; color: #FF5722; border: 2px solid #FF5722; }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/games.html" class="back-home-btn">← Retour aux jeux</a>
+        <div class="page-header"><h1>🎮 Mini-Jeux CM</h1><p>Vocabulaire officiel du Cours Moyen</p></div>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchGame('memory', this)">🧠 Mémoire</button>
+            <button class="tab-btn" onclick="switchGame('match', this)">🔗 Association</button>
+            <button class="tab-btn" onclick="switchGame('record', this)">🎤 Prononciation</button>
+        </div>
+        <div id="memory" class="game-panel active">
+            <h2 style="text-align:center">Jeu de Mémoire CM</h2>
+            <div class="theme-selector" style="text-align:center; margin: 20px 0;">
+                <button class="tab-btn" onclick="loadMemory('community')">🏘️ Communauté</button>
+                <button class="tab-btn" onclick="loadMemory('outdoor')">🏞️ Extérieur</button>
+                <button class="tab-btn" onclick="loadMemory('health')">💪 Santé</button>
+                <button class="tab-btn" onclick="loadMemory('professions')">👨‍⚕️ Métiers</button>
+                <button class="tab-btn" onclick="loadMemory('tech')">🌍 Technologie</button>
+                <button class="tab-btn" onclick="loadMemory('environment')">🌱 Environnement</button>
+            </div>
+            <div class="memory-grid" id="memoryGrid"></div>
+        </div>
+        <div id="match" class="game-panel"><h2 style="text-align:center">Jeu d'Association CM</h2><p style="text-align:center">Bientôt disponible</p></div>
+        <div id="record" class="game-panel"><h2 style="text-align:center">Jeu de Prononciation CM</h2><p style="text-align:center">Bientôt disponible</p></div>
+    </div>
+    <script>
+        const cmGamesData = {
+            community: [{word:"Community",emoji:"🏘️"},{word:"Neighbour",emoji:"👥"},{word:"School",emoji:"🏫"},{word:"Hospital",emoji:"🏥"},{word:"Market",emoji:"🛒"},{word:"Farm",emoji:"🌾"}],
+            outdoor: [{word:"Mountain",emoji:"⛰️"},{word:"River",emoji:"🏞️"},{word:"Forest",emoji:"🌲"},{word:"Beach",emoji:"🏖️"},{word:"Football",emoji:"⚽"},{word:"Running",emoji:"🏃"}],
+            health: [{word:"Exercise",emoji:"🏋️"},{word:"Sleep",emoji:"😴"},{word:"Water",emoji:"💧"},{word:"Fruits",emoji:"🍎"},{word:"Vegetables",emoji:"🥦"},{word:"Brush",emoji:"🪥"}],
+            professions: [{word:"Teacher",emoji:"👩‍🏫"},{word:"Doctor",emoji:"👨‍⚕️"},{word:"Farmer",emoji:"👨‍🌾"},{word:"Driver",emoji:"🚗"},{word:"Police",emoji:"👮"},{word:"Nurse",emoji:"👩‍⚕️"}],
+            tech: [{word:"Computer",emoji:"💻"},{word:"Phone",emoji:"📱"},{word:"Internet",emoji:"🌐"},{word:"Car",emoji:"🚙"},{word:"Plane",emoji:"✈️"},{word:"TV",emoji:"📺"}],
+            environment: [{word:"Tree",emoji:"🌳"},{word:"Recycle",emoji:"♻️"},{word:"Water",emoji:"💧"},{word:"Sun",emoji:"☀️"},{word:"Trash",emoji:"🗑️"},{word:"Plant",emoji:"🌱"}]
+        };
+        function switchGame(id, btn) {
+            document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+        function loadMemory(theme) {
+            const data = cmGamesData[theme];
+            const pairs = [];
+            data.forEach(item => {
+                pairs.push({id: item.word+'_w', pairId: item.word, display: item.word, type: 'word'});
+                pairs.push({id: item.word+'_e', pairId: item.word, display: item.emoji, type: 'emoji'});
+            });
+            const cards = pairs.sort(() => Math.random() - 0.5);
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            cards.forEach((card, i) => {
+                const div = document.createElement('div');
+                div.className = 'memory-card';
+                div.innerHTML = `<span style="display:none">${card.display}</span><span>❓</span>`;
+                div.onclick = function() {
+                    this.classList.toggle('flipped');
+                    const spans = this.querySelectorAll('span');
+                    spans[0].style.display = spans[0].style.display === 'none' ? 'block' : 'none';
+                    spans[1].style.display = spans[1].style.display === 'none' ? 'block' : 'none';
+                };
+                grid.appendChild(div);
+            });
+        }
+        loadMemory('community');
+    </script>
+</body>
+</html>
