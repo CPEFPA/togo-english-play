@@ -145,5 +145,6 @@
         function playRecording() { if(recordedBlob) new Audio(URL.createObjectURL(recordedBlob)).play(); }
         function nextRecordWord() { recordedBlob = null; document.getElementById('playBtn').disabled = true; document.getElementById('recordFeedback').textContent = ''; recIdx = (recIdx + 1) % recWords.length; document.getElementById('recordWord').textContent = recWords[recIdx]; }
     </script>
+    <script src="/togo-english-play/js/analytics.js"></script>
 </body>
 </html>
