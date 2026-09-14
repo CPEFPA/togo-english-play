@@ -1,133 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TogoEnglish Play - Apprendre l'anglais en s'amusant</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#006A4E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="TogoEnglish">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TogoEnglish Play</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#006A4E">
+<style>
+.hero-section{text-align:center;padding:40px 20px;background:linear-gradient(135deg,#006A4E 0%,#00896a 50%,#00A87E 100%);border-radius:25px;margin-bottom:30px;box-shadow:0 10px 30px rgba(0,106,78,0.3)}
+.hero-section h1{font-size:2.5em;color:white;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.3)}
+.hero-section .subtitle{color:#FFE66D;font-size:1.3em;font-weight:bold}
+.mascots-row{display:flex;justify-content:center;gap:40px;margin:30px 0}
+.mascot-item{text-align:center}
+.mascot-circle-big{width:100px;height:100px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:3em;margin:0 auto 10px;box-shadow:0 5px 15px rgba(0,0,0,0.2)}
+.mascot-item p{color:white;font-weight:bold;font-size:1.2em}
+.info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:30px}
+.info-card{background:white;border-radius:20px;padding:30px;box-shadow:0 5px 20px rgba(0,0,0,0.1);border-left:6px solid #006A4E;transition:transform 0.3s ease}
+.info-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.15)}
+.info-card h3{color:#006A4E;font-size:1.3em;margin-bottom:15px}
+.info-card p{color:#555;line-height:1.6}
+.info-card .highlight-text{color:#006A4E;font-weight:bold;font-size:1.1em;margin-top:10px}
+.guide-btn-new{display:inline-block;background:linear-gradient(135deg,#006A4E,#00896a);color:white;padding:12px 25px;border-radius:25px;text-decoration:none;font-weight:bold;margin-top:15px}
+</style>
 </head>
 <body>
-    <div class="container">
-        <nav class="top-nav-bar">
-            <a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
-            <a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
-            <a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
-            <a href="/togo-english-play/games.html" class="nav-link highlight">🕹️ Jeux</a>
-        </nav>
-
-        <div id="installBanner" class="install-banner" style="display: none;">
-            <p>📱 Installez TogoEnglish Play sur votre téléphone !</p>
-            <button id="installBtn" class="install-btn">Installer</button>
-            <button onclick="closeInstallBanner()" class="close-btn">✕</button>
-        </div>
-
-        <header class="header">
-            <div class="logo">
-                <h1>🇹🇬 TogoEnglish Play</h1>
-                <p class="subtitle">20 minutes par jour pour s'ouvrir au monde</p>
-            </div>
-        </header>
-
-        <div class="mascots">
-            <div class="mascot"><div class="mascot-circle">👦</div><p>Kossi</p></div>
-            <div class="mascot"><div class="mascot-circle">👧</div><p>Afi</p></div>
-        </div>
-
-        <h2 style="color: white; text-align: center; margin: 20px 0; font-size: 1.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">📚 Programmes par Niveau</h2>
-        
-        <nav class="main-nav">
-            <a href="/togo-english-play/kids.html" class="nav-card kids-card">
-                <div class="nav-icon">🎮</div>
-                <h2>Cours Préparatoire (CP)</h2>
-                <p>CP1 & CP2 - 6 unités</p>
-                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">✅ Opérationnel</p>
-            </a>
-
-            <a href="/togo-english-play/ce.html" class="nav-card ce-cm-card">
-                <div class="nav-icon">📚</div>
-                <h2>Cours Élémentaire (CE)</h2>
-                <p>CE1 & CE2 - 6 unités</p>
-                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">✅ Opérationnel</p>
-            </a>
-
-            <a href="/togo-english-play/cm.html" class="nav-card" style="border-top: 8px solid #FF5722;">
-                <div class="nav-icon">🎓</div>
-                <h2>Cours Moyen (CM)</h2>
-                <p>CM1 & CM2 - En préparation</p>
-                <p style="margin-top: 10px; font-size: 0.9em; color: #888;">🔄 Bientôt disponible</p>
-            </a>
-        </nav>
-
-        <h2 style="color: white; text-align: center; margin: 30px 0 20px 0; font-size: 1.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">👨‍👩‍👧 Espace Parents par Niveau</h2>
-        
-        <nav class="main-nav" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            <a href="/togo-english-play/parents.html" class="nav-card parents-card">
-                <div class="nav-icon">👨‍👩‍👧</div>
-                <h2>Parents CP</h2>
-                <p>Accompagnez votre enfant du CP</p>
-            </a>
-
-            <a href="/togo-english-play/parents-ce.html" class="nav-card" style="border-top: 8px solid #FF9800;">
-                <div class="nav-icon">👨‍👩‍👧</div>
-                <h2 style="color: #FF9800;">Parents CE</h2>
-                <p>Accompagnez votre enfant du CE</p>
-            </a>
-
-            <a href="/togo-english-play/parents-cm.html" class="nav-card" style="border-top: 8px solid #FF5722;">
-                <div class="nav-icon">👨‍👩‍👧</div>
-                <h2 style="color: #FF5722;">Parents CM</h2>
-                <p>Accompagnez votre enfant du CM</p>
-            </a>
-        </nav>
-
-        <h2 style="color: white; text-align: center; margin: 30px 0 20px 0; font-size: 1.8em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">🕹️ Mini-Jeux Éducatifs</h2>
-        
-        <nav class="main-nav" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            <a href="/togo-english-play/games.html" class="nav-card games-card">
-                <div class="nav-icon">🎮</div>
-                <h2>Mini-Jeux CP</h2>
-                <p>Vocabulaire du CP</p>
-            </a>
-
-            <a href="/togo-english-play/games-ce.html" class="nav-card" style="border-top: 8px solid #9C27B0;">
-                <div class="nav-icon">🎲</div>
-                <h2 style="color: #9C27B0;">Mini-Jeux CE</h2>
-                <p>Vocabulaire officiel du CE</p>
-            </a>
-        </nav>
-
-        <div class="program-info" style="border-left: 6px solid #2196F3; background: linear-gradient(135deg, rgba(33,150,243,0.1), white);">
-            <h3 style="color: #2196F3;">✨ Programmes Officiels Intégrés</h3>
-            <p>Suite aux Notes de Service N°024/2023 (CP) et N°018/2024 (CE), les programmes sont entièrement disponibles.</p>
-            <p class="highlight" style="color: #2196F3;">12 Unités au total • Vidéos officielles • Mode hors-ligne</p>
-        </div>
-
-        <div class="pwa-info">
-            <h3>📲 Mode Hors-Ligne Activé !</h3>
-            <p>Une fois installée, l'application fonctionne même sans internet.</p>
-            <p>Les jeux, flashcards et quiz sont disponibles à tout moment !</p>
-        </div>
-
-        <div class="guide-info">
-            <h3>📄 Guide de Déploiement</h3>
-            <p>Document officiel pour les écoles pilotes</p>
-            <a href="/togo-english-play/guide.html" target="_blank" class="guide-btn">📖 Consulter le guide</a>
-        </div>
-
-        <footer class="footer">
-            <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
-            <p>Programme d'introduction de l'anglais au primaire - République Togolaise 🇹🇬</p>
-        </footer>
-    </div>
-    <script src="js/main.js"></script>
+<div class="container">
+<nav class="top-nav-bar">
+<a href="/togo-english-play/index.html" class="nav-link">🏠 Accueil</a>
+<a href="/togo-english-play/students.html" class="nav-link">🎓 Élèves</a>
+<a href="/togo-english-play/parents.html" class="nav-link">👨‍👩‍👧 Parents</a>
+<a href="/togo-english-play/teachers.html" class="nav-link">👩‍🏫 Enseignants</a>
+<a href="/togo-english-play/games.html" class="nav-link highlight">🕹️ Jeux</a>
+</nav>
+<div class="hero-section">
+<h1>🇹🇬 TogoEnglish Play</h1>
+<p class="subtitle">20 minutes par jour pour s'ouvrir au monde</p>
+<div class="mascots-row">
+<div class="mascot-item"><div class="mascot-circle-big">👦</div><p>Kossi</p></div>
+<div class="mascot-item"><div class="mascot-circle-big">👧</div><p>Afi</p></div>
+</div>
+</div>
+<div class="info-cards">
+<div class="info-card">
+<h3>✨ Programmes Officiels Intégrés</h3>
+<p>Suite aux Notes de Service N°024/2023 (CP) et N°018/2024 (CE), les programmes sont entièrement disponibles.</p>
+<p class="highlight-text">12 Unités au total • Vidéos officielles • Mode hors-ligne</p>
+</div>
+<div class="info-card">
+<h3>📲 Mode Hors-Ligne Activé !</h3>
+<p>Une fois installée, l'application fonctionne même sans internet.</p>
+<p>Les jeux, flashcards et quiz sont disponibles à tout moment !</p>
+</div>
+<div class="info-card">
+<h3>📄 Guide de Déploiement</h3>
+<p>Document officiel pour les écoles pilotes</p>
+<a href="/togo-english-play/guide.html" target="_blank" class="guide-btn-new">📖 Consulter le guide</a>
+</div>
+</div>
+<footer class="footer">
+<p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
+<p>Programme d'introduction de l'anglais au primaire - République Togolaise 🇹🇬</p>
+</footer>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>
