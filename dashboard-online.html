@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -16,8 +17,10 @@
         td { padding: 10px; border-bottom: 1px solid #eee; }
         .loading { text-align: center; padding: 40px; font-size: 1.2em; color: #666; }
         .error-msg { text-align: center; padding: 20px; color: #d32f2f; background: #ffebee; border-radius: 10px; display: none; }
-        .btn { padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin: 10px 5px; color: white; }
-        .btn-refresh { background: #9C27B0; } .btn-export { background: #4CAF50; } .btn-sheet { background: #2196F3; text-decoration: none; display: inline-block; }
+        .btn { padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin: 10px 5px; color: white; text-decoration: none; display: inline-block; }
+        .btn-refresh { background: #9C27B0; } 
+        .btn-export { background: #4CAF50; } 
+        .btn-sheet { background: #2196F3; }
     </style>
 </head>
 <body>
@@ -29,7 +32,7 @@
         <div style="text-align: center; margin-bottom: 30px;">
             <button class="btn btn-refresh" onclick="loadData()">🔄 Actualiser</button>
             <button class="btn btn-export" onclick="exportCSV()">📥 Exporter CSV</button>
-            <a href="https://docs.google.com/spreadsheets/d/1bFjp0pikoQARcpt8NgyOzB02EVMAG-dmbcXwdiq3wAs/edit" target="_blank" class="btn btn-sheet">📊 Voir le Google Sheet direct</a>
+            <a href="https://docs.google.com/spreadsheets/d/1bFjp0pikoQARcpt8NgyOzB02EVMAG-dmbcXwdiq3wAs/edit" target="_blank" class="btn btn-sheet">📊 Voir le Google Sheet direct (Plan B)</a>
         </div>
         
         <div class="stats-grid">
@@ -57,10 +60,22 @@
             document.getElementById('loading').style.display = 'block';
             document.getElementById('error').style.display = 'none';
             document.getElementById('dataTable').style.display = 'none';
+            
             try {
-                const response = await fetch(API_URL, { method: 'GET', redirect: 'follow' });
+                // redirect: 'follow' est OBLIGATOIRE pour Google Apps Script
+                const response = await fetch(API_URL, { 
+                    method: 'GET', 
+                    redirect: 'follow',
+                    headers: { 'Accept': 'application/json' }
+                });
+                
                 const text = await response.text();
-                const result = JSON.parse(text);
+                let result;
+                try {
+                    result = JSON.parse(text);
+                } catch (e) {
+                    throw new Error("Le script a renvoyé une page HTML au lieu de JSON. Vérifiez le déploiement.");
+                }
                 
                 if (result.status === 'success') {
                     allData = result.data || [];
@@ -72,8 +87,9 @@
                     const tbody = document.getElementById('dataBody');
                     tbody.innerHTML = '';
                     const recent = allData.slice(-50).reverse();
+                    
                     if (recent.length === 0) {
-                        document.getElementById('loading').textContent = 'Aucune donnée pour le moment. Naviguez dans l\'application !';
+                        document.getElementById('loading').textContent = 'Aucune donnée pour le moment. Naviguez dans l\'application pour en générer !';
                         document.getElementById('loading').style.display = 'block';
                     } else {
                         recent.forEach(row => {
@@ -87,18 +103,19 @@
                         document.getElementById('dataTable').style.display = 'table';
                     }
                 } else {
-                    throw new Error(result.message || 'Erreur API');
+                    throw new Error(result.message || 'Erreur inconnue du script');
                 }
             } catch (err) {
                 document.getElementById('loading').style.display = 'none';
                 const errDiv = document.getElementById('error');
                 errDiv.style.display = 'block';
-                errDiv.innerHTML = '❌ Erreur de chargement. <br><strong>Solution :</strong> Cliquez sur le bouton bleu "Voir le Google Sheet direct" ci-dessus pour voir vos données en attendant.';
+                errDiv.innerHTML = '❌ Erreur de chargement : ' + err.message + '<br><br><strong>Solution immédiate :</strong> Cliquez sur le bouton bleu "Voir le Google Sheet direct" ci-dessus pour voir vos données en attendant.';
+                console.error('Erreur Dashboard:', err);
             }
         }
         
         function exportCSV() {
-            if (allData.length === 0) { alert('Aucune donnée'); return; }
+            if (allData.length === 0) { alert('Aucune donnée à exporter'); return; }
             const headers = ['Timestamp', 'Page', 'Role', 'Device ID', 'School', 'Region', 'Action', 'Duration'];
             const csv = [headers.join(','), ...allData.map(r => headers.map(h => '"'+(r[h]||'')+'"').join(','))].join('\n');
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -107,7 +124,10 @@
             link.download = 'stats-togo-english-' + new Date().toISOString().split('T')[0] + '.csv';
             link.click();
         }
+        
+        // Chargement initial
         loadData();
+        // Actualisation automatique toutes les 30 secondes
         setInterval(loadData, 30000);
     <\/script>
 </body>
