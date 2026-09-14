@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boîte à Outils - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { color: #006A4E; font-size: 2.5em; margin-bottom: 15px; }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab-btn { padding: 12px 20px; border: none; background: #e0e0e0; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1em; }
+        .tab-btn.active { background: #006A4E; color: white; }
+        .section { display: none; } .section.active { display: block; }
+        .resource-card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 25px; border-left: 5px solid #FF9800; page-break-inside: avoid; }
+        .resource-card h3 { color: #FF9800; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .dialogue { background: #f9f9f9; padding: 15px; border-radius: 10px; font-family: monospace; line-height: 1.6; font-size: 1.05em; }
+        .dialogue strong { color: #006A4E; }
+        .game-rules { line-height: 1.8; color: #555; }
+        .game-rules li { margin-bottom: 10px; }
+        .print-btn { background: #FF9800; color: white; padding: 15px 30px; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1.1em; display: block; margin: 40px auto; box-shadow: 0 4px 15px rgba(255,152,0,0.4); }
+        @media print {
+            .back-home-btn, .tabs, .print-btn, .page-header p { display: none; }
+            .section { display: block !important; }
+            .resource-card { border: 1px solid #ddd; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/teachers.html" class="back-home-btn">← Retour Espace Enseignants</a>
+        
+        <div class="page-header">
+            <h1>🧰 Boîte à Outils de l'Enseignant</h1>
+            <p>Dialogues, Chansons et Jeux en classe (Ressources officielles imprimables)</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('dialogues', this)">🗣️ Dialogues (Roleplay)</button>
+            <button class="tab-btn" onclick="showTab('songs', this)">🎵 Chansons & Poèmes</button>
+            <button class="tab-btn" onclick="showTab('games', this)">🎲 Jeux en Classe</button>
+        </div>
+
+        <!-- DIALOGUES -->
+        <div id="dialogues" class="section active">
+            <div class="resource-card">
+                <h3>🏫 Dialogue 1 : Classroom Objects (Pre-Unit)</h3>
+                <div class="dialogue">
+                    <strong>Feika:</strong> Good morning, teacher!<br>
+                    <strong>Teacher:</strong> Good morning, Feika.<br>
+                    <strong>Feika:</strong> Look, teacher! There are five books in my school bag!<br>
+                    <strong>Teacher:</strong> There is your English notebook too.<br>
+                    <strong>Feika:</strong> Yes, teacher.<br>
+                    <strong>Teacher:</strong> Very good. Sit down, please.
+                </div>
+            </div>
+            <div class="resource-card">
+                <h3>🤝 Dialogue 2 : Sharing Resources (Unit 1)</h3>
+                <div class="dialogue">
+                    <strong>Joe:</strong> I don’t have a pencil.<br>
+                    <strong>Mimi:</strong> I have two! You can have one.<br>
+                    <strong>Joe:</strong> Thank you, Mimi!<br>
+                    <strong>Teacher:</strong> That’s kind. Mimi is a good friend.
+                </div>
+            </div>
+            <div class="resource-card">
+                <h3>🍏 Dialogue 3 : Healthy Habits (Unit 3)</h3>
+                <div class="dialogue">
+                    <strong>Mum:</strong> Kodjo! Come and eat!<br>
+                    <strong>Kodjo:</strong> I’m coming, Mum.<br>
+                    <strong>Mum:</strong> You should wash your hands before eating.<br>
+                    <strong>Kodjo:</strong> Okay, Mum. When I wash my hands, it keeps me from getting ill.<br>
+                    <strong>Mum:</strong> Good boy! Remember, after eating, you should brush your teeth.<br>
+                    <strong>Kodjo:</strong> Thanks, Mum. It’s a healthy habit.
+                </div>
+            </div>
+            <div class="resource-card">
+                <h3>🌱 Dialogue 4 : Eco-Friendly Actions (Unit 6)</h3>
+                <div class="dialogue">
+                    <strong>Kwaku:</strong> Look! The yard is dirty.<br>
+                    <strong>Toyi:</strong> Let’s clean it!<br>
+                    <strong>Kwaku:</strong> Good idea!<br>
+                    <strong>Afi:</strong> I will sweep the classroom.<br>
+                    <strong>Toyi:</strong> And I will also pick up the trash.
+                </div>
+            </div>
+        </div>
+
+        <!-- CHANSONS -->
+        <div id="songs" class="section">
+            <div class="resource-card">
+                <h3>⭐ Poème : I Am Special (Pre-Unit - Body Parts)</h3>
+                <div class="dialogue">
+                    I am special. I’m wonderfully made.<br>
+                    I have a head and a face. I have two eyes and two ears.<br>
+                    I have one nose and mouth.<br><br>
+                    I am special. I’m wonderfully made.<br>
+                    I have a neck and shoulders. I have two arms.<br>
+                    I have two hands, and five fingers on each hand.<br><br>
+                    I am special. I’m wonderfully made.<br>
+                    I have strong legs to run. I have two knees.<br>
+                    I have two feet, and five toes on each foot.
+                </div>
+            </div>
+            <div class="resource-card">
+                <h3>💖 Chanson : Social Virtues (Unit 1)</h3>
+                <div class="dialogue">
+                    When I tell the truth, I am honest.<br>
+                    When I wait my turn, I am patient.<br>
+                    When I help my friend, I am kind.<br>
+                    When we work together, we are united!<br><br>
+                    <em>(Avec des gestes : montrer le cœur pour kind, se donner la main pour united)</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- JEUX -->
+        <div id="games" class="section">
+            <div class="resource-card">
+                <h3>🗣️ Jeu 1 : Simon Says (Idéal pour les commandes et le corps)</h3>
+                <ul class="game-rules">
+                    <li><strong>Objectif :</strong> Pratiquer l'écoute et le vocabulaire (Body parts, Classroom commands).</li>
+                    <li><strong>Règle :</strong> L'enseignant donne des instructions. Les élèves ne doivent obéir QUE si l'enseignant dit "Simon says" avant.</li>
+                    <li><strong>Exemple :</strong> "Simon says touch your nose" (les élèves touchent leur nez). "Touch your ears!" (ceux qui touchent leurs oreilles sont éliminés et s'assoient).</li>
+                    <li><strong>Gagnant :</strong> Le dernier élève debout.</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>🪄 Jeu 2 : Magic Wand (Idéal pour la Technologie - Unit 5)</h3>
+                <ul class="game-rules">
+                    <li><strong>Matériel :</strong> Écrire les 4 types de technologie au tableau. Donner une "baguette magique" (règle, bâton) à chaque équipe.</li>
+                    <li><strong>Règle :</strong> L'enseignant crie le nom d'un outil (ex: "X-ray!").</li>
+                    <li><strong>Action :</strong> Un élève de chaque équipe court et tape avec la baguette sur la bonne catégorie (Medical Technology).</li>
+                    <li><strong>Points :</strong> L'équipe la plus rapide gagne le point.</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>👍 Jeu 3 : Choosing Sides (Idéal pour l'Environnement - Unit 6)</h3>
+                <ul class="game-rules">
+                    <li><strong>Objectif :</strong> Identifier les actions éco-responsables.</li>
+                    <li><strong>Règle :</strong> L'enseignant annonce une action.</li>
+                    <li><strong>Action :</strong> Si c'est éco-responsable, les élèves lèvent le pouce vers le haut (👍). Si c'est mauvais pour la planète, pouce vers le bas (👎).</li>
+                    <li><strong>Exemples :</strong> "Planting trees" (👍), "Throwing trash everywhere" (👎), "Saving water" (👍), "Cutting trees" (👎).</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>🔤 Jeu 4 : Alphabet Whisper Race (Pre-Unit)</h3>
+                <ul class="game-rules">
+                    <li><strong>Règle :</strong> Les élèves se mettent en ligne. L'enseignant chuchote une lettre au dernier élève.</li>
+                    <li><strong>Action :</strong> L'élève chuchote à celui devant lui, et ainsi de suite jusqu'au premier de la ligne.</li>
+                    <li><strong>Fin :</strong> Le premier de la ligne court écrire la lettre sur l'ardoise ou au tableau. L'équipe la plus rapide gagne.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="print-btn" onclick="window.print()">🖨️ Imprimer la Boîte à Outils pour la classe</button>
+    </div>
+    <script>
+        function showTab(tabId, btn) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
