@@ -10,11 +10,11 @@
         .back-home-btn:hover { background: #004d38; }
         .page-header { text-align: center; margin-bottom: 40px; }
         .page-header h1 { color: #006A4E; font-size: 2.5em; margin-bottom: 15px; }
-        .page-header p { color: #666; font-size: 1.2em; }
         .teacher-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        .nav-btn { padding: 12px 25px; border: none; background: #e0e0e0; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1em; transition: all 0.3s; }
+        .nav-btn { padding: 12px 25px; border: none; background: #e0e0e0; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1em; }
         .nav-btn.active { background: #006A4E; color: white; }
-        .section { display: none; } .section.active { display: block; }
+        .section { display: none; }
+        .section.active { display: block; }
         .info-box { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 25px; border-left: 5px solid #006A4E; }
         .info-box h3 { color: #006A4E; margin-top: 0; }
         .info-box ul { line-height: 1.8; color: #555; }
@@ -29,17 +29,17 @@
         </div>
         
         <div class="teacher-nav">
-            <button class="nav-btn active" onclick="showTab('cp', event)">📘 Guide CP</button>
-            <button class="nav-btn" onclick="showTab('ce', event)">📗 Guide CE</button>
-            <button class="nav-btn" onclick="showTab('method', event)">💡 Méthodologie</button>
-            <button class="nav-btn" onclick="showTab('eval', event)">✅ Évaluation</button>
-            <button class="nav-btn" onclick="showTab('schedule', event)">📅 Emploi du temps</button>
+            <button class="nav-btn active" onclick="showTab('cp', this)">📘 Guide CP</button>
+            <button class="nav-btn" onclick="showTab('ce', this)">📗 Guide CE</button>
+            <button class="nav-btn" onclick="showTab('method', this)">💡 Méthodologie</button>
+            <button class="nav-btn" onclick="showTab('eval', this)">✅ Évaluation</button>
+            <button class="nav-btn" onclick="showTab('schedule', this)">📅 Emploi du temps</button>
         </div>
 
         <div id="cp" class="section active">
             <div class="info-box">
                 <h3>📘 Programme Cours Préparatoire (CP1 & CP2)</h3>
-                <p><strong>Note de Service N°024/2023/MEPST/CAB/SG</strong> • 6 Unités • 20 semaines • 1h40/semaine</p>
+                <p><strong>Note de Service N°024/2023</strong> • 6 Unités • 20 semaines • 1h40/semaine</p>
                 <ul>
                     <li><strong>Unit 1:</strong> Greetings and Alphabets (Hello, Good morning, Alphabet A-Z)</li>
                     <li><strong>Unit 2:</strong> My Family and Identity (Father, Mother, Brother, Sister, Name, Age)</li>
@@ -54,14 +54,14 @@
         <div id="ce" class="section">
             <div class="info-box" style="border-left-color: #2196F3;">
                 <h3 style="color: #2196F3;">📗 Programme Cours Élémentaire (CE1 & CE2)</h3>
-                <p><strong>Note de Service N°018/2024/MEPS/CAB</strong> • 6 Unités • 25 semaines • 1h40/semaine</p>
+                <p><strong>Note de Service N°018/2024</strong> • 6 Unités • 25 semaines • 1h40/semaine</p>
                 <ul>
-                    <li><strong>Unit 1:</strong> School Description (Library, Garden, Playground, Canteen, Computer room)</li>
-                    <li><strong>Unit 2:</strong> Appearances, Feelings & Emotions (Eye, hair, Happy, Sad, Angry, Tired)</li>
-                    <li><strong>Unit 3:</strong> My Community (Nuclear/Extended family, Bedroom, Kitchen, Towns/Villages)</li>
-                    <li><strong>Unit 4:</strong> The Environment (Sunny, Rainy, Windy, Sea/River life animals)</li>
-                    <li><strong>Unit 5:</strong> Local & Global Celebrations (Evala, Kouroubi, Christmas, Independence Day Togo)</li>
-                    <li><strong>Unit 6:</strong> Diversity & Culture (Name of country, Borders, Capital, Regions, Cultures of Togo)</li>
+                    <li><strong>Unit 1:</strong> School Description (Library, Garden, Playground, Canteen)</li>
+                    <li><strong>Unit 2:</strong> Appearances, Feelings & Emotions (Eye, hair, Happy, Sad, Angry)</li>
+                    <li><strong>Unit 3:</strong> My Community (Nuclear/Extended family, Bedroom, Kitchen)</li>
+                    <li><strong>Unit 4:</strong> The Environment (Sunny, Rainy, Windy, Sea/River life)</li>
+                    <li><strong>Unit 5:</strong> Local & Global Celebrations (Evala, Kouroubi, Christmas, Independence)</li>
+                    <li><strong>Unit 6:</strong> Diversity & Culture (Name of country, Borders, Capital, Regions)</li>
                 </ul>
             </div>
         </div>
@@ -70,10 +70,10 @@
             <div class="info-box">
                 <h3>💡 Méthodologie d'Enseignement</h3>
                 <ul>
-                    <li><strong>Approche Communicative :</strong> Immersion totale, utilisation minimale de la langue maternelle, maximisation du temps de parole.</li>
-                    <li><strong>Structure type d'une semaine :</strong> J1-J2 (Écoute, chansons, vocabulaire), J3 (Spelling, singing, reciting), J4-J5 (Construction de phrases, lecture).</li>
-                    <li><strong>Supports :</strong> Flashcards, chansons, vidéos, jeux éducatifs, posters, Lesson Cards.</li>
-                    <li><strong>Techniques :</strong> Total Physical Response (TPR), Choral Drilling, Role Play, Storytelling.</li>
+                    <li><strong>Approche Communicative :</strong> Immersion totale, maximisation du temps de parole.</li>
+                    <li><strong>Structure type :</strong> J1-J2 (Écoute, chansons), J3 (Spelling, reciting), J4-J5 (Phrases, lecture).</li>
+                    <li><strong>Supports :</strong> Flashcards, chansons, vidéos, jeux éducatifs, Lesson Cards.</li>
+                    <li><strong>Techniques :</strong> Total Physical Response (TPR), Choral Drilling, Role Play.</li>
                 </ul>
             </div>
         </div>
@@ -82,10 +82,10 @@
             <div class="info-box">
                 <h3>✅ Évaluation et Remédiation</h3>
                 <ul>
-                    <li><strong>Compétences évaluées :</strong> Compréhension orale, Expression orale (prononciation, phrases simples), Compréhension écrite (association mot-image), Expression écrite (spelling, copie).</li>
-                    <li><strong>Types d'activités :</strong> QCM, Appariement, Complétion, Dialogue guidé, Quiz interactifs.</li>
-                    <li><strong>Remédiation :</strong> Réutilisation des flashcards/chansons, travail en petits groupes, suivi individuel des progrès.</li>
-                    <li><strong>Évaluation de fin d'unité :</strong> Semaine 4 (CP) ou 4-5 (CE) : Révision (J1-J3), General revision (J4), Assessment formelle (J5).</li>
+                    <li><strong>Compétences :</strong> Compréhension orale, Expression orale, Compréhension et Expression écrite.</li>
+                    <li><strong>Activités :</strong> QCM, Appariement, Complétion, Dialogue guidé, Quiz interactifs.</li>
+                    <li><strong>Remédiation :</strong> Réutilisation des flashcards, travail en petits groupes, suivi individuel.</li>
+                    <li><strong>Fin d'unité :</strong> Semaine 4 (CP) ou 4-5 (CE) : Révision (J1-J3), General revision (J4), Assessment (J5).</li>
                 </ul>
             </div>
         </div>
@@ -94,7 +94,6 @@
             <div class="info-box">
                 <h3>📅 Emploi du Temps Officiel</h3>
                 <p><strong>Volume horaire :</strong> 20 minutes par jour, 5 jours par semaine = 1h40 hebdomadaire.</p>
-                <p><strong>Conformité UNESCO :</strong> Recommandation entre 1h30 et 2h pour l'enseignement des langues étrangères au primaire.</p>
                 <ul>
                     <li><strong>Lundi :</strong> Introduction du thème, écoute active, chansons (20 min)</li>
                     <li><strong>Mardi :</strong> Pratique orale, jeux de rôles, activités interactives (20 min)</li>
@@ -106,12 +105,12 @@
         </div>
     </div>
     <script>
-        function showTab(tabId, event) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        function showTab(tabId, btn) {
+            document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+            document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
             document.getElementById(tabId).classList.add('active');
-            if(event && event.target) event.target.classList.add('active');
+            btn.classList.add('active');
         }
-    <\/script>
+    </script>
 </body>
 </html>

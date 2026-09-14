@@ -6,8 +6,7 @@
     <title>Mini-Jeux CP - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: background 0.3s; }
-        .back-home-btn:hover { background: #004d38; }
+        .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
         .page-header { text-align: center; margin-bottom: 30px; }
         .page-header h1 { color: #006A4E; font-size: 2em; margin-bottom: 10px; }
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
@@ -25,8 +24,7 @@
         .word-display { font-size: 2em; color: #006A4E; font-weight: bold; margin-bottom: 20px; }
         .record-btns { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
         .record-btn { padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; background: #006A4E; color: white; }
-        .record-btn:disabled { background: #ccc; cursor: not-allowed; } .record-btn.recording { background: #f44336; animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        .record-btn:disabled { background: #ccc; cursor: not-allowed; } .record-btn.recording { background: #f44336; }
         .feedback { margin: 20px 0; font-weight: bold; min-height: 24px; } .feedback.good { color: #4CAF50; } .feedback.try-again { color: #FF9800; }
     </style>
 </head>
@@ -35,9 +33,9 @@
         <a href="/togo-english-play/games.html" class="back-home-btn">← Retour aux jeux</a>
         <div class="page-header"><h1>🎮 Mini-Jeux CP</h1><p>Apprends les bases de l'anglais en t'amusant !</p></div>
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchGame('memory', event)">🧠 Mémoire</button>
-            <button class="tab-btn" onclick="switchGame('match', event)">🔗 Association</button>
-            <button class="tab-btn" onclick="switchGame('record', event)">🎤 Prononciation</button>
+            <button class="tab-btn active" onclick="switchGame('memory', this)">🧠 Mémoire</button>
+            <button class="tab-btn" onclick="switchGame('match', this)">🔗 Association</button>
+            <button class="tab-btn" onclick="switchGame('record', this)">🎤 Prononciation</button>
         </div>
         <div id="memory" class="game-panel active"><h2 style="text-align:center">Jeu de Mémoire</h2><div class="memory-grid" id="memoryGrid"></div><div id="memoryResult" style="text-align:center; margin-top:20px; display:none;"></div></div>
         <div id="match" class="game-panel"><h2 style="text-align:center">Jeu d'Association</h2><div class="match-container" id="matchContainer"></div><div id="matchResult" style="text-align:center; margin-top:20px; display:none;"></div></div>
@@ -55,37 +53,37 @@
         </div>
     </div>
     <script>
-        const cpGamesData = {
+        var cpGamesData = {
             memory: [{word:"Hello",emoji:"👋"},{word:"Apple",emoji:"🍎"},{word:"Cat",emoji:"🐱"},{word:"Sun",emoji:"☀️"},{word:"Book",emoji:"📚"},{word:"Ball",emoji:"⚽"}],
             match: [{word:"Dog",emoji:"🐶"},{word:"Fish",emoji:"🐟"},{word:"Bird",emoji:"🐦"},{word:"Cow",emoji:"🐄"},{word:"Pig",emoji:"🐷"},{word:"Duck",emoji:"🦆"}],
             record: ["Hello", "Good morning", "Apple", "Banana", "Cat", "Dog", "One", "Two", "Three", "Red", "Blue", "Green"]
         };
-        function switchGame(id, e) {
-            document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        function switchGame(id, btn) {
+            document.querySelectorAll('.game-panel').forEach(function(p) { p.classList.remove('active'); });
+            document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
             document.getElementById(id).classList.add('active');
-            if(e && e.target) e.target.classList.add('active');
+            btn.classList.add('active');
         }
-        let memCards=[], flipped=[], memLocked=false;
+        var memCards=[], flipped=[], memLocked=false;
         function initMemory() {
-            const data = cpGamesData.memory; const pairs = [];
-            data.forEach(item => { pairs.push({id: item.word+'_w', pairId: item.word, display: item.word, type: 'word'}); pairs.push({id: item.word+'_e', pairId: item.word, display: item.emoji, type: 'emoji'}); });
-            memCards = pairs.sort(() => Math.random() - 0.5);
-            const grid = document.getElementById('memoryGrid'); grid.innerHTML = '';
-            memCards.forEach((card, i) => {
-                const div = document.createElement('div'); div.className = 'memory-card'; div.dataset.index = i;
+            var data = cpGamesData.memory; var pairs = [];
+            data.forEach(function(item) { pairs.push({id: item.word+'_w', pairId: item.word, display: item.word, type: 'word'}); pairs.push({id: item.word+'_e', pairId: item.word, display: item.emoji, type: 'emoji'}); });
+            memCards = pairs.sort(function() { return Math.random() - 0.5; });
+            var grid = document.getElementById('memoryGrid'); grid.innerHTML = '';
+            memCards.forEach(function(card, i) {
+                var div = document.createElement('div'); div.className = 'memory-card'; div.dataset.index = i;
                 div.innerHTML = '<span class="card-front" style="display:none">'+card.display+'</span><span class="card-back">❓</span>';
-                div.onclick = () => flipCard(i, div); grid.appendChild(div);
+                div.onclick = function() { flipCard(i, div); }; grid.appendChild(div);
             });
         }
         function flipCard(i, el) {
             if(memLocked || el.classList.contains('flipped') || el.classList.contains('matched')) return;
             el.classList.add('flipped'); el.querySelector('.card-front').style.display = 'block'; el.querySelector('.card-back').style.display = 'none';
-            flipped.push({el, card: memCards[i]});
+            flipped.push({el: el, card: memCards[i]});
             if(flipped.length === 2) {
-                memLocked = true; const [a, b] = flipped;
+                memLocked = true; var a = flipped[0]; var b = flipped[1];
                 if(a.card.pairId === b.card.pairId && a.card.type !== b.card.type) {
-                    setTimeout(() => {
+                    setTimeout(function() {
                         a.el.classList.add('matched'); b.el.classList.add('matched'); flipped = []; memLocked = false;
                         if(document.querySelectorAll('.memory-card.matched').length === memCards.length) {
                             document.getElementById('memoryResult').innerHTML = '<h3>🎉 Bravo !</h3><button class="record-btn" onclick="initMemory()" style="margin-top:10px">Rejouer</button>';
@@ -93,7 +91,7 @@
                         }
                     }, 500);
                 } else {
-                    setTimeout(() => {
+                    setTimeout(function() {
                         a.el.classList.remove('flipped'); a.el.querySelector('.card-front').style.display = 'none'; a.el.querySelector('.card-back').style.display = 'block';
                         b.el.classList.remove('flipped'); b.el.querySelector('.card-front').style.display = 'none'; b.el.querySelector('.card-back').style.display = 'block';
                         flipped = []; memLocked = false;
@@ -102,16 +100,16 @@
             }
         }
         initMemory();
-        let matchSel = null, matchPairsLeft = 0;
+        var matchSel = null, matchPairsLeft = 0;
         function initMatch() {
-            const data = cpGamesData.match.sort(() => Math.random() - 0.5); matchPairsLeft = data.length;
-            const container = document.getElementById('matchContainer'); container.innerHTML = '';
-            const wordsCol = document.createElement('div'); wordsCol.className = 'match-column';
-            const emojisCol = document.createElement('div'); emojisCol.className = 'match-column';
-            const shuffledWords = [...data].sort(() => Math.random() - 0.5);
-            const shuffledEmojis = [...data].sort(() => Math.random() - 0.5);
-            shuffledWords.forEach(item => { const div = document.createElement('div'); div.className = 'match-item'; div.textContent = item.word; div.dataset.word = item.word; div.dataset.type = 'word'; div.onclick = (e) => selectMatch(div, e); wordsCol.appendChild(div); });
-            shuffledEmojis.forEach(item => { const div = document.createElement('div'); div.className = 'match-item'; div.textContent = item.emoji; div.dataset.word = item.word; div.dataset.type = 'emoji'; div.onclick = (e) => selectMatch(div, e); emojisCol.appendChild(div); });
+            var data = cpGamesData.match.slice().sort(function() { return Math.random() - 0.5; }); matchPairsLeft = data.length;
+            var container = document.getElementById('matchContainer'); container.innerHTML = '';
+            var wordsCol = document.createElement('div'); wordsCol.className = 'match-column';
+            var emojisCol = document.createElement('div'); emojisCol.className = 'match-column';
+            var shuffledWords = data.slice().sort(function() { return Math.random() - 0.5; });
+            var shuffledEmojis = data.slice().sort(function() { return Math.random() - 0.5; });
+            shuffledWords.forEach(function(item) { var div = document.createElement('div'); div.className = 'match-item'; div.textContent = item.word; div.dataset.word = item.word; div.dataset.type = 'word'; div.onclick = function(e) { selectMatch(div, e); }; wordsCol.appendChild(div); });
+            shuffledEmojis.forEach(function(item) { var div = document.createElement('div'); div.className = 'match-item'; div.textContent = item.emoji; div.dataset.word = item.word; div.dataset.type = 'emoji'; div.onclick = function(e) { selectMatch(div, e); }; emojisCol.appendChild(div); });
             container.appendChild(wordsCol); container.appendChild(emojisCol);
         }
         function selectMatch(el, e) {
@@ -124,28 +122,28 @@
                     matchSel.classList.remove('selected'); matchSel.classList.add('correct'); el.classList.add('correct'); matchPairsLeft--; matchSel = null;
                     if(matchPairsLeft === 0) { document.getElementById('matchResult').innerHTML = '<h3>🎉 Bravo !</h3><button class="record-btn" onclick="initMatch()" style="margin-top:10px">Rejouer</button>'; document.getElementById('matchResult').style.display = 'block'; }
                 } else {
-                    el.classList.add('wrong'); matchSel.classList.add('wrong'); const prev = matchSel;
-                    setTimeout(() => { el.classList.remove('wrong'); prev.classList.remove('wrong', 'selected'); }, 800); matchSel = null;
+                    el.classList.add('wrong'); matchSel.classList.add('wrong'); var prev = matchSel;
+                    setTimeout(function() { el.classList.remove('wrong'); prev.classList.remove('wrong', 'selected'); }, 800); matchSel = null;
                 }
             }
         }
         initMatch();
-        let recWords = [...cpGamesData.record].sort(() => Math.random() - 0.5), recIdx = 0, mediaRecorder = null, audioChunks = [], recordedBlob = null, isRecording = false;
-        function listenWord() { const u = new SpeechSynthesisUtterance(recWords[recIdx]); u.lang = 'en-US'; u.rate = 0.8; speechSynthesis.speak(u); }
+        var recWords = cpGamesData.record.slice().sort(function() { return Math.random() - 0.5; }), recIdx = 0, mediaRecorder = null, audioChunks = [], recordedBlob = null, isRecording = false;
+        function listenWord() { var u = new SpeechSynthesisUtterance(recWords[recIdx]); u.lang = 'en-US'; u.rate = 0.8; speechSynthesis.speak(u); }
         function toggleRecord() {
-            const btn = document.getElementById('micBtn');
+            var btn = document.getElementById('micBtn');
             if(isRecording) { mediaRecorder.stop(); btn.classList.remove('recording'); btn.textContent = '🎙️ S\'enregistrer'; isRecording = false; }
             else {
-                navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
+                navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream) {
                     audioChunks = []; mediaRecorder = new MediaRecorder(stream);
-                    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
-                    mediaRecorder.onstop = () => { recordedBlob = new Blob(audioChunks, {type: 'audio/webm'}); document.getElementById('playBtn').disabled = false; stream.getTracks().forEach(t => t.stop()); document.getElementById('recordFeedback').textContent = '✅ Enregistrement terminé !'; document.getElementById('recordFeedback').className = 'feedback good'; };
+                    mediaRecorder.ondataavailable = function(e) { audioChunks.push(e.data); };
+                    mediaRecorder.onstop = function() { recordedBlob = new Blob(audioChunks, {type: 'audio/webm'}); document.getElementById('playBtn').disabled = false; stream.getTracks().forEach(function(t) { t.stop(); }); document.getElementById('recordFeedback').textContent = '✅ Enregistrement terminé !'; document.getElementById('recordFeedback').className = 'feedback good'; };
                     mediaRecorder.start(); isRecording = true; btn.classList.add('recording'); btn.textContent = '⏹️ Arrêter'; document.getElementById('recordFeedback').textContent = '🔴 En cours...'; document.getElementById('recordFeedback').className = 'feedback try-again';
-                }).catch(() => { document.getElementById('recordFeedback').textContent = '⚠️ Micro non autorisé.'; });
+                }).catch(function() { document.getElementById('recordFeedback').textContent = '⚠️ Micro non autorisé.'; });
             }
         }
         function playRecording() { if(recordedBlob) new Audio(URL.createObjectURL(recordedBlob)).play(); }
         function nextRecordWord() { recordedBlob = null; document.getElementById('playBtn').disabled = true; document.getElementById('recordFeedback').textContent = ''; recIdx = (recIdx + 1) % recWords.length; document.getElementById('recordWord').textContent = recWords[recIdx]; }
-    <\/script>
+    </script>
 </body>
 </html>
