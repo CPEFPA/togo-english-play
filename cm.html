@@ -13,6 +13,17 @@
         .unit-card { background: white; border-radius: 15px; padding: 25px; text-align: center; cursor: pointer; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .unit-card:hover { transform: translateY(-5px); }
         .unit-icon { font-size: 3em; margin-bottom: 15px; }
+        .week-card { background: white; border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        .week-card:hover { transform: translateY(-3px); border: 2px solid #FF5722; }
+        .video-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 25px; }
+        .video-badge { background: #FF5722; color: white; padding: 8px 15px; font-size: 0.9em; font-weight: bold; }
+        .video-card h3 { padding: 15px 15px 5px; margin: 0; font-size: 1.1em; color: #333; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-info { padding: 15px; color: #666; font-size: 0.95em; }
+        .flashcards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .flashcard { background: white; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .flashcard-word { font-size: 1.3em; font-weight: bold; color: #FF5722; margin-bottom: 10px; text-transform: capitalize; }
     </style>
 </head>
 <body>
@@ -20,23 +31,143 @@
         <a href="/togo-english-play/students.html" class="back-home-btn">← Retour aux niveaux</a>
         <div class="page-header">
             <h1>🎓 Cours Moyen (CM1 & CM2)</h1>
-            <p>Programme officiel du Ministère - 6 Unités • 24 semaines</p>
+            <p>Programme officiel du Ministère - 7 Unités • 28 semaines</p>
         </div>
-        <div class="units-grid" id="unitsGrid"></div>
+        
+        <div id="unitsGrid" class="units-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;"></div>
+        
+        <div id="lessonContent" style="display: none;">
+            <button onclick="goBackToUnits()" style="background: #FF5722; color: white; padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin-bottom: 20px;">← Retour aux unités</button>
+            <div class="page-header">
+                <h2 id="lessonTitle"></h2>
+                <p id="lessonTheme" style="font-size: 1.2em; color: #666;"></p>
+            </div>
+            <div class="video-section">
+                <h3 style="color: #FF5722;">🎥 Vidéos de la semaine</h3>
+                <div id="videoList"></div>
+            </div>
+            <div class="flashcards-section">
+                <h3 style="color: #FF5722;">🔤 Vocabulaire de la semaine</h3>
+                <div id="flashcardsContainer" class="flashcards-grid"></div>
+            </div>
+            <button onclick="goBackToUnits()" style="background: #FF5722; color: white; padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%;">← Retour aux unités</button>
+        </div>
     </div>
     <script>
+        var programData = {};
+        var currentUnit = null;
+        
         fetch('/togo-english-play/data/videos-cm.json?' + Date.now())
-            .then(r => r.json())
-            .then(data => {
-                const grid = document.getElementById('unitsGrid');
-                Object.keys(data).forEach(key => {
-                    const unit = data[key];
-                    const card = document.createElement('div');
-                    card.className = 'unit-card';
-                    card.innerHTML = `<div class="unit-icon">${unit.icon}</div><h3>${unit.title}</h3><p>${unit.weeks.length} semaines</p>`;
-                    grid.appendChild(card);
-                });
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                programData = data;
+                displayUnits();
+            })
+            .catch(function(e) { console.error(e); });
+        
+        function displayUnits() {
+            var grid = document.getElementById('unitsGrid');
+            grid.innerHTML = '<h2 style="color: white; text-align: center; margin-bottom: 20px; grid-column: 1/-1;">📖 Choisis ton unité CM :</h2>';
+            Object.keys(programData).forEach(function(key) {
+                var unit = programData[key];
+                var card = document.createElement('div');
+                card.className = 'unit-card';
+                card.onclick = function() { selectUnit(key); };
+                card.innerHTML = '<div class="unit-icon">' + unit.icon + '</div><h3>' + unit.title + '</h3><p>' + unit.weeks.length + ' semaine(s)</p>';
+                grid.appendChild(card);
             });
+        }
+        
+        function selectUnit(unitKey) {
+            currentUnit = unitKey;
+            var unit = programData[unitKey];
+            var grid = document.getElementById('unitsGrid');
+            grid.innerHTML = '<h2 style="color: white; text-align: center; margin-bottom: 20px; grid-column: 1/-1;">' + unit.icon + ' ' + unit.title + '</h2>';
+            var backBtn = document.createElement('button');
+            backBtn.className = 'back-btn';
+            backBtn.style.cssText = 'grid-column: 1/-1; background: #FF5722; color: white; padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin-bottom: 20px;';
+            backBtn.textContent = '← Retour aux 7 unités';
+            backBtn.onclick = displayUnits;
+            grid.appendChild(backBtn);
+            
+            unit.weeks.forEach(function(week, i) {
+                var card = document.createElement('div');
+                card.className = 'week-card';
+                card.onclick = function() { selectWeek(i); };
+                card.innerHTML = '<h3>Semaine ' + week.week + '</h3><p>' + week.theme + '</p><p style="color: #FF5722; font-weight: bold;">' + week.videos.length + ' vidéo(s)</p>';
+                grid.appendChild(card);
+            });
+        }
+        
+        function selectWeek(weekIndex) {
+            var week = programData[currentUnit].weeks[weekIndex];
+            document.getElementById('unitsGrid').style.display = 'none';
+            document.getElementById('lessonContent').style.display = 'block';
+            document.getElementById('lessonTitle').textContent = programData[currentUnit].title;
+            document.getElementById('lessonTheme').textContent = 'Semaine ' + week.week + ' : ' + week.theme;
+            
+            var videoList = document.getElementById('videoList');
+            videoList.innerHTML = '';
+            if (week.videos.length === 0) {
+                videoList.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Aucune vidéo cette semaine. Utilisez les flashcards !</p>';
+            } else {
+                week.videos.forEach(function(v) {
+                    var div = document.createElement('div');
+                    div.className = 'video-card';
+                    div.innerHTML = '<div class="video-badge">Jour ' + v.day + ' - ' + (v.type ? v.type.toUpperCase() : 'VIDEO') + '</div>' +
+                        '<h3>' + v.title + '</h3>' +
+                        '<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/' + v.youtubeId + '" frameborder="0" allowfullscreen></iframe></div>' +
+                        '<div class="video-info"><p>🎯 <strong>Objectif :</strong> ' + v.objective + '</p></div>';
+                    videoList.appendChild(div);
+                });
+            }
+            
+            var vocab = getVocabForTheme(week.theme);
+            var fc = document.getElementById('flashcardsContainer');
+            fc.innerHTML = '';
+            vocab.forEach(function(word) {
+                var card = document.createElement('div');
+                card.className = 'flashcard';
+                card.innerHTML = '<div class="flashcard-word">' + word + '</div><button onclick="speakWord(\'' + word + '\')" style="margin-top: 10px; background: #FF5722; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer;">🔊 Écouter</button>';
+                fc.appendChild(card);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function getVocabForTheme(theme) {
+            var t = theme.toLowerCase();
+            if (t.includes('greet') || t.includes('alphabet') || t.includes('number')) return ['Hello', 'Good morning', 'Alphabet', 'One', 'Two', 'Three', 'Ten', 'Twenty'];
+            if (t.includes('classroom') || t.includes('command')) return ['Pencil', 'Book', 'Notebook', 'Teacher', 'Student', 'Sit down', 'Stand up', 'Raise your hand'];
+            if (t.includes('body') || t.includes('day')) return ['Head', 'Face', 'Eyes', 'Ears', 'Monday', 'Tuesday', 'Wednesday', 'Today'];
+            if (t.includes('communit') || t.includes('neighbour')) return ['Community', 'Neighbour', 'School', 'Hospital', 'Market', 'Farm', 'Library', 'Church'];
+            if (t.includes('virtue') || t.includes('social')) return ['Honesty', 'Patience', 'Kindness', 'Unity', 'Teamwork', 'Love', 'Truth', 'Share'];
+            if (t.includes('share') || t.includes('resource')) return ['Share', 'Help', 'Together', 'Clean', 'Plant', 'Build', 'Work', 'Grow'];
+            if (t.includes('outdoor') || t.includes('sport')) return ['Football', 'Running', 'Basketball', 'Painting', 'Reading', 'Gardening', 'Drawing', 'Playing'];
+            if (t.includes('landscape') || t.includes('landform')) return ['Mountain', 'River', 'Forest', 'Beach', 'Valley', 'Waterfall', 'Lake', 'Savannah'];
+            if (t.includes('togo') || t.includes('monument')) return ['Mount Agou', 'Lake Togo', 'Kpime', 'Mono River', 'Tamberma', 'Lomé', 'Notsè', 'Fazao'];
+            if (t.includes('health') || t.includes('lifestyle')) return ['Exercise', 'Sleep', 'Water', 'Fruits', 'Vegetables', 'Brush teeth', 'Wash hands', 'Clean'];
+            if (t.includes('unhealthy') || t.includes('habit')) return ['Smoking', 'Junk food', 'Alcohol', 'Lazy', 'Tired', 'Weak', 'Sick', 'Rest'];
+            if (t.includes('profession') || t.includes('career')) return ['Teacher', 'Doctor', 'Farmer', 'Driver', 'Nurse', 'Police', 'Lawyer', 'Carpenter'];
+            if (t.includes('technolog')) return ['Computer', 'Phone', 'Internet', 'Car', 'Plane', 'TV', 'Radio', 'Tablet'];
+            if (t.includes('diversity') || t.includes('culture')) return ['Language', 'Food', 'Culture', 'Currency', 'Tradition', 'Togolese', 'Ghanaian', 'American'];
+            if (t.includes('environment') || t.includes('climate')) return ['Tree', 'Water', 'Air', 'Recycle', 'Plant', 'Save', 'Protect', 'Clean'];
+            return ['English', 'School', 'Teacher', 'Student', 'Book', 'Learn', 'Play', 'Friend'];
+        }
+        
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                var u = new SpeechSynthesisUtterance(word);
+                u.lang = 'en-US';
+                u.rate = 0.8;
+                speechSynthesis.speak(u);
+            }
+        }
+        
+        function goBackToUnits() {
+            document.getElementById('lessonContent').style.display = 'none';
+            document.getElementById('unitsGrid').style.display = 'grid';
+            displayUnits();
+        }
     </script>
 </body>
 </html>

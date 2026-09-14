@@ -13,9 +13,22 @@
         .tab-btn { padding: 10px 20px; border: none; background: #e0e0e0; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .tab-btn.active { background: #FF5722; color: white; }
         .game-panel { display: none; } .game-panel.active { display: block; }
+        .theme-selector { text-align: center; margin: 20px 0; }
+        .theme-btn { padding: 8px 15px; margin: 5px; border: none; background: #f0f0f0; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        .theme-btn.active { background: #FF5722; color: white; }
         .memory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; max-width: 600px; margin: 0 auto; }
         .memory-card { background: #FF5722; color: white; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 1.2em; font-weight: bold; }
         .memory-card.flipped, .memory-card.matched { background: white; color: #FF5722; border: 2px solid #FF5722; }
+        .match-container { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+        .match-column { display: flex; flex-direction: column; gap: 10px; }
+        .match-item { padding: 15px; background: #f0f0f0; border-radius: 10px; cursor: pointer; text-align: center; min-width: 120px; }
+        .match-item.selected { background: #FFD700; } .match-item.correct { background: #4CAF50; color: white; } .match-item.wrong { background: #f44336; color: white; }
+        .record-container { text-align: center; max-width: 400px; margin: 0 auto; }
+        .word-display { font-size: 2em; color: #FF5722; font-weight: bold; margin-bottom: 20px; }
+        .record-btns { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .record-btn { padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; background: #FF5722; color: white; }
+        .record-btn:disabled { background: #ccc; cursor: not-allowed; } .record-btn.recording { background: #f44336; }
+        .feedback { margin: 20px 0; font-weight: bold; min-height: 24px; } .feedback.good { color: #4CAF50; } .feedback.try-again { color: #FF9800; }
     </style>
 </head>
 <body>
@@ -27,23 +40,61 @@
             <button class="tab-btn" onclick="switchGame('match', this)">🔗 Association</button>
             <button class="tab-btn" onclick="switchGame('record', this)">🎤 Prononciation</button>
         </div>
+        
         <div id="memory" class="game-panel active">
-            <h2 style="text-align:center">Jeu de Mémoire CM</h2>
-            <div class="theme-selector" style="text-align:center; margin: 20px 0;">
-                <button class="tab-btn" onclick="loadMemory('community')">🏘️ Communauté</button>
-                <button class="tab-btn" onclick="loadMemory('outdoor')">🏞️ Extérieur</button>
-                <button class="tab-btn" onclick="loadMemory('health')">💪 Santé</button>
-                <button class="tab-btn" onclick="loadMemory('professions')">👨‍⚕️ Métiers</button>
-                <button class="tab-btn" onclick="loadMemory('tech')">🌍 Technologie</button>
-                <button class="tab-btn" onclick="loadMemory('environment')">🌱 Environnement</button>
+            <h2 style="text-align:center">🧠 Jeu de Mémoire CM</h2>
+            <div class="theme-selector">
+                <button class="theme-btn active" onclick="loadMemory('community', this)">🏘️ Communauté</button>
+                <button class="theme-btn" onclick="loadMemory('outdoor', this)">🏞️ Extérieur</button>
+                <button class="theme-btn" onclick="loadMemory('health', this)">💪 Santé</button>
+                <button class="theme-btn" onclick="loadMemory('professions', this)">👨‍⚕️ Métiers</button>
+                <button class="theme-btn" onclick="loadMemory('tech', this)">🌍 Technologie</button>
+                <button class="theme-btn" onclick="loadMemory('environment', this)">🌱 Environnement</button>
             </div>
             <div class="memory-grid" id="memoryGrid"></div>
+            <div id="memoryResult" style="text-align:center; margin-top:20px; display:none;"></div>
         </div>
-        <div id="match" class="game-panel"><h2 style="text-align:center">Jeu d'Association CM</h2><p style="text-align:center">Bientôt disponible</p></div>
-        <div id="record" class="game-panel"><h2 style="text-align:center">Jeu de Prononciation CM</h2><p style="text-align:center">Bientôt disponible</p></div>
+        
+        <div id="match" class="game-panel">
+            <h2 style="text-align:center">🔗 Jeu d'Association CM</h2>
+            <p style="text-align:center">Clique sur le mot anglais puis sur l'emoji correspondant !</p>
+            <div class="theme-selector">
+                <button class="theme-btn active" onclick="loadMatch('community', this)">🏘️ Communauté</button>
+                <button class="theme-btn" onclick="loadMatch('outdoor', this)">🏞️ Extérieur</button>
+                <button class="theme-btn" onclick="loadMatch('health', this)">💪 Santé</button>
+                <button class="theme-btn" onclick="loadMatch('professions', this)">👨‍⚕️ Métiers</button>
+                <button class="theme-btn" onclick="loadMatch('tech', this)">🌍 Technologie</button>
+                <button class="theme-btn" onclick="loadMatch('environment', this)">🌱 Environnement</button>
+            </div>
+            <div class="match-container" id="matchContainer"></div>
+            <div id="matchResult" style="text-align:center; margin-top:20px; display:none;"></div>
+        </div>
+        
+        <div id="record" class="game-panel">
+            <h2 style="text-align:center">🎤 Jeu de Prononciation CM</h2>
+            <p style="text-align:center">Écoute le mot, prononce-le, puis compare !</p>
+            <div class="theme-selector">
+                <button class="theme-btn active" onclick="loadRecord('community', this)">🏘️ Communauté</button>
+                <button class="theme-btn" onclick="loadRecord('outdoor', this)">🏞️ Extérieur</button>
+                <button class="theme-btn" onclick="loadRecord('health', this)">💪 Santé</button>
+                <button class="theme-btn" onclick="loadRecord('professions', this)">👨‍⚕️ Métiers</button>
+                <button class="theme-btn" onclick="loadRecord('tech', this)">🌍 Technologie</button>
+                <button class="theme-btn" onclick="loadRecord('environment', this)">🌱 Environnement</button>
+            </div>
+            <div class="record-container">
+                <div class="word-display" id="recordWord">Community</div>
+                <div class="record-btns">
+                    <button class="record-btn" onclick="listenWord()">🔊 Écouter</button>
+                    <button class="record-btn" id="micBtn" onclick="toggleRecord()">🎙️ S'enregistrer</button>
+                    <button class="record-btn" id="playBtn" onclick="playRecording()" disabled>▶️ Ma voix</button>
+                </div>
+                <div class="feedback" id="recordFeedback"></div>
+                <button class="record-btn" onclick="nextRecordWord()">➡️ Mot suivant</button>
+            </div>
+        </div>
     </div>
     <script>
-        const cmGamesData = {
+        var cmGamesData = {
             community: [{word:"Community",emoji:"🏘️"},{word:"Neighbour",emoji:"👥"},{word:"School",emoji:"🏫"},{word:"Hospital",emoji:"🏥"},{word:"Market",emoji:"🛒"},{word:"Farm",emoji:"🌾"}],
             outdoor: [{word:"Mountain",emoji:"⛰️"},{word:"River",emoji:"🏞️"},{word:"Forest",emoji:"🌲"},{word:"Beach",emoji:"🏖️"},{word:"Football",emoji:"⚽"},{word:"Running",emoji:"🏃"}],
             health: [{word:"Exercise",emoji:"🏋️"},{word:"Sleep",emoji:"😴"},{word:"Water",emoji:"💧"},{word:"Fruits",emoji:"🍎"},{word:"Vegetables",emoji:"🥦"},{word:"Brush",emoji:"🪥"}],
@@ -51,36 +102,179 @@
             tech: [{word:"Computer",emoji:"💻"},{word:"Phone",emoji:"📱"},{word:"Internet",emoji:"🌐"},{word:"Car",emoji:"🚙"},{word:"Plane",emoji:"✈️"},{word:"TV",emoji:"📺"}],
             environment: [{word:"Tree",emoji:"🌳"},{word:"Recycle",emoji:"♻️"},{word:"Water",emoji:"💧"},{word:"Sun",emoji:"☀️"},{word:"Trash",emoji:"🗑️"},{word:"Plant",emoji:"🌱"}]
         };
+        
         function switchGame(id, btn) {
-            document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.game-panel').forEach(function(p) { p.classList.remove('active'); });
+            document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
             document.getElementById(id).classList.add('active');
             btn.classList.add('active');
         }
-        function loadMemory(theme) {
-            const data = cmGamesData[theme];
-            const pairs = [];
-            data.forEach(item => {
+        
+        // MÉMOIRE
+        var memCards = [], flipped = [], memLocked = false;
+        function loadMemory(theme, btn) {
+            if (btn) {
+                document.querySelectorAll('#memory .theme-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+            }
+            var data = cmGamesData[theme];
+            var pairs = [];
+            data.forEach(function(item) {
                 pairs.push({id: item.word+'_w', pairId: item.word, display: item.word, type: 'word'});
                 pairs.push({id: item.word+'_e', pairId: item.word, display: item.emoji, type: 'emoji'});
             });
-            const cards = pairs.sort(() => Math.random() - 0.5);
-            const grid = document.getElementById('memoryGrid');
+            memCards = pairs.sort(function() { return Math.random() - 0.5; });
+            flipped = []; memLocked = false;
+            document.getElementById('memoryResult').style.display = 'none';
+            var grid = document.getElementById('memoryGrid');
             grid.innerHTML = '';
-            cards.forEach((card, i) => {
-                const div = document.createElement('div');
+            memCards.forEach(function(card, i) {
+                var div = document.createElement('div');
                 div.className = 'memory-card';
-                div.innerHTML = `<span style="display:none">${card.display}</span><span>❓</span>`;
-                div.onclick = function() {
-                    this.classList.toggle('flipped');
-                    const spans = this.querySelectorAll('span');
-                    spans[0].style.display = spans[0].style.display === 'none' ? 'block' : 'none';
-                    spans[1].style.display = spans[1].style.display === 'none' ? 'block' : 'none';
-                };
+                div.innerHTML = '<span style="display:none">' + card.display + '</span><span>❓</span>';
+                div.onclick = function() { flipCard(i, div); };
                 grid.appendChild(div);
             });
         }
+        function flipCard(i, el) {
+            if (memLocked || el.classList.contains('flipped') || el.classList.contains('matched')) return;
+            el.classList.add('flipped');
+            var spans = el.querySelectorAll('span');
+            spans[0].style.display = 'block'; spans[1].style.display = 'none';
+            flipped.push({el: el, card: memCards[i]});
+            if (flipped.length === 2) {
+                memLocked = true;
+                var a = flipped[0], b = flipped[1];
+                if (a.card.pairId === b.card.pairId && a.card.type !== b.card.type) {
+                    setTimeout(function() {
+                        a.el.classList.add('matched'); b.el.classList.add('matched');
+                        flipped = []; memLocked = false;
+                        if (document.querySelectorAll('.memory-card.matched').length === memCards.length) {
+                            document.getElementById('memoryResult').innerHTML = '<h3>🎉 Bravo !</h3><button class="record-btn" onclick="loadMemory(\'community\')">🔄 Rejouer</button>';
+                            document.getElementById('memoryResult').style.display = 'block';
+                        }
+                    }, 500);
+                } else {
+                    setTimeout(function() {
+                        a.el.classList.remove('flipped'); a.el.querySelectorAll('span')[0].style.display = 'none'; a.el.querySelectorAll('span')[1].style.display = 'block';
+                        b.el.classList.remove('flipped'); b.el.querySelectorAll('span')[0].style.display = 'none'; b.el.querySelectorAll('span')[1].style.display = 'block';
+                        flipped = []; memLocked = false;
+                    }, 1000);
+                }
+            }
+        }
         loadMemory('community');
+        
+        // ASSOCIATION
+        var matchSel = null, matchPairsLeft = 0;
+        function loadMatch(theme, btn) {
+            if (btn) {
+                document.querySelectorAll('#match .theme-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+            }
+            var data = cmGamesData[theme].slice().sort(function() { return Math.random() - 0.5; });
+            matchPairsLeft = data.length; matchSel = null;
+            document.getElementById('matchResult').style.display = 'none';
+            var container = document.getElementById('matchContainer');
+            container.innerHTML = '';
+            var wordsCol = document.createElement('div'); wordsCol.className = 'match-column';
+            var emojisCol = document.createElement('div'); emojisCol.className = 'match-column';
+            var shuffledWords = data.slice().sort(function() { return Math.random() - 0.5; });
+            var shuffledEmojis = data.slice().sort(function() { return Math.random() - 0.5; });
+            shuffledWords.forEach(function(item) {
+                var div = document.createElement('div'); div.className = 'match-item'; div.textContent = item.word;
+                div.dataset.word = item.word; div.dataset.type = 'word';
+                div.onclick = function(e) { selectMatch(div, e); };
+                wordsCol.appendChild(div);
+            });
+            shuffledEmojis.forEach(function(item) {
+                var div = document.createElement('div'); div.className = 'match-item'; div.textContent = item.emoji;
+                div.dataset.word = item.word; div.dataset.type = 'emoji';
+                div.onclick = function(e) { selectMatch(div, e); };
+                emojisCol.appendChild(div);
+            });
+            container.appendChild(wordsCol); container.appendChild(emojisCol);
+        }
+        function selectMatch(el, e) {
+            e.stopPropagation();
+            if (el.classList.contains('correct')) return;
+            if (!matchSel) { matchSel = el; el.classList.add('selected'); }
+            else {
+                if (matchSel === el) { el.classList.remove('selected'); matchSel = null; return; }
+                if (matchSel.dataset.type === el.dataset.type) { matchSel.classList.remove('selected'); matchSel = el; el.classList.add('selected'); return; }
+                if (matchSel.dataset.word === el.dataset.word) {
+                    matchSel.classList.remove('selected'); matchSel.classList.add('correct'); el.classList.add('correct');
+                    matchPairsLeft--; matchSel = null;
+                    if (matchPairsLeft === 0) {
+                        document.getElementById('matchResult').innerHTML = '<h3>🎉 Bravo !</h3><button class="record-btn" onclick="loadMatch(\'community\')">🔄 Rejouer</button>';
+                        document.getElementById('matchResult').style.display = 'block';
+                    }
+                } else {
+                    el.classList.add('wrong'); matchSel.classList.add('wrong');
+                    var prev = matchSel;
+                    setTimeout(function() { el.classList.remove('wrong'); prev.classList.remove('wrong', 'selected'); }, 800);
+                    matchSel = null;
+                }
+            }
+        }
+        loadMatch('community');
+        
+        // PRONONCIATION
+        var recWords = [], recIdx = 0, mediaRecorder = null, audioChunks = [], recordedBlob = null, isRecording = false;
+        function loadRecord(theme, btn) {
+            if (btn) {
+                document.querySelectorAll('#record .theme-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+            }
+            recWords = cmGamesData[theme].map(function(item) { return item.word; }).sort(function() { return Math.random() - 0.5; });
+            recIdx = 0; recordedBlob = null;
+            document.getElementById('playBtn').disabled = true;
+            document.getElementById('recordFeedback').textContent = '';
+            document.getElementById('recordWord').textContent = recWords[0];
+        }
+        function listenWord() {
+            var u = new SpeechSynthesisUtterance(recWords[recIdx]);
+            u.lang = 'en-US'; u.rate = 0.8;
+            speechSynthesis.speak(u);
+        }
+        function toggleRecord() {
+            var btn = document.getElementById('micBtn');
+            if (isRecording) {
+                mediaRecorder.stop(); btn.classList.remove('recording'); btn.textContent = '🎙️ S\'enregistrer'; isRecording = false;
+            } else {
+                navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream) {
+                    audioChunks = []; mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.ondataavailable = function(e) { audioChunks.push(e.data); };
+                    mediaRecorder.onstop = function() {
+                        recordedBlob = new Blob(audioChunks, {type: 'audio/webm'});
+                        document.getElementById('playBtn').disabled = false;
+                        stream.getTracks().forEach(function(t) { t.stop(); });
+                        document.getElementById('recordFeedback').textContent = '✅ Enregistrement terminé ! Écoute ta voix.';
+                        document.getElementById('recordFeedback').className = 'feedback good';
+                    };
+                    mediaRecorder.start(); isRecording = true;
+                    btn.classList.add('recording'); btn.textContent = '⏹️ Arrêter';
+                    document.getElementById('recordFeedback').textContent = '🔴 En cours... Parle maintenant !';
+                    document.getElementById('recordFeedback').className = 'feedback try-again';
+                }).catch(function() {
+                    document.getElementById('recordFeedback').textContent = '⚠️ Micro non autorisé.';
+                    document.getElementById('recordFeedback').className = 'feedback try-again';
+                });
+            }
+        }
+        function playRecording() { if (recordedBlob) new Audio(URL.createObjectURL(recordedBlob)).play(); }
+        function nextRecordWord() {
+            recordedBlob = null;
+            document.getElementById('playBtn').disabled = true;
+            document.getElementById('recordFeedback').textContent = '';
+            recIdx = (recIdx + 1) % recWords.length;
+            document.getElementById('recordWord').textContent = recWords[recIdx];
+            if (recIdx === 0) {
+                document.getElementById('recordFeedback').textContent = '🎉 Tour terminé ! Bravo !';
+                document.getElementById('recordFeedback').className = 'feedback good';
+            }
+        }
+        loadRecord('community');
     </script>
 </body>
 </html>
