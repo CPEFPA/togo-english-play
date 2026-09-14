@@ -1,0 +1,589 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Cards CM - TogoEnglish Play</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .back-home-btn { display: inline-flex; align-items: center; background: #FF5722; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { color: #FF5722; font-size: 2.5em; margin-bottom: 15px; }
+        .page-header p { color: #666; font-size: 1.2em; }
+        
+        .unit-selector { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .unit-btn { padding: 12px 20px; border: none; background: #e0e0e0; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 0.95em; transition: all 0.3s; }
+        .unit-btn.active { background: #FF5722; color: white; }
+        
+        .lesson-card { background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px; overflow: hidden; }
+        .lesson-card-header { background: #FF5722; color: white; padding: 20px; }
+        .lesson-card-header h2 { margin: 0; font-size: 1.5em; }
+        .lesson-card-header p { margin: 5px 0 0 0; opacity: 0.9; }
+        
+        .lesson-card-body { padding: 25px; }
+        .info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .info-item { background: #f9f9f9; padding: 15px; border-radius: 10px; }
+        .info-item label { font-weight: bold; color: #FF5722; display: block; margin-bottom: 5px; }
+        .info-item span { color: #555; }
+        
+        .section-title { color: #FF5722; font-size: 1.2em; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #FF5722; padding-bottom: 5px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background: #FF5722; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border: 1px solid #ddd; vertical-align: top; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        
+        .vocab-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .vocab-item { background: #FFE66D; padding: 8px 15px; border-radius: 20px; font-weight: bold; }
+        
+        .objective-list { line-height: 1.8; }
+        .objective-list li { margin-bottom: 8px; }
+        
+        .print-btn { background: #FF5722; color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+        .print-btn:hover { background: #E64A19; }
+        
+        @media print {
+            .back-home-btn, .unit-selector, .print-btn { display: none; }
+            .lesson-card { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <a href="/togo-english-play/teachers.html" class="back-home-btn">← Retour aux enseignants</a>
+        
+        <div class="page-header">
+            <h1>📋 Lesson Cards CM</h1>
+            <p>Fiches Pédagogiques Officielles - Programme Cours Moyen</p>
+        </div>
+
+        <div class="unit-selector">
+            <button class="unit-btn active" onclick="showUnit('preunit', this)">⭐ Pre-Unit</button>
+            <button class="unit-btn" onclick="showUnit('unit1', this)">🏘️ Unit 1</button>
+            <button class="unit-btn" onclick="showUnit('unit2', this)">🏞️ Unit 2</button>
+            <button class="unit-btn" onclick="showUnit('unit3', this)">💪 Unit 3</button>
+            <button class="unit-btn" onclick="showUnit('unit4', this)">👨‍⚕️ Unit 4</button>
+            <button class="unit-btn" onclick="showUnit('unit5', this)">🌍 Unit 5</button>
+            <button class="unit-btn" onclick="showUnit('unit6', this)">🌱 Unit 6</button>
+        </div>
+
+        <div id="lessonCardsContainer"></div>
+
+        <button class="print-btn" onclick="window.print()">🖨️ Imprimer les Lesson Cards</button>
+    </div>
+
+    <script>
+        const lessonCardsData = {
+            preunit: [
+                {
+                    week: 1,
+                    theme: "Greetings, Alphabet, Numbers 1-20",
+                    unit: "PRE-UNIT: I Am Special",
+                    duration: "40 minutes",
+                    vocab: ["Hello", "Good morning", "Alphabet A-Z", "One", "Two", "Three", "Ten", "Twenty"],
+                    objectives: [
+                        "Greet in English",
+                        "Sing the alphabet song",
+                        "Give basic information about themselves",
+                        "Count from 1 to 20"
+                    ],
+                    resources: ["Flash cards", "Alphabet song video", "Hello song video"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and intones the Hello song", learner: "Learners greet the teacher and sing", instruction: "The teacher sings with learners"},
+                        {step: "Revision", teacher: "Revises greetings and alphabet", learner: "Learners respond to teacher's prompts", instruction: "Use praise formulations to motivate learners"},
+                        {step: "Introduction", teacher: "Introduces greetings and alphabet using flash cards", learner: "Watch carefully and repeat", instruction: "Note the differences between French and English pronunciation"},
+                        {step: "Practice", teacher: "Practices greetings in partners with Dialogue #1", learner: "Practice dialogue in pairs", instruction: "Play alphabet review game"},
+                        {step: "Counting", teacher: "Teaches counting 1-10 then 1-20", learner: "Count together and practice", instruction: "Use counting song video"}
+                    ]
+                },
+                {
+                    week: 2,
+                    theme: "Classroom Objects and Commands",
+                    unit: "PRE-UNIT: I Am Special",
+                    duration: "40 minutes",
+                    vocab: ["Pencil", "Book", "Notebook", "Eraser", "Ruler", "Pen", "School bag", "Table", "Board", "Desk", "Chair", "Teacher", "Learner"],
+                    objectives: [
+                        "Name the various objects in the classroom",
+                        "Follow basic classroom commands",
+                        "Count 1-20"
+                    ],
+                    resources: ["Classroom objects flash cards", "Posters", "Simon Says game"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and sings Hello song", learner: "Learners greet and sing", instruction: "Greet each other"},
+                        {step: "Vocabulary", teacher: "Introduces classroom objects vocabulary using flash cards", learner: "Listen, repeat, and spell", instruction: "Use 'What is this?' and 'What is that?'"},
+                        {step: "Commands", teacher: "Teaches classroom commands: Sit down, Stand up, Raise your hand", learner: "Follow commands and practice", instruction: "Play Simon Says with classroom commands"},
+                        {step: "Practice", teacher: "Reviews classroom objects and commands", learner: "Practice and play games", instruction: "Review numbers 1-20"},
+                        {step: "Assessment", teacher: "Asks learners to name objects and follow commands", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 3,
+                    theme: "Body Parts and Days of the Week",
+                    unit: "PRE-UNIT: I Am Special",
+                    duration: "40 minutes",
+                    vocab: ["Head", "Face", "Eyes", "Ears", "Neck", "Shoulders", "Arms", "Hands", "Fingers", "Legs", "Knees", "Feet", "Toes", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    objectives: [
+                        "Name their body parts",
+                        "Name the days of the week",
+                        "Count 1-50"
+                    ],
+                    resources: ["Body parts flash cards", "Days of the week song", "Numbers 1-50 flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews previous learning", learner: "Greet and review", instruction: "Review classroom objects and numbers 1-20"},
+                        {step: "Body Parts", teacher: "Introduces body parts vocabulary with flash cards", learner: "Listen, repeat, and point to body parts", instruction: "Use 'What is this?' and 'Show me your...'"},
+                        {step: "Numbers", teacher: "Teaches numbers 1-50, focusing on 30, 40, 50", learner: "Count and practice", instruction: "Teach the counting pattern"},
+                        {step: "Days", teacher: "Introduces days of the week with song", learner: "Sing and practice days", instruction: "Use 'What day is it today?' patterns"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                }
+            ],
+            unit1: [
+                {
+                    week: 1,
+                    theme: "Define Community and Neighbourhood",
+                    unit: "UNIT 1: Communities and Neighbourhood",
+                    duration: "40 minutes",
+                    vocab: ["Community", "Neighbourhood", "Houses", "Apartments", "Schools", "Shops", "Markets", "Farm", "Hospitals", "Clinics", "Roads", "Streets"],
+                    objectives: [
+                        "Define community and neighbourhood",
+                        "Describe their community and neighbourhood"
+                    ],
+                    resources: ["Community/Neighbourhood teaching pictures", "Flash cards", "Video: What is a community?"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and intones 'We Are Here Together' song", learner: "Learners greet and sing", instruction: "The teacher sings with learners"},
+                        {step: "Introduction", teacher: "Shows video or flash cards on community and neighbourhood", learner: "Watch carefully and answer questions", instruction: "Play the video twice for better comprehension"},
+                        {step: "Vocabulary", teacher: "Teaches vocabulary: community, neighbourhood, houses, schools, shops...", learner: "Listen, repeat, spell and pronounce", instruction: "Note on board for copy"},
+                        {step: "Practice", teacher: "Asks 'What is a community?' 'What is a neighbourhood?'", learner: "Answer using sentence patterns", instruction: "Encourage learners to speak in pairs"},
+                        {step: "Assessment", teacher: "Shows poster and asks learners to point things", learner: "Point and name", instruction: "Write one thing on their slate"}
+                    ]
+                },
+                {
+                    week: 2,
+                    theme: "Social Virtues",
+                    unit: "UNIT 1: Communities and Neighbourhood",
+                    duration: "40 minutes",
+                    vocab: ["Honest", "Honesty", "Patient", "Patience", "Kind", "Kindness", "United", "Unity", "Love", "Teamwork"],
+                    objectives: [
+                        "Develop virtues such as patience, love, unity, honesty, teamwork, and kindness",
+                        "Enhance social connection",
+                        "Recognize the difference between noun and adjective forms"
+                    ],
+                    resources: ["Social Virtues song", "Virtue tree activity video", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews Week 1", learner: "Greet and review", instruction: "Review community and neighbourhood"},
+                        {step: "Introduction", teacher: "Introduces social virtues definitions", learner: "Listen and understand", instruction: "Use examples: 'When I wait my turn, I am patient'"},
+                        {step: "Vocabulary", teacher: "Teaches adjective/noun forms: honest/honesty, patient/patience...", learner: "Listen, repeat, and practice", instruction: "Distinguish between adjective and noun forms"},
+                        {step: "Song", teacher: "Teaches 'Social Virtues Song' with motions", learner: "Sing and do motions", instruction: "Practice the song together"},
+                        {step: "Assessment", teacher: "Asks 'Are the following words social virtues?'", learner: "Answer Yes/No", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 3,
+                    theme: "Share Resources and Community Development",
+                    unit: "UNIT 1: Communities and Neighbourhood",
+                    duration: "40 minutes",
+                    vocab: ["Share", "Resources", "Community development", "Help", "Together", "Clean", "Plant", "Build"],
+                    objectives: [
+                        "Share resources",
+                        "Engage in community development"
+                    ],
+                    resources: ["Community service video", "Flash cards", "Project materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews social virtues", learner: "Greet and review", instruction: "Review Week 2 learning"},
+                        {step: "Introduction", teacher: "Introduces 'sharing resources' definition", learner: "Listen and understand", instruction: "Use examples: 'Lending pencils is sharing resources'"},
+                        {step: "Vocabulary", teacher: "Teaches community development vocabulary", learner: "Listen, repeat, and practice", instruction: "Use sentence patterns"},
+                        {step: "Activity", teacher: "Completes social engagement activity planned in Week 2", learner: "Participate in community service", instruction: "Work together as a class"},
+                        {step: "Assessment", teacher: "Reviews definitions and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                }
+            ],
+            unit2: [
+                {
+                    week: 1,
+                    theme: "Outdoor Activities",
+                    unit: "UNIT 2: The Outdoors and Landscape",
+                    duration: "40 minutes",
+                    vocab: ["Football", "Running", "Basketball", "Painting", "Drawing", "Reading", "Science experiments", "Planting flowers", "Nature walk"],
+                    objectives: [
+                        "Define outdoors",
+                        "Identify outdoor activities"
+                    ],
+                    resources: ["Outdoor activity teaching pictures", "Warm up song video", "Outdoor activity song"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and sings warm up song", learner: "Greet and sing", instruction: "Use outdoor warm up song"},
+                        {step: "Introduction", teacher: "Introduces definition of outdoors and outdoor activities", learner: "Listen and understand", instruction: "Explain 7 categories of outdoor activities"},
+                        {step: "Vocabulary", teacher: "Teaches outdoor activities vocabulary", learner: "Listen, repeat, and practice", instruction: "Use 'I like to...' and 'I can...' patterns"},
+                        {step: "Practice", teacher: "Asks 'What can you do outdoors?'", learner: "Answer using sentence patterns", instruction: "Sort activities into 7 categories"},
+                        {step: "Assessment", teacher: "Reviews vocabulary and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 2,
+                    theme: "Landscape Description",
+                    unit: "UNIT 2: The Outdoors and Landscape",
+                    duration: "40 minutes",
+                    vocab: ["Landscape", "Natural", "Urban", "Rural", "Coastal", "Forest", "Mountain", "River", "City", "Village", "Beach"],
+                    objectives: [
+                        "Define landscape",
+                        "Describe landscape"
+                    ],
+                    resources: ["Landscape teaching pictures", "Landforms teaching video", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews outdoor activities", learner: "Greet and review", instruction: "Review Week 1 learning"},
+                        {step: "Introduction", teacher: "Introduces landscape definition and 4 types", learner: "Listen and understand", instruction: "Use flash cards to show landscape types"},
+                        {step: "Vocabulary", teacher: "Teaches landscape vocabulary: natural, urban, rural, coastal", learner: "Listen, repeat, and practice", instruction: "Use 'A forest is a natural landscape' patterns"},
+                        {step: "Practice", teacher: "Asks 'What type of landscape is a forest?'", learner: "Answer using sentence patterns", instruction: "Sort types of landscapes"},
+                        {step: "Assessment", teacher: "Reviews vocabulary and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 3,
+                    theme: "Landscapes in Togo",
+                    unit: "UNIT 2: The Outdoors and Landscape",
+                    duration: "40 minutes",
+                    vocab: ["Mount Agou", "Mount Kabye", "Lake Togo", "Mono River", "Kpime Waterfall", "Tamberma Valley", "Savannah", "Forest", "Vegetation", "Water bodies"],
+                    objectives: [
+                        "Talk about some landscapes and landforms in Togo"
+                    ],
+                    resources: ["Togo monuments video", "Togo landforms images", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews landscapes", learner: "Greet and review", instruction: "Review landscape definition"},
+                        {step: "Introduction", teacher: "Introduces vegetation and water bodies in Togo", learner: "Listen and understand", instruction: "Connect to prior geography knowledge"},
+                        {step: "Vocabulary", teacher: "Teaches Togolese landforms: Mount Agou, Lake Togo, Mono River...", learner: "Listen, repeat, and practice", instruction: "Use 'We have mountains in Togo' patterns"},
+                        {step: "Comparatives", teacher: "Introduces comparative adjectives: tall/taller/tallest", learner: "Practice using comparatives", instruction: "Use classroom objects to demonstrate"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                }
+            ],
+            unit3: [
+                {
+                    week: 1,
+                    theme: "Define Healthy Lifestyle",
+                    unit: "UNIT 3: Healthy Lifestyle",
+                    duration: "40 minutes",
+                    vocab: ["Healthy lifestyle", "Exercise", "Sleep", "Fruits", "Vegetables", "Brush teeth", "Wash hands", "Take a bath"],
+                    objectives: [
+                        "Define healthy lifestyle",
+                        "Name the habits and benefits of a healthy lifestyle"
+                    ],
+                    resources: ["Healthy habits teaching video", "Healthy lifestyle song", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews previous unit", learner: "Greet and review", instruction: "Review landscapes and outdoor activities"},
+                        {step: "Introduction", teacher: "Introduces healthy lifestyle definition", learner: "Listen and understand", instruction: "Use example: 'I am healthy when I eat good food'"},
+                        {step: "Vocabulary", teacher: "Teaches healthy habits vocabulary", learner: "Listen, repeat, and practice", instruction: "Use 'When I eat healthy food, it helps me grow' patterns"},
+                        {step: "Benefits", teacher: "Teaches benefits of each healthy habit", learner: "Match habits to benefits", instruction: "Use table format for clarity"},
+                        {step: "Assessment", teacher: "Asks 'Why should I eat healthy food?'", learner: "Answer using sentence patterns", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 2,
+                    theme: "Unhealthy Habits to Avoid",
+                    unit: "UNIT 3: Healthy Lifestyle",
+                    duration: "40 minutes",
+                    vocab: ["Junk food", "Smoking", "Alcohol", "Sitting too much", "Staying up late", "Not brushing teeth"],
+                    objectives: [
+                        "List key elements of a healthy lifestyle",
+                        "List activities to avoid in a healthy lifestyle"
+                    ],
+                    resources: ["Unhealthy habits song", "Flash cards", "Comparison chart"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews healthy habits", learner: "Greet and review", instruction: "Review Week 1 learning"},
+                        {step: "Introduction", teacher: "Introduces unhealthy habits vocabulary", learner: "Listen and understand", instruction: "Compare healthy vs unhealthy habits"},
+                        {step: "Vocabulary", teacher: "Teaches unhealthy habits: junk food, smoking, alcohol...", learner: "Listen, repeat, and practice", instruction: "Use 'I should not...' and 'I must not...' patterns"},
+                        {step: "Practice", teacher: "Asks 'What should you do to be healthy?'", learner: "Answer using sentence patterns", instruction: "Practice should/shouldn't and must/mustn't"},
+                        {step: "Assessment", teacher: "Reviews vocabulary and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 3,
+                    theme: "Healthy Lifestyle at Home, School, Neighbourhood",
+                    unit: "UNIT 3: Healthy Lifestyle",
+                    duration: "40 minutes",
+                    vocab: ["Sweeping", "Cleaning", "Washing", "Picking up trash", "Using the bin", "Covering mouth"],
+                    objectives: [
+                        "Identify different healthy lifestyle practices in their homes, schools and neighbourhoods"
+                    ],
+                    resources: ["Healthy habits teaching video", "Flash cards", "Poster making materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews healthy/unhealthy habits", learner: "Greet and review", instruction: "Review Weeks 1-2 learning"},
+                        {step: "Introduction", teacher: "Introduces actions at home, school, neighbourhood", learner: "Listen and understand", instruction: "Use table format for 3 locations"},
+                        {step: "Vocabulary", teacher: "Teaches action verbs: sweep, clean, wash, pick up, use", learner: "Listen, repeat, and practice", instruction: "Use 'We should...' patterns"},
+                        {step: "Activity", teacher: "Guides learners to make posters for classroom", learner: "Create healthy habit posters", instruction: "Encourage healthy habits through art"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                }
+            ],
+            unit4: [
+                {
+                    week: 1,
+                    theme: "Define and Name Professions",
+                    unit: "UNIT 4: Professions and Careers",
+                    duration: "40 minutes",
+                    vocab: ["Teacher", "Doctor", "Farmer", "Lawyer", "Carpenter", "School", "Hospital", "Farm", "Courtroom", "Workshop"],
+                    objectives: [
+                        "Define professions",
+                        "Name some professions",
+                        "Describe different professions"
+                    ],
+                    resources: ["Professions teaching video", "Professions song", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews healthy lifestyle", learner: "Greet and review", instruction: "Review Unit 3 learning"},
+                        {step: "Introduction", teacher: "Introduces profession definition", learner: "Listen and understand", instruction: "Use definition: 'A profession is a specific job'"},
+                        {step: "Vocabulary", teacher: "Teaches 5 professions with workplaces", learner: "Listen, repeat, and practice", instruction: "Use 'A teacher teaches learners at a school' patterns"},
+                        {step: "Practice", teacher: "Asks 'What does a farmer do?' 'Where does he work?'", learner: "Answer using sentence patterns", instruction: "Practice do/does questions"},
+                        {step: "Assessment", teacher: "Reviews vocabulary and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 2,
+                    theme: "Describe Professions (List #2)",
+                    unit: "UNIT 4: Professions and Careers",
+                    duration: "40 minutes",
+                    vocab: ["Shopkeeper", "Hairdresser", "Barber", "Tailor", "Seamstress", "Police Officer", "Driver", "Shop", "Salon", "Workshop", "Roads"],
+                    objectives: [
+                        "Define professions",
+                        "Name some professions",
+                        "Describe different professions"
+                    ],
+                    resources: ["Professions teaching video", "Professions song", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews Week 1 professions", learner: "Greet and review", instruction: "Review first 5 professions"},
+                        {step: "Vocabulary", teacher: "Teaches 5 new professions with workplaces", learner: "Listen, repeat, and practice", instruction: "Point out -er/-or endings"},
+                        {step: "Practice", teacher: "Asks 'What does a tailor do?' 'Where does she work?'", learner: "Answer using sentence patterns", instruction: "Practice in/at/on prepositions"},
+                        {step: "Activity", teacher: "Plays 'Who am I?' game", learner: "Give clues and guess professions", instruction: "Encourage verbal fluency"},
+                        {step: "Assessment", teacher: "Dictation on professions", learner: "Write down sentences", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 3,
+                    theme: "Define Career",
+                    unit: "UNIT 4: Professions and Careers",
+                    duration: "40 minutes",
+                    vocab: ["Career", "Bricklayer", "Mason", "Nurse", "Scientist", "Civil Engineer", "Astronaut", "Clinic", "Lab", "Space"],
+                    objectives: [
+                        "Define career",
+                        "Use expressions: 'I would like to be...', 'I want to become...'"
+                    ],
+                    resources: ["Career song video", "Flash cards", "Puppet making materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews all professions", learner: "Greet and review", instruction: "Review 10 professions learned"},
+                        {step: "Introduction", teacher: "Introduces career definition", learner: "Listen and understand", instruction: "Use example: 'A career in education might begin as...'"},
+                        {step: "Vocabulary", teacher: "Teaches 5 more professions", learner: "Listen, repeat, and practice", instruction: "Use 'I would like to be...' patterns"},
+                        {step: "Activity", teacher: "Guides learners to create profession puppets", learner: "Make and introduce puppets", instruction: "Use puppet format: 'Hello, my name is... I am a...'"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                }
+            ],
+            unit5: [
+                {
+                    week: 1,
+                    theme: "Define Technology",
+                    unit: "UNIT 5: Technology, Diversity and Globalisation",
+                    duration: "40 minutes",
+                    vocab: ["Technology", "Computer", "Phone", "Internet", "Car", "Plane", "X-ray", "Thermometer", "Tablet", "Cement mixer", "Crane"],
+                    objectives: [
+                        "Define technology",
+                        "Name some technologies and their tools"
+                    ],
+                    resources: ["Technology tools teaching video", "Flash cards", "Magic wand game materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews professions", learner: "Greet and review", instruction: "Review Unit 4 learning"},
+                        {step: "Introduction", teacher: "Introduces technology definition", learner: "Listen and understand", instruction: "Use definition: 'Technology is the use of tools to help people'"},
+                        {step: "Vocabulary", teacher: "Teaches 5 types of technology with examples", learner: "Listen, repeat, and practice", instruction: "Use table format for types and examples"},
+                        {step: "Practice", teacher: "Asks 'How does transportation technology help us?'", learner: "Answer using sentence patterns", instruction: "Practice 'uses' verb"},
+                        {step: "Assessment", teacher: "Reviews vocabulary and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 2,
+                    theme: "Diversity in Togo",
+                    unit: "UNIT 5: Technology, Diversity and Globalisation",
+                    duration: "40 minutes",
+                    vocab: ["Diversity", "Moba", "Anufo", "Kabyè", "Ewe", "Mina", "Fili", "Too", "Tindine", "Fufu", "Pinon", "Tingbanpabe", "Kouroubi", "Kyena", "Agbogbozan", "Epéyékpe", "CFA"],
+                    objectives: [
+                        "Define diversity",
+                        "Recognize diversity in different parts of Togo"
+                    ],
+                    resources: ["Ethnic groups in Togo video", "Hello in different languages song", "Venn diagram materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews technology", learner: "Greet and review", instruction: "Review Week 1 learning"},
+                        {step: "Introduction", teacher: "Introduces diversity definition", learner: "Listen and understand", instruction: "Emphasize respecting differences"},
+                        {step: "Vocabulary", teacher: "Teaches chart with 5 Togolese ethnic groups", learner: "Listen, repeat, and practice", instruction: "Use 'Moba people speak Moba' patterns"},
+                        {step: "Practice", teacher: "Asks 'What language do Kabye people speak?'", learner: "Answer using sentence patterns", instruction: "Practice same/different comparisons"},
+                        {step: "Assessment", teacher: "Reviews vocabulary and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 3,
+                    theme: "Diversity Around the World",
+                    unit: "UNIT 5: Technology, Diversity and Globalisation",
+                    duration: "40 minutes",
+                    vocab: ["Ghana", "Kenya", "America", "Canada", "France", "Germany", "India", "China", "Cedi", "Shilling", "Dollar", "Euro", "Rupee", "Yuan"],
+                    objectives: [
+                        "Recognize diversity in different parts of the world"
+                    ],
+                    resources: ["Hello in different languages song", "World map", "Double bubble map materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews diversity in Togo", learner: "Greet and review", instruction: "Review Week 2 learning"},
+                        {step: "Introduction", teacher: "Extends diversity to global level", learner: "Listen and understand", instruction: "Introduce 8 countries from different continents"},
+                        {step: "Vocabulary", teacher: "Teaches chart with world countries", learner: "Listen, repeat, and practice", instruction: "Use country names and information"},
+                        {step: "Practice", teacher: "Asks 'What currency do Canadian people use?'", learner: "Answer using sentence patterns", instruction: "Practice comparing countries"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 4,
+                    theme: "Global Connections",
+                    unit: "UNIT 5: Technology, Diversity and Globalisation",
+                    duration: "40 minutes",
+                    vocab: ["Trade", "Travel", "Communication", "Cooperation", "Buy", "Sell", "Order", "Airport", "Bus station", "Train station", "Port", "Border", "Email", "Phone call", "App"],
+                    objectives: [
+                        "Explain how countries are connected through trade, travel, and communication",
+                        "Use basic vocabulary related to technology, diversity, and globalisation"
+                    ],
+                    resources: ["Flash cards", "Dialogue practice materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews diversity", learner: "Greet and review", instruction: "Review Weeks 1-3 learning"},
+                        {step: "Introduction", teacher: "Introduces global connections: trade, travel, communication, cooperation", learner: "Listen and understand", instruction: "Use simple definitions"},
+                        {step: "Vocabulary", teacher: "Teaches trade, travel, communication vocabulary", learner: "Listen, repeat, and practice", instruction: "Use sentence patterns for each area"},
+                        {step: "Practice", teacher: "Asks 'How can I communicate with my friend in Germany?'", learner: "Answer using sentence patterns", instruction: "Practice all 4 areas of connection"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                }
+            ],
+            unit6: [
+                {
+                    week: 1,
+                    theme: "Define Environment",
+                    unit: "UNIT 6: Environmental Actions and Climate Change",
+                    duration: "40 minutes",
+                    vocab: ["Environment", "Air", "Water", "Land", "Animals", "Plants", "Humans", "Pollution", "Deforestation", "Waste"],
+                    objectives: [
+                        "Define the environment",
+                        "State the importance of caring for the environment",
+                        "Identify basic environmental problems",
+                        "Describe simple actions to protect the environment"
+                    ],
+                    resources: ["Environment teaching video", "Actions to protect environment video", "Environment song", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews global connections", learner: "Greet and review", instruction: "Review Unit 5 learning"},
+                        {step: "Introduction", teacher: "Introduces environment definition", learner: "Listen and understand", instruction: "Use definition: 'Environment is everything around us'"},
+                        {step: "Vocabulary", teacher: "Teaches environmental problems and actions", learner: "Listen, repeat, and practice", instruction: "Use 'We care for the environment so that we can...' patterns"},
+                        {step: "Practice", teacher: "Asks 'How can we protect the environment?'", learner: "Answer using sentence patterns", instruction: "Practice 'so that' connection phrase"},
+                        {step: "Assessment", teacher: "Reviews vocabulary and sentence patterns", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 2,
+                    theme: "Climate Change",
+                    unit: "UNIT 6: Environmental Actions and Climate Change",
+                    duration: "40 minutes",
+                    vocab: ["Climate change", "Weather", "Climate", "Storm", "Drought", "Flood", "Fumes", "Emissions", "Deforestation"],
+                    objectives: [
+                        "Explain climate change in simple terms",
+                        "Identify causes of climate change"
+                    ],
+                    resources: ["Climate change songs", "Flash cards", "Cause and effect chain materials"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews environment", learner: "Greet and review", instruction: "Review Week 1 learning"},
+                        {step: "Introduction", teacher: "Introduces climate change definition", learner: "Listen and understand", instruction: "Use simple definition: 'Climate change is when the weather changes slowly'"},
+                        {step: "Vocabulary", teacher: "Teaches causes and effects vocabulary", learner: "Listen, repeat, and practice", instruction: "Use 'Climate change is caused by...' patterns"},
+                        {step: "Cause/Effect", teacher: "Introduces cause and effect chains", learner: "Create storyboards", instruction: "Use 'If we cut the trees, animals will lose their homes'"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                },
+                {
+                    week: 3,
+                    theme: "Eco-Friendly Actions",
+                    unit: "UNIT 6: Environmental Actions and Climate Change",
+                    duration: "40 minutes",
+                    vocab: ["Plant trees", "Recycle", "Save water", "Walk", "Bike", "Clean fuel", "Turn off lights", "Reuse bags"],
+                    objectives: [
+                        "Describe eco-friendly actions"
+                    ],
+                    resources: ["Eco actions teaching video", "Poster making materials", "Flash cards"],
+                    steps: [
+                        {step: "Warm up", teacher: "Teacher greets learners and reviews climate change", learner: "Greet and review", instruction: "Review Week 2 learning"},
+                        {step: "Introduction", teacher: "Introduces eco-friendly actions", learner: "Listen and understand", instruction: "Use table format for actions and benefits"},
+                        {step: "Vocabulary", teacher: "Teaches action verbs: plant, recycle, save, walk, bike", learner: "Listen, repeat, and practice", instruction: "Use 'To save water, I can...' patterns"},
+                        {step: "Activity", teacher: "Guides learners to create posters for school", learner: "Create eco-friendly posters", instruction: "Encourage environmental awareness"},
+                        {step: "Assessment", teacher: "Reviews all weekly learning", learner: "Demonstrate understanding", instruction: "Weekly review and assessment"}
+                    ]
+                }
+            ]
+        };
+
+        function showUnit(unitKey, btn) {
+            document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const container = document.getElementById('lessonCardsContainer');
+            container.innerHTML = '';
+            
+            const cards = lessonCardsData[unitKey];
+            cards.forEach(card => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'lesson-card';
+                
+                let vocabHTML = '<div class="vocab-list">';
+                card.vocab.forEach(v => {
+                    vocabHTML += `<span class="vocab-item">${v}</span>`;
+                });
+                vocabHTML += '</div>';
+                
+                let objectivesHTML = '<ul class="objective-list">';
+                card.objectives.forEach(obj => {
+                    objectivesHTML += `<li>➢ ${obj}</li>`;
+                });
+                objectivesHTML += '</ul>';
+                
+                let stepsHTML = '<table><thead><tr><th>Steps</th><th>Teacher\'s Activities</th><th>Learner\'s Activities</th><th>Instructions</th></tr></thead><tbody>';
+                card.steps.forEach(step => {
+                    stepsHTML += `<tr><td><strong>${step.step}</strong></td><td>${step.teacher}</td><td>${step.learner}</td><td>${step.instruction}</td></tr>`;
+                });
+                stepsHTML += '</tbody></table>';
+                
+                cardDiv.innerHTML = `
+                    <div class="lesson-card-header">
+                        <h2>${card.unit} - Week ${card.week}</h2>
+                        <p>${card.theme}</p>
+                    </div>
+                    <div class="lesson-card-body">
+                        <div class="info-row">
+                            <div class="info-item">
+                                <label>Unit</label>
+                                <span>${card.unit}</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Week</label>
+                                <span>Week ${card.week}</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Duration</label>
+                                <span>${card.duration}</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="section-title">🎯 Specific Objectives</h3>
+                        ${objectivesHTML}
+                        
+                        <h3 class="section-title">📚 Target Vocabulary</h3>
+                        ${vocabHTML}
+                        
+                        <h3 class="section-title">🎒 Resources</h3>
+                        <p>${card.resources.join(', ')}</p>
+                        
+                        <h3 class="section-title">📋 Learning Steps</h3>
+                        ${stepsHTML}
+                    </div>
+                `;
+                
+                container.appendChild(cardDiv);
+            });
+        }
+        
+        // Afficher la Pre-Unit par défaut
+        showUnit('preunit', document.querySelector('.unit-btn'));
+    </script>
+</body>
+</html>
