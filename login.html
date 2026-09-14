@@ -5,121 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - TogoEnglish Play</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 500px;
-            width: 100%;
-            padding: 40px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .header h1 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        .header p {
-            color: #666;
-            font-size: 1.1em;
-        }
-        .role-buttons {
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; min-height: 100vh; background: #f4f7f6; }
+        
+        /* CÔTÉ GAUCHE : Informations Ministère */
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(135deg, #006A4E 0%, #00896a 100%);
+            color: white;
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            justify-content: center;
         }
-        .role-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 20px 30px;
+        .flag { font-size: 4em; margin-bottom: 20px; }
+        .left-panel h1 { font-size: 2.2em; margin-bottom: 15px; }
+        .left-panel .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 30px; line-height: 1.5; }
+        .info-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
             border-radius: 15px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-bottom: 20px;
+            border-left: 5px solid #FFE66D;
         }
-        .role-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        .info-box h3 { margin-bottom: 15px; font-size: 1.2em; }
+        .info-box ul { list-style: none; padding-left: 0; }
+        .info-box li { margin-bottom: 10px; padding-left: 25px; position: relative; line-height: 1.5; }
+        .info-box li::before { content: '✓'; position: absolute; left: 0; color: #FFE66D; font-weight: bold; }
+        .motto { margin-top: 30px; font-style: italic; text-align: center; padding: 15px; background: rgba(255,230,109,0.2); border-radius: 10px; }
+
+        /* CÔTÉ DROIT : Connexion */
+        .right-panel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
         }
-        .role-btn:active {
-            transform: translateY(0);
-        }
-        .skip-link {
-            display: block;
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
             text-align: center;
-            margin-top: 30px;
-            color: #667eea;
-            text-decoration: none;
-            font-size: 0.95em;
         }
-        .skip-link:hover {
-            text-decoration: underline;
+        .login-card h2 { color: #006A4E; margin-bottom: 10px; font-size: 1.8em; }
+        .login-card p { color: #666; margin-bottom: 30px; }
+        .role-btn {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 18px 20px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            font-size: 1em;
         }
-        .icon {
-            font-size: 1.5em;
-            margin-right: 10px;
+        .role-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .role-btn .icon { font-size: 2em; margin-right: 15px; width: 40px; text-align: center; }
+        .role-btn .text h3 { margin: 0 0 5px 0; color: #333; font-size: 1.1em; }
+        .role-btn .text p { margin: 0; color: #777; font-size: 0.85em; text-align: left; }
+        
+        .role-btn.kids { border-color: #4CAF50; }
+        .role-btn.kids:hover { background: #f1f8e9; border-color: #4CAF50; }
+        .role-btn.parents { border-color: #FF9800; }
+        .role-btn.parents:hover { background: #fff3e0; border-color: #FF9800; }
+        .role-btn.teachers { border-color: #2196F3; }
+        .role-btn.teachers:hover { background: #e3f2fd; border-color: #2196F3; }
+        .role-btn.visitor { border-color: #9C27B0; }
+        .role-btn.visitor:hover { background: #f3e5f5; border-color: #9C27B0; }
+
+        .skip-link { display: block; margin-top: 20px; color: #666; text-decoration: none; font-size: 0.9em; }
+        .skip-link:hover { color: #006A4E; text-decoration: underline; }
+
+        /* Responsive pour mobile */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            .left-panel { padding: 40px 20px; }
+            .right-panel { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🇹🇬 TogoEnglish Play</h1>
-            <p>Qui utilise l'application aujourd'hui ?</p>
+    <!-- CÔTÉ GAUCHE -->
+    <div class="left-panel">
+        <div class="flag">🇹🇬</div>
+        <h1>République Togolaise</h1>
+        <p class="subtitle"><strong>Ministère des Enseignements Primaire et Secondaire</strong><br>Programme d'Introduction de l'Anglais au Primaire</p>
+        
+        <div class="info-box">
+            <h3>📜 Notes de Service Officielles</h3>
+            <ul>
+                <li><strong>N°024/2023/MEPST/CAB/SG</strong> : Programme du Cours Préparatoire (CP)</li>
+                <li><strong>N°018/2024/MEPS/CAB</strong> : Programme des Cours Élémentaire (CE) et Moyen (CM)</li>
+            </ul>
         </div>
 
-        <div class="role-buttons">
-            <button class="role-btn" onclick="selectRole('kids')">
-                <span class="icon">🎓</span>
-                Je suis un Élève
-            </button>
-            <button class="role-btn" onclick="selectRole('parents')">
-                <span class="icon">👨‍👩‍👧</span>
-                Je suis un Parent
-            </button>
-            <button class="role-btn" onclick="selectRole('teachers')">
-                <span class="icon">👩‍🏫</span>
-                Je suis un Enseignant
-            </button>
-            <button class="role-btn" onclick="selectRole('visitor')">
-                <span class="icon">👀</span>
-                Je suis un Visiteur
-            </button>
+        <div class="info-box">
+            <h3>🎯 Objectifs du Programme</h3>
+            <ul>
+                <li>Familiariser les élèves avec l'anglais dès le primaire.</li>
+                <li>Développer les compétences en communication orale et écrite.</li>
+                <li>Préparer les élèves à un monde globalisé (20 min/jour, 5 jours/semaine).</li>
+            </ul>
         </div>
 
-        <a href="index.html" class="skip-link">Continuer sans se connecter →</a>
+        <div class="motto">
+            <strong>"Travail - Liberté - Patrie"</strong><br>
+            <em>Ensemble pour l'excellence éducative</em>
+        </div>
+    </div>
+
+    <!-- CÔTÉ DROIT -->
+    <div class="right-panel">
+        <div class="login-card">
+            <h2>Bienvenue</h2>
+            <p>Sélectionnez votre profil pour accéder à l'espace dédié</p>
+
+            <button class="role-btn kids" onclick="goTo('students.html')">
+                <div class="icon">🎓</div>
+                <div class="text">
+                    <h3>Je suis un Élève</h3>
+                    <p>CP, CE ou CM - J'apprends en jouant</p>
+                </div>
+            </button>
+
+            <button class="role-btn parents" onclick="goTo('parents.html')">
+                <div class="icon">👨‍👩‍👧</div>
+                <div class="text">
+                    <h3>Je suis un Parent</h3>
+                    <p>J'accompagne mon enfant</p>
+                </div>
+            </button>
+
+            <button class="role-btn teachers" onclick="goTo('teachers.html')">
+                <div class="icon">👩‍🏫</div>
+                <div class="text">
+                    <h3>Je suis un Enseignant</h3>
+                    <p>J'accède aux ressources pédagogiques</p>
+                </div>
+            </button>
+
+            <button class="role-btn visitor" onclick="goTo('index.html')">
+                <div class="icon">👀</div>
+                <div class="text">
+                    <h3>Je suis un Visiteur</h3>
+                    <p>Je découvre l'application</p>
+                </div>
+            </button>
+
+            <a href="index.html" class="skip-link">← Continuer sans se connecter</a>
+        </div>
     </div>
 
     <script>
-        function selectRole(role) {
+        function goTo(page) {
+            // Sauvegarde du rôle pour les statistiques
+            const role = page === 'students.html' ? 'kids' : 
+                         page === 'parents.html' ? 'parents' : 
+                         page === 'teachers.html' ? 'teachers' : 'visitor';
             localStorage.setItem('userRole', role);
             localStorage.setItem('loginTime', new Date().toISOString());
             
-            var redirects = {
-                'kids': 'students.html',
-                'parents': 'parents.html',
-                'teachers': 'teachers.html',
-                'visitor': 'index.html'
-            };
-            
-            var targetPage = redirects[role] || 'index.html';
-            window.location.href = targetPage;
+            // Redirection
+            window.location.href = page;
         }
     </script>
 </body>
