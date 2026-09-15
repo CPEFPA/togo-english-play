@@ -13,26 +13,26 @@
             flex: 1;
             background: linear-gradient(135deg, #006A4E 0%, #00896a 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        .flag { font-size: 4em; margin-bottom: 20px; }
-        .left-panel h1 { font-size: 2.2em; margin-bottom: 15px; }
-        .left-panel .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 30px; line-height: 1.5; }
+        .flag { font-size: 3.5em; margin-bottom: 15px; }
+        .left-panel h1 { font-size: 2em; margin-bottom: 15px; }
+        .left-panel .subtitle { font-size: 1.1em; opacity: 0.9; margin-bottom: 25px; line-height: 1.5; }
         .info-box {
             background: rgba(255, 255, 255, 0.15);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-left: 5px solid #FFE66D;
         }
-        .info-box h3 { margin-bottom: 15px; font-size: 1.2em; }
+        .info-box h3 { margin-bottom: 10px; font-size: 1.1em; }
         .info-box ul { list-style: none; padding-left: 0; }
-        .info-box li { margin-bottom: 10px; padding-left: 25px; position: relative; line-height: 1.5; }
+        .info-box li { margin-bottom: 8px; padding-left: 20px; position: relative; line-height: 1.4; font-size: 0.95em; }
         .info-box li::before { content: '✓'; position: absolute; left: 0; color: #FFE66D; font-weight: bold; }
-        .motto { margin-top: 30px; font-style: italic; text-align: center; padding: 15px; background: rgba(255,230,109,0.2); border-radius: 10px; }
+        .motto { margin-top: 20px; font-style: italic; text-align: center; padding: 12px; background: rgba(255,230,109,0.2); border-radius: 10px; font-size: 0.95em; }
 
         /* CÔTÉ DROIT : Connexion */
         .right-panel {
@@ -40,54 +40,101 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 30px;
         }
         .login-card {
             background: white;
-            padding: 40px;
+            padding: 35px 30px;
             border-radius: 25px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 450px;
-            text-align: center;
+            max-width: 500px;
         }
-        .login-card h2 { color: #006A4E; margin-bottom: 10px; font-size: 1.8em; }
-        .login-card p { color: #666; margin-bottom: 30px; }
+        .login-card h2 { color: #006A4E; margin-bottom: 10px; font-size: 1.6em; text-align: center; }
+        .login-card .subtitle { color: #666; margin-bottom: 25px; text-align: center; font-size: 0.95em; }
+        
+        /* Champs de localisation */
+        .location-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #FF9800;
+        }
+        .location-section h3 {
+            color: #FF9800;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #006A4E;
+        }
+        .form-group select {
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Boutons de rôle */
+        .role-grid {
+            display: grid;
+            gap: 12px;
+        }
         .role-btn {
             display: flex;
             align-items: center;
-            width: 100%;
-            padding: 18px 20px;
-            margin-bottom: 15px;
+            padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 15px;
             background: white;
             cursor: pointer;
             transition: all 0.3s;
             text-align: left;
-            font-size: 1em;
         }
-        .role-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .role-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .role-btn .icon { font-size: 2em; margin-right: 15px; width: 40px; text-align: center; }
-        .role-btn .text h3 { margin: 0 0 5px 0; color: #333; font-size: 1.1em; }
-        .role-btn .text p { margin: 0; color: #777; font-size: 0.85em; text-align: left; }
+        .role-btn .text h3 { margin: 0 0 3px 0; color: #333; font-size: 1em; }
+        .role-btn .text p { margin: 0; color: #777; font-size: 0.8em; }
         
         .role-btn.kids { border-color: #4CAF50; }
-        .role-btn.kids:hover { background: #f1f8e9; border-color: #4CAF50; }
+        .role-btn.kids:hover { background: #f1f8e9; }
         .role-btn.parents { border-color: #FF9800; }
-        .role-btn.parents:hover { background: #fff3e0; border-color: #FF9800; }
+        .role-btn.parents:hover { background: #fff3e0; }
         .role-btn.teachers { border-color: #2196F3; }
-        .role-btn.teachers:hover { background: #e3f2fd; border-color: #2196F3; }
+        .role-btn.teachers:hover { background: #e3f2fd; }
         .role-btn.visitor { border-color: #9C27B0; }
-        .role-btn.visitor:hover { background: #f3e5f5; border-color: #9C27B0; }
+        .role-btn.visitor:hover { background: #f3e5f5; }
 
-        .skip-link { display: block; margin-top: 20px; color: #666; text-decoration: none; font-size: 0.9em; }
+        .skip-link { display: block; margin-top: 15px; color: #666; text-decoration: none; font-size: 0.85em; text-align: center; }
         .skip-link:hover { color: #006A4E; text-decoration: underline; }
 
-        /* Responsive pour mobile */
+        /* Responsive */
         @media (max-width: 900px) {
             body { flex-direction: column; }
-            .left-panel { padding: 40px 20px; }
+            .left-panel { padding: 30px 20px; }
             .right-panel { padding: 20px; }
         }
     </style>
@@ -102,23 +149,22 @@
         <div class="info-box">
             <h3>📜 Notes de Service Officielles</h3>
             <ul>
-                <li><strong>N°024/2023/MEPST/CAB/SG</strong> : Programme du Cours Préparatoire (CP)</li>
-                <li><strong>N°018/2024/MEPS/CAB</strong> : Programme des Cours Élémentaire (CE) et Moyen (CM)</li>
+                <li><strong>N°024/2023</strong> : Programme CP</li>
+                <li><strong>N°018/2024</strong> : Programme CE et CM</li>
             </ul>
         </div>
 
         <div class="info-box">
             <h3>🎯 Objectifs du Programme</h3>
             <ul>
-                <li>Familiariser les élèves avec l'anglais dès le primaire.</li>
-                <li>Développer les compétences en communication orale et écrite.</li>
-                <li>Préparer les élèves à un monde globalisé (20 min/jour, 5 jours/semaine).</li>
+                <li>Familiariser les élèves avec l'anglais</li>
+                <li>Développer la communication orale</li>
+                <li>20 min/jour, 5 jours/semaine</li>
             </ul>
         </div>
 
         <div class="motto">
-            <strong>"Travail - Liberté - Patrie"</strong><br>
-            <em>Ensemble pour l'excellence éducative</em>
+            <strong>"Travail - Liberté - Patrie"</strong>
         </div>
     </div>
 
@@ -126,55 +172,109 @@
     <div class="right-panel">
         <div class="login-card">
             <h2>Bienvenue</h2>
-            <p>Sélectionnez votre profil pour accéder à l'espace dédié</p>
+            <p class="subtitle">Renseignez votre localisation puis choisissez votre profil</p>
 
-            <button class="role-btn kids" onclick="goTo('students.html')">
-                <div class="icon">🎓</div>
-                <div class="text">
-                    <h3>Je suis un Élève</h3>
-                    <p>CP, CE ou CM - J'apprends en jouant</p>
+            <!-- SECTION LOCALISATION -->
+            <div class="location-section">
+                <h3>📍 Votre Localisation</h3>
+                
+                <div class="form-group">
+                    <label for="region">Région *</label>
+                    <select id="region" required>
+                        <option value="">-- Choisissez votre région --</option>
+                        <option value="Maritime">🌊 Maritime (Lomé, Aného, Kpalimé...)</option>
+                        <option value="Plateaux">⛰️ Plateaux (Atakpamé, Notsé, Badou...)</option>
+                        <option value="Centrale">🏔️ Centrale (Sokodé, Tchamba...)</option>
+                        <option value="Kara">🌳 Kara (Kara, Niamtougou, Bassar...)</option>
+                        <option value="Savanes">🌾 Savanes (Dapaong, Mango, Cinkassé...)</option>
+                    </select>
                 </div>
-            </button>
 
-            <button class="role-btn parents" onclick="goTo('parents.html')">
-                <div class="icon">👨‍👩‍👧</div>
-                <div class="text">
-                    <h3>Je suis un Parent</h3>
-                    <p>J'accompagne mon enfant</p>
+                <div class="form-group">
+                    <label for="commune">Commune / Ville *</label>
+                    <input type="text" id="commune" placeholder="Ex: Lomé, Kara, Sokodé, Kpalimé..." required>
                 </div>
-            </button>
 
-            <button class="role-btn teachers" onclick="goTo('teachers.html')">
-                <div class="icon">👩‍🏫</div>
-                <div class="text">
-                    <h3>Je suis un Enseignant</h3>
-                    <p>J'accède aux ressources pédagogiques</p>
+                <div class="form-group">
+                    <label for="school">Nom de l'école (optionnel)</label>
+                    <input type="text" id="school" placeholder="Ex: EP Tokoin, CEK Lomé...">
                 </div>
-            </button>
+            </div>
 
-            <button class="role-btn visitor" onclick="goTo('index.html')">
-                <div class="icon">👀</div>
-                <div class="text">
-                    <h3>Je suis un Visiteur</h3>
-                    <p>Je découvre l'application</p>
-                </div>
-            </button>
+            <!-- BOUTONS DE RÔLE -->
+            <div class="role-grid">
+                <button class="role-btn kids" onclick="selectRole('kids')">
+                    <div class="icon">🎓</div>
+                    <div class="text">
+                        <h3>Je suis un Élève</h3>
+                        <p>CP, CE ou CM - J'apprends en jouant</p>
+                    </div>
+                </button>
+
+                <button class="role-btn parents" onclick="selectRole('parents')">
+                    <div class="icon">👨‍👩‍👧</div>
+                    <div class="text">
+                        <h3>Je suis un Parent</h3>
+                        <p>J'accompagne mon enfant</p>
+                    </div>
+                </button>
+
+                <button class="role-btn teachers" onclick="selectRole('teachers')">
+                    <div class="icon">👩‍🏫</div>
+                    <div class="text">
+                        <h3>Je suis un Enseignant</h3>
+                        <p>J'utilise les ressources pédagogiques</p>
+                    </div>
+                </button>
+
+                <button class="role-btn visitor" onclick="selectRole('visitor')">
+                    <div class="icon">👀</div>
+                    <div class="text">
+                        <h3>Je suis un Visiteur</h3>
+                        <p>Je découvre l'application</p>
+                    </div>
+                </button>
+            </div>
 
             <a href="index.html" class="skip-link">← Continuer sans se connecter</a>
         </div>
     </div>
 
     <script>
-        function goTo(page) {
-            // Sauvegarde du rôle pour les statistiques
-            const role = page === 'students.html' ? 'kids' : 
-                         page === 'parents.html' ? 'parents' : 
-                         page === 'teachers.html' ? 'teachers' : 'visitor';
+        function selectRole(role) {
+            // Récupérer les informations de localisation
+            var region = document.getElementById('region').value;
+            var commune = document.getElementById('commune').value.trim();
+            var school = document.getElementById('school').value.trim();
+            
+            // Vérifier que la région et la commune sont renseignées
+            if (!region) {
+                alert('📍 Veuillez sélectionner votre région');
+                document.getElementById('region').focus();
+                return;
+            }
+            if (!commune) {
+                alert('📍 Veuillez indiquer votre commune ou ville');
+                document.getElementById('commune').focus();
+                return;
+            }
+            
+            // Sauvegarder dans le navigateur
             localStorage.setItem('userRole', role);
+            localStorage.setItem('region', region);
+            localStorage.setItem('commune', commune);
+            localStorage.setItem('schoolName', school || 'Non renseignée');
             localStorage.setItem('loginTime', new Date().toISOString());
             
-            // Redirection
-            window.location.href = page;
+            // Redirection selon le rôle
+            var redirects = {
+                'kids': 'students.html',
+                'parents': 'parents.html',
+                'teachers': 'teachers.html',
+                'visitor': 'index.html'
+            };
+            
+            window.location.href = redirects[role] || 'index.html';
         }
     </script>
 </body>
