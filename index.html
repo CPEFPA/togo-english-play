@@ -70,5 +70,18 @@
 </div>
 <script src="js/main.js"></script>
     <script src="/togo-english-play/js/analytics.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/togo-english-play/sw.js')
+         .then(registration => {
+           console.log('ServiceWorker enregistré:', registration.scope);
+         })
+         .catch(error => {
+           console.log('Échec:', error);
+         });
+      });
+     }
+</script>
 </body>
 </html>
