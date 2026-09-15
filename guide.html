@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -6,190 +6,211 @@
     <title>Guide de Déploiement - TogoEnglish Play</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .back-home-btn { display: inline-flex; align-items: center; background: #006A4E; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
-        .page-header { text-align: center; margin-bottom: 40px; }
-        .page-header h1 { color: #006A4E; font-size: 2.5em; margin-bottom: 15px; }
-        .section-box { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px; border-left: 5px solid #006A4E; }
-        .section-box h2 { color: #006A4E; margin-top: 0; }
-        .section-box ul { line-height: 1.8; color: #555; }
-        .highlight-box { background: #FFE66D; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .timeline { position: relative; padding-left: 30px; }
-        .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: #006A4E; }
-        .timeline-item { position: relative; margin-bottom: 30px; }
-        .timeline-item::before { content: ''; position: absolute; left: -24px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background: #006A4E; }
-        .timeline-item h3 { color: #006A4E; margin-top: 0; }
+        .back-home-btn { display: inline-flex; align-items: center; background: #9C27B0; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-bottom: 30px; }
+        .hero { background: linear-gradient(135deg, #006A4E, #00896a); color: white; padding: 40px; border-radius: 20px; margin-bottom: 40px; text-align: center; }
+        .hero h1 { font-size: 2.5em; margin-bottom: 15px; }
+        .hero p { font-size: 1.2em; opacity: 0.9; }
+        .section { background: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .section h2 { color: #006A4E; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #006A4E; }
+        .section h3 { color: #2196F3; margin: 25px 0 15px 0; }
+        .highlight-box { background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 10px; }
+        .highlight-box strong { color: #856404; }
+        .url-box { background: #e3f2fd; border: 2px solid #2196F3; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0; }
+        .url-box a { color: #2196F3; font-size: 1.3em; font-weight: bold; text-decoration: none; word-break: break-all; }
+        .url-box a:hover { text-decoration: underline; }
+        .step { background: #f8f9fa; padding: 20px; margin: 15px 0; border-radius: 10px; border-left: 4px solid #006A4E; }
+        .step-number { display: inline-block; background: #006A4E; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; font-weight: bold; margin-right: 10px; }
+        .timeline { background: #f3e5f5; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .timeline-item { margin: 15px 0; padding: 15px; background: white; border-radius: 10px; }
+        .timeline-item strong { color: #9C27B0; }
+        .contact-box { background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .contact-box h3 { color: #4CAF50; margin-top: 0; }
+        .note-service { background: #fff9c4; padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 4px solid #fbc02d; }
     </style>
 </head>
 <body>
     <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
         <a href="/togo-english-play/index.html" class="back-home-btn">← Retour à l'accueil</a>
         
-        <div class="page-header">
-            <h1>📄 Guide de Déploiement</h1>
-            <p>Programme d'introduction de l'anglais au primaire - République Togolaise</p>
+        <div class="hero">
+            <h1>🇹🇬 Guide de Déploiement</h1>
+            <p>Programme d'Introduction de l'Anglais au Primaire</p>
+            <p style="font-size: 1em; margin-top: 15px;">Ministère des Enseignements Primaire et Secondaire</p>
         </div>
 
-        <div class="section-box">
-            <h2>🎯 Introduction</h2>
-            <p>Suite à l'adhésion du Togo au Commonwealth et conformément aux Notes de Service N°024/2023 (CP) et N°018/2024 (CE et CM), le Ministère des Enseignements Primaire et Secondaire a lancé un programme ambitieux d'introduction de l'anglais dans toutes les écoles primaires.</p>
-            <p><strong>TogoEnglish Play</strong> est l'application éducative officielle conçue pour accompagner ce déploiement national.</p>
-        </div>
-
-        <div class="section-box">
-            <h2>📊 Objectifs du Programme</h2>
-            <ul>
-                <li><strong>Objectif général :</strong> Familiariser les élèves togolais avec la langue anglaise dès le primaire pour préparer leur intégration dans un monde globalisé.</li>
-                <li><strong>Volume horaire :</strong> 1h40 par semaine (20 min/jour, 5 jours/semaine) conformément aux recommandations UNESCO.</li>
-                <li><strong>Approche pédagogique :</strong> Approche communicative privilégiant l'oral, les chansons, les jeux et l'immersion.</li>
-                <li><strong>Public cible :</strong> Élèves du CP1 au CM2 (6-11 ans).</li>
-            </ul>
-        </div>
-
-        <div class="section-box">
-            <h2>🗺️ Planning de Déploiement</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Phase 1 : Formation des Enseignants Pilotes (Déjà réalisée)</h3>
-                    <p><strong>184 enseignants</strong> formés dans les écoles pilotes à travers les 5 régions du Togo.</p>
-                    <p><strong>Contenu de la formation :</strong></p>
-                    <ul>
-                        <li>Methodologie d'enseignement de l'anglais au primaire</li>
-                        <li>Utilisation des Lesson Cards (fiches pédagogiques)</li>
-                        <li>Utilisation de l'application TogoEnglish Play</li>
-                        <li>Évaluation et remédiation</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h3>Phase 2 : Déploiement dans les Écoles Pilotes (En cours)</h3>
-                    <p><strong>184 écoles primaires</strong> équipées de tablettes et de connexion internet.</p>
-                    <p><strong>Ressources fournies :</strong></p>
-                    <ul>
-                        <li>Tablettes avec l'application TogoEnglish Play installée</li>
-                        <li>Lesson Cards imprimées pour chaque enseignant</li>
-                        <li>Flashcards et posters pour la classe</li>
-                        <li>Guide pédagogique complet</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h3>Phase 3 : Extension Nationale (2025-2026)</h3>
-                    <p>Extension progressive à toutes les écoles primaires du Togo.</p>
-                    <ul>
-                        <li>Formation de 5 000+ enseignants supplémentaires</li>
-                        <li>Distribution de 50 000+ tablettes</li>
-                        <li>Accompagnement pédagogique continu</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h3>Phase 4 : Suivi et Évaluation (Continu)</h3>
-                    <p>Mise en place d'un système de suivi pour évaluer l'impact du programme.</p>
-                    <ul>
-                        <li>Évaluations trimestrielles des acquis des élèves</li>
-                        <li>Formation continue des enseignants</li>
-                        <li>Mise à jour régulière de l'application</li>
-                    </ul>
-                </div>
+        <!-- SECTION 1 : ADRESSE OFFICIELLE -->
+        <div class="section">
+            <h2>📍 Adresse Officielle de l'Application</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Voici le lien d'accès à partager avec toutes les écoles pilotes :</p>
+            
+            <div class="url-box">
+                <p style="margin: 0 0 10px 0; color: #666; font-size: 0.9em;">🔗 Lien d'accès :</p>
+                <a href="https://cpefpa.github.io/togo-english-play/login.html" target="_blank">https://cpefpa.github.io/togo-english-play/login.html</a>
             </div>
-        </div>
 
-        <div class="section-box">
-            <h2>📱 L'Application TogoEnglish Play</h2>
             <div class="highlight-box">
-                <h3>✨ Caractéristiques Principales</h3>
-                <ul>
-                    <li><strong>100% conforme aux programmes officiels</strong> du Ministère (CP, CE, CM)</li>
-                    <li><strong>Mode hors-ligne :</strong> Fonctionne sans internet une fois installée</li>
-                    <li><strong>Installable sur téléphone et tablette</strong> (PWA - Progressive Web App)</li>
-                    <li><strong>Contenu complet :</strong> Vidéos, flashcards, mini-jeux, évaluations</li>
-                    <li><strong>Espaces dédiés :</strong> Élèves, Parents, Enseignants</li>
-                    <li><strong>Design moderne et intuitif</strong> adapté aux enfants</li>
+                <strong>️ IMPORTANT :</strong>
+                <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+                    <li>Tous les utilisateurs doivent passer par cette page de connexion</li>
+                    <li>La connexion permet d'enregistrer la région, la commune et l'école</li>
+                    <li>Ces données sont essentielles pour le suivi du déploiement</li>
                 </ul>
             </div>
-            <h3>📚 Contenu Pédagogique</h3>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-                <thead>
-                    <tr style="background: #006A4E; color: white;">
-                        <th style="padding: 10px; border: 1px solid #ddd;">Niveau</th>
-                        <th style="padding: 10px; border: 1px solid #ddd;">Unités</th>
-                        <th style="padding: 10px; border: 1px solid #ddd;">Semaines</th>
-                        <th style="padding: 10px; border: 1px solid #ddd;">Vidéos</th>
-                        <th style="padding: 10px; border: 1px solid #ddd;">Mini-Jeux</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>CP</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">6 unités</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">20 semaines</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">43 vidéos</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">3 jeux</td>
-                    </tr>
-                    <tr style="background: #f9f9f9;">
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>CE</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">6 unités</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">25 semaines</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">25 vidéos</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">3 jeux</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>CM</strong></td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">7 unités (Pre-Unit + 6)</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">28 semaines</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">30+ vidéos</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">3 jeux</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
-        <div class="section-box">
-            <h2>🎒 Ressources Nécessaires par École</h2>
-            <ul>
-                <li><strong>Tablettes :</strong> 1 tablette pour 2-3 élèves (minimum 15 tablettes par école)</li>
-                <li><strong>Connexion internet :</strong> Pour le téléchargement initial et les vidéos YouTube</li>
-                <li><strong>Lesson Cards :</strong> Fiches pédagogiques imprimées pour chaque enseignant</li>
-                <li><strong>Flashcards :</strong> Jeux de cartes pour le vocabulaire (1 jeu par classe)</li>
-                <li><strong>Posters :</strong> Affichage du vocabulaire en classe (alphabet, couleurs, nombres, etc.)</li>
-                <li><strong>Cahiers des élèves :</strong> Pour le CM uniquement (écriture et exercices)</li>
-                <li><strong>Ardoises (slates) :</strong> Pour les exercices rapides (CM)</li>
-            </ul>
+        <!-- SECTION 2 : NOTES DE SERVICE -->
+        <div class="section">
+            <h2>📜 Notes de Service Officielles</h2>
+            
+            <div class="note-service">
+                <strong>Note de Service N°024/2023/MEPST/CAB/SG</strong>
+                <p style="margin: 10px 0 0 0;">📅 Date : 2023<br>
+                📋 Objet : Programme d'introduction de l'anglais au Cours Préparatoire (CP)<br>
+                ⏱️ Volume horaire : 1h30 à 2h par semaine (20 min/jour, 5 jours/semaine)</p>
+            </div>
+
+            <div class="note-service">
+                <strong>Note de Service N°018/2024/MEPS/CAB</strong>
+                <p style="margin: 10px 0 0 0;">📅 Date : 2024<br>
+                📋 Objet : Programme d'introduction de l'anglais aux Cours Élémentaire (CE) et Moyen (CM)<br>
+                ⏱️ Volume horaire : 2h par semaine (20 min/jour, 5 jours/semaine)</p>
+            </div>
         </div>
 
-        <div class="section-box">
-            <h2>👩‍🏫 Formation des Enseignants</h2>
-            <h3>Contenu de la Formation (5 jours)</h3>
-            <ul>
-                <li><strong>Jour 1 :</strong> Introduction au programme et méthodologie communicative</li>
-                <li><strong>Jour 2 :</strong> Utilisation des Lesson Cards et des ressources pédagogiques</li>
-                <li><strong>Jour 3 :</strong> Formation à l'application TogoEnglish Play</li>
-                <li><strong>Jour 4 :</strong> Évaluation, remédiation et gestion de classe</li>
-                <li><strong>Jour 5 :</strong> Pratique en situation réelle et évaluation finale</li>
+        <!-- SECTION 3 : ACCÈS PAR PROFIL -->
+        <div class="section">
+            <h2>👥 Accès par Profil Utilisateur</h2>
+            <p>Après connexion, chaque profil est redirigé vers son espace dédié :</p>
+
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>🎓 Élèves (CP, CE, CM)</strong>
+                <p style="margin: 10px 0 0 0;">Accès : <strong>students.html</strong><br>
+                Contenu : Vidéos, flashcards, quiz interactifs, jeux éducatifs</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>‍👩‍👧 Parents</strong>
+                <p style="margin: 10px 0 0 0;">Accès : <strong>parents.html</strong><br>
+                Contenu : Ressources pour accompagner les enfants, conseils pédagogiques, suivi des progrès</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>‍🏫 Enseignants</strong>
+                <p style="margin: 10px 0 0 0;">Accès : <strong>teachers.html</strong><br>
+                Contenu : Lesson Cards, évaluations, boîte à outils pédagogique, ressources téléchargeables</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4 : PLANNING DE DÉPLOIEMENT -->
+        <div class="section">
+            <h2> Planning de Déploiement</h2>
+            <p>Calendrier de déploiement dans les 184 écoles pilotes :</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>Phase 1 - Préparation (Septembre 2026)</strong><br>
+                    • Formation des formateurs<br>
+                    • Distribution des tablettes<br>
+                    • Installation de l'application
+                </div>
+
+                <div class="timeline-item">
+                    <strong>Phase 2 - Démarrage (Octobre 2026)</strong><br>
+                    • Lancement dans les écoles pilotes<br>
+                    • Accompagnement des enseignants<br>
+                    • Collecte des premières données
+                </div>
+
+                <div class="timeline-item">
+                    <strong>Phase 3 - Suivi (Novembre - Décembre 2026)</strong><br>
+                    • Évaluation intermédiaire<br>
+                    • Ajustements si nécessaire<br>
+                    • Rapports hebdomadaires
+                </div>
+
+                <div class="timeline-item">
+                    <strong>Phase 4 - Bilan (Janvier 2027)</strong><br>
+                    • Évaluation finale<br>
+                    • Rapport au Ministère<br>
+                    • Recommandations pour généralisation
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5 : SUIVI ET STATISTIQUES -->
+        <div class="section">
+            <h2>📊 Suivi et Statistiques</h2>
+            <p>Le tableau de bord permet de suivre en temps réel :</p>
+            
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>✅ Nombre total de visites par région</li>
+                <li>✅ Répartition par profil (élèves, parents, enseignants)</li>
+                <li>✅ Pages les plus consultées</li>
+                <li>✅ Temps moyen passé sur chaque leçon</li>
+                <li>✅ Communes les plus actives</li>
+                <li>✅ Écoles participantes</li>
             </ul>
+
             <div class="highlight-box">
-                <p><strong>💡 Recommandation :</strong> Créer un <strong>English Club</strong> dans chaque école pour le CM, permettant aux élèves de pratiquer l'anglais tout au long de l'année en dehors des cours.</p>
+                <strong> Tableau de Bord Analytique :</strong><br>
+                Lien : <a href="https://cpefpa.github.io/togo-english-play/dashboard-online.html" target="_blank" style="color: #856404;">https://cpefpa.github.io/togo-english-play/dashboard-online.html</a>
             </div>
         </div>
 
-        <div class="section-box">
-            <h2>📞 Contact et Support</h2>
-            <p><strong>OBG International - Cres Poly Art</strong></p>
-            <p>Développeur et support technique de l'application TogoEnglish Play</p>
-            <div style="margin-top: 20px;">
-                <p><strong>🇨🇦 Canada :</strong> +1 (613) 850-2652</p>
-                <p><strong>🇹🇬 Togo :</strong> +228 90 58 83 58 | +228 93 20 27 22</p>
+        <!-- SECTION 6 : CONTACTS UTILES -->
+        <div class="section">
+            <h2>📞 Contacts Utiles</h2>
+            
+            <div class="contact-box">
+                <h3>🏛️ Ministère des Enseignements Primaire et Secondaire</h3>
+                <p><strong>Direction Générale</strong><br>
+                📍 Lomé, Togo<br>
+                 contact@meps-togo.tg</p>
             </div>
-            <p style="margin-top: 20px;"><strong>Site web :</strong> <a href="https://cpefpa.github.io/togo-english-play/" target="_blank">https://cpefpa.github.io/togo-english-play/</a></p>
+
+            <div class="contact-box">
+                <h3> Support Technique</h3>
+                <p><strong>Équipe CPEFPA</strong><br>
+                📧 support@cpefpa.tg<br>
+                 +228 XX XX XX XX</p>
+            </div>
+
+            <div class="contact-box">
+                <h3>‍🏫 Coordination Pédagogique</h3>
+                <p><strong>Inspecteurs Régionaux</strong><br>
+                Maritime, Plateaux, Centrale, Kara, Savanes<br>
+                 inspection@meps-togo.tg</p>
+            </div>
         </div>
 
-        <div class="section-box" style="background: linear-gradient(135deg, #006A4E, #00896a); color: white;">
-            <h2 style="color: white;">🇹🇬 Conclusion</h2>
-            <p><strong>TogoEnglish Play</strong> est une solution éducative complète, innovante et conforme aux programmes officiels du Ministère. Elle représente un investissement stratégique pour l'avenir des enfants togolais et leur intégration dans un monde globalisé.</p>
-            <p style="font-size: 1.2em; margin-top: 20px;"><em>"Travail - Liberté - Patrie"</em></p>
+        <!-- SECTION 7 : RESSOURCES COMPLÉMENTAIRES -->
+        <div class="section">
+            <h2>📚 Ressources Complémentaires</h2>
+            
+            <ul style="line-height: 2.2; padding-left: 20px;">
+                <li>📖 <a href="/togo-english-play/guide.html" style="color: #2196F3;">Guide de l'enseignant</a></li>
+                <li> <a href="/togo-english-play/students.html" style="color: #2196F3;">Espace élèves</a></li>
+                <li>👨‍👩‍👧 <a href="/togo-english-play/parents.html" style="color: #2196F3;">Espace parents</a></li>
+                <li>👩‍🏫 <a href="/togo-english-play/teachers.html" style="color: #2196F3;">Espace enseignants</a></li>
+                <li>🎨 <a href="/togo-english-play/toolkit.html" style="color: #2196F3;">Boîte à outils</a></li>
+                <li> <a href="https://cpefpa.github.io/togo-english-play/dashboard-online.html" target="_blank" style="color: #2196F3;">Tableau de bord</a></li>
+            </ul>
         </div>
 
-        <footer class="footer">
-            <p>© 2026 OBG International - Cres Poly Art. Tous droits réservés.</p>
+        <!-- FOOTER -->
+        <footer class="footer" style="text-align: center; padding: 30px; color: #666; margin-top: 40px;">
+            <p><strong>© 2026 Ministère des Enseignements Primaire et Secondaire - République Togolaise</strong></p>
+            <p style="margin-top: 10px;">"Travail - Liberté - Patrie"</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                Programme d'Introduction de l'Anglais au Primaire<br>
+                184 écoles pilotes • 5 régions • Impact national
+            </p>
         </footer>
     </div>
+
     <script src="/togo-english-play/js/analytics.js"></script>
 </body>
 </html>
